@@ -2,25 +2,28 @@
   "development": {
     "username": "VIXUSER",
     "password": "VIXPASS",
-    "database": "DBVIX",
-    "host": "127.0.0.1",
+    "database": "SGA",
+    "host": "192.168.0.187",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "logging": false,
+    "operatorsAliases": 0
   },
   "test": {
     "username": "VIXUSER",
     "password": "VIXPASS",
-    "database": "DBVIX_test",
-    "host": "127.0.0.1",
+    "database": "SGA_test",
+    "host": "192.168.0.187",
     "dialect": "mysql",
+    "logging": true,
     "operatorsAliases": false
   },
   "production": {
     "username": "VIXUSER",
     "password": "VIXPASS",
-    "database": "DBVIX_prod",
-    "host": "127.0.0.1",
+    "database": "SGA_Prod",
+    "host": "192.168.0.187",
     "dialect": "mysql",
+    "logging": false,
     "operatorsAliases": false
   }
 }

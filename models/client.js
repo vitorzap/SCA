@@ -1,3 +1,4 @@
+//
 module.exports = (sequelize, DataTypes) => {
   const Client = sequelize.define('Client', {
     ID_Company: {
@@ -38,22 +39,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(20),
       allowNull: true // Assuming phone can be optional
     },
-    Address: {
-      type: DataTypes.STRING(255),
-      allowNull: true // Assuming address can be optional
-    },
-    City: {
-      type: DataTypes.STRING(50),
-      allowNull: true // Assuming city can be optional
-    },
-    State: {
-      type: DataTypes.STRING(50),
-      allowNull: true // Assuming state can be optional
-    },
-    CEP: {
-      type: DataTypes.STRING(20),
-      allowNull: true // Assuming CEP can be optional
-    },
     DateOfBirth: {
       type: DataTypes.DATEONLY,
       allowNull: true // Assuming date of birth can be optional
@@ -62,28 +47,40 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('Male', 'Female', 'Other'),
       allowNull: true // Assuming gender can be optional
     },
+    CPF: {
+      type: DataTypes.STRING(11),
+      allowNull: false,
+      unique: true
+    },
+    Street: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    Complement: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    District: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    ID_City: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Cities',
+        key: 'ID_City'
+      }
+    },
+    CEP: {
+      type: DataTypes.STRING(20),
+      allowNull: true
+    },
     RegistrationDate: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW // Automatically set to current date/time
     },
-    LastPaymentDate: {
-      type: DataTypes.DATE,
-      allowNull: true // Assuming last payment date can be optional
-    },
-    TypePayment: {
-      type: DataTypes.ENUM('Mensal', 'Trimestral', 'Semestral', 'Anual'),
-      allowNull: true // Assuming payment type can be optional
-    },
-    Status: {
-      type: DataTypes.ENUM('Active', 'Inactive', 'Suspended'),
-      allowNull: false,
-      defaultValue: 'Active' // Default status
-    },
-    PaymentMethod: {
-      type: DataTypes.ENUM('Cartão Débito', 'Cartão Crédito', 'Cheque', 'Pré-Datado', 'PIX'),
-      allowNull: true // Assuming payment method can be optional
-    }
   }, {
     timestamps: false,
     tableName: 'Clients'

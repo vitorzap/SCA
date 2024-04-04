@@ -6,7 +6,7 @@ const userSchema = yup.object().shape({
   UserName: yup.string().required(),
   UserEmail: yup.string().email().required(),
   UserPassword: yup.string().required(),
-  UserType: yup.string().oneOf(['Root','Admin', 'Other']).required(),
+  UserType: yup.string().oneOf(['Root','Admin']).required(),
 });
 
 const userController = {
@@ -16,6 +16,20 @@ const userController = {
       const { ID_Company } = req.user; // Obtém ID_Company do req.user
 
       await userSchema.validate({ UserName, UserEmail, UserPassword, UserType });
+
+      const userExists = await User.findOne({
+        where: {
+          [Op.or]: [
+            { UserName },
+            { UserEmail }
+          ],
+          ID_Company
+        }
+      });
+      if (userExists) {
+        return res.status(400).json({ error: 'User name or email already exists.' });
+      }
+      
 
       const hashedPassword = await bcrypt.hash(UserPassword, 10);
 
@@ -74,6 +88,19 @@ const userController = {
 
       await userSchema.validate({ UserName, UserEmail, UserType });
 
+      // Verificar se UserName ou UserEmail já existem para outro usuário na mesma companhia
+      const existingUser = await User.findOne({
+        where: {
+          ID_Company,
+          [Op.or]: [{ UserName }, { UserEmail }],
+          UserID: { [Op.ne]: id } // Exclui o próprio usuário da verificação
+        }
+      });
+
+      if (existingUser) {
+        return res.status(400).json({ error: 'UserName or UserEmail already in use by another user in your company.' });
+      }
+
       const updatedUser = await User.update(
         { UserName, UserEmail, UserType },
         { where: { UserID: id, ID_Company } } // Assegura que a atualização seja feita apenas na companhia correta
@@ -93,6 +120,32 @@ const userController = {
     try {
       const { id } = req.params;
       const { ID_Company } = req.user; // Obtém ID_Company do req.user
+
+
+      // Primeiro, verifica se o usuário existe e se o UserType é "Other"
+      const user = await User.findOne({
+        where: { UserID: id, ID_Company }
+      });
+
+      // Se o usuário não for encontrado, retorna um erro
+      if (!user) {
+        return res.status(404).json({ error: 'User not found.' });
+      }
+
+      // Se o UserType for "Other", impede a exclusão
+      if (user.UserType != 'Admin' && user.UserType != 'Root') {
+        return res.status(403).json({ error: 'Deleting users of this type is not allowed.' });
+      }
+
+      // Verificar associações antes da exclusão
+      const clientOrTeacher = await Promise.all([
+        Client.findOne({ where: { UserID: id } }),
+        Teacher.findOne({ where: { UserID: id } })
+      ]);
+
+      if (clientOrTeacher[0] || clientOrTeacher[1]) {
+        return res.status(400).json({ error: 'Cannot delete user associated with a client or teacher.' });
+      }
 
       const deleted = await User.destroy({
         where: { UserID: id, ID_Company } // Assegura a exclusão apenas na companhia correta

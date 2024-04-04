@@ -8,7 +8,6 @@ const teacherRoutes = require('./routes/teacherRoutes');
 const specialtyRoutes = require('./routes/specialtyRoutes');
 const timeTableRoutes = require('./routes/timeTableRoutes');
 const helmet = require('helmet');
-const helmet = require('helmet');
 
 app.use(helmet());
 
@@ -33,5 +32,4 @@ app.use('/api', specialtyRoutes);
 app.use('/api', timeTableRoutes);
 
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = app;

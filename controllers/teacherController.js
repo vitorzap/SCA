@@ -1,36 +1,82 @@
 const { Teacher, Specialty, sequelize } = require('../models');
+const { generateUserName, generatePassword } = require('../utils/userHelpers');
+const bcrypt = require('bcrypt');
+require('dotenv').config();
 const yup = require('yup');
 
 
 const teacherSchema = yup.object().shape({
-  ID_Company: yup.number().required('Company ID is required'),
   Name: yup.string().required().min(1, 'Name must not be blank'),
 });
 
 const teacherController = {
   createTeacher: async (req, res) => {
-    const t = await sequelize.transaction();
+    const transaction = await sequelize.transaction();
     try {
-      const { Name, specialtyIds } = req.body;
+      const { Name, Email, specialtyIds } = req.body;
       const { ID_Company } = req.user; 
+
+      await teacherSchema.validate({ Name });
 
       if (!specialtyIds || specialtyIds.length === 0) {
         throw new Error('A teacher must have at least one specialty.');
       }     
-  
-      // Validate specialties exist
-      const specialties = await Specialty.findAll({
-        where: { ID_Specialties: specialtyIds }
-      }, { transaction: t });
-  
+
+      // Verificando se as especialidades existem para empresa(Company)
+      const specialties = await Specialty.findAll({ 
+        where: { 
+          ID_Specialties: specialtyIds,
+          ID_Company 
+        } 
+      }, { transaction });
+
       if (specialties.length !== specialtyIds.length) {
-        throw new Error('One or more specialties do not exist.');
+        throw new Error('One or more specialties do not exist for the given company.');
+      }     
+
+      // Gera password inicial do usuario
+      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 8; 
+      const password = generatePassword(passwordLength);
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Gera o nome do usuario baseado no nome to professor
+      let userName = await generateUserName(Name); // Tentativa inicial
+      let userNameExists = await User.findOne({ where: { UserName: userName } }, { transaction });
+
+      let counter = 1;
+      while (userNameExists) {
+        userName = await generateUserName(Name, counter);
+        userNameExists = await User.findOne({ where: { UserName: userName } }, { transaction });
+        counter++;
+       }
+
+      // Insere usuario
+      const newUser = await User.create({
+        UserName: userName,
+        UserEmail: Email, // Assumindo que Email é fornecido
+        UserPassword: hashedPassword,
+        UserType: 'Teacher', // Defina conforme apropriado
+        ID_Company
+      }, { transaction });
+
+      // Insere professor
+      const newTeacher = await Teacher.create({
+        UserID: newUser.UserID,
+        Name,
+        ID_Company
+      }, { transaction });
+
+      // Obtendo especialidades correspondentes aos IDs fornecidos
+      const specialtiesX = await Specialty.findAll({ where: { id: specialtyIds } });
+
+      // Verificando se todos os IDs fornecidos correspondem a especialidades válidas
+      if (specialties.length !== specialtyIds.length) {
+        throw new Error('One or more specialties do not exist (*).');
       }
+
+      await newTeacher.addSpecialties(specialties, { transaction });
   
-      const teacher = await Teacher.create({ ID_Company, Name }, { transaction: t });
-      await teacher.addSpecialties(specialties, { transaction: t });
-  
-      await t.commit();
+      await transaction.commit();
       res.status(201).json(teacher);
     } catch (error) {
       await t.rollback();
@@ -54,16 +100,32 @@ const teacherController = {
     try {
       const { id } = req.params;
       const { ID_Company } = req.user;
+      const listSpecialties = req.query.listSpecialties === 'true'; 
+
+      const includeOptions = [];
+
+      // Se listSpecialties for verdadeiro, inclua o modelo Specialty na busca
+      if (listSpecialties) {
+        includeOptions.push({
+          model: Specialty,
+          as: 'Specialties',
+          through: { attributes: [] } 
+        });
+      }
 
       const teacher = await Teacher.findOne({
-        where: { ID_Teacher: id, ID_Company }
+        where: { ID_Teacher: id, ID_Company },
+        include: includeOptions
       });
 
       if (!teacher) {
         return res.status(404).json({ message: 'Teacher not found or does not belong to this company.' });
       }
 
-      res.json(teacher);
+      // Preparar resposta incluindo as especialidades, se aplicável
+      const response = teacher.toJSON(); // Converter o modelo Sequelize para um objeto simples
+
+      res.json(response);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -75,7 +137,7 @@ const teacherController = {
       const { Name } = req.body; // Exemplo de atualização somente do nome
       const { ID_Company } = req.user;
 
-      await updateTeacherSchema.validate({ Name });
+      await teacherSchema.validate({ Name });
 
       const [updated] = await Teacher.update({ Name }, {
         where: { ID_Teacher: id, ID_Company }
@@ -96,23 +158,111 @@ const teacherController = {
 
   
   deleteTeacher: async (req, res) => {
+    const transaction = await sequelize.transaction();
     try {
       const { id } = req.params;
       const { ID_Company } = req.user;
-
-      const deleted = await Teacher.destroy({
-        where: { ID_Teacher: id, ID_Company }
-      });
-
-      if (!deleted) {
-        return res.status(404).json({ message: 'Teacher not found or does not belong to this company.' });
+      const teacher = await Teacher.findOne({ 
+          where: { ID_Teacher: id, ID_Company },
+          include: 'Specialties'
+        }, { 
+          transaction }
+      );
+      if (!teacher) {
+        await transaction.rollback();
+        return res.status(404).json({ error: 'Teacher not found.' });
       }
 
-      res.status(204).send();
+      // Verificar se o professor está associado a algum TimeTable
+      const hasTimeTables = await TimeTable.findOne({
+        where: { ID_Teacher: teacher.ID_Teacher },
+        transaction
+      });
+
+      if (hasTimeTables) {
+        await transaction.rollback();
+        return res.status(400).json({ error: 'Cannot delete teacher because they are associated with time tables.' });
+      }  
+
+      // Excluir as associações do professor com especialidades
+      await teacher.removeSpecialties(teacher.Specialties, { transaction });
+
+      // Excluir o usuário associado ao professor
+      await User.destroy({ 
+        where: { UserID: teacher.UserID },  
+        transaction 
+      });
+
+      // Excluir o professor
+      await teacher.destroy(
+        {where: { ID_Teacher: teacher.ID_Teacher }, 
+        transaction 
+      });
+
+      await transaction.commit();
+      res.json({ message: 'Teacher and corresponding user deleted successfully.' });
     } catch (error) {
+      await transaction.rollback();
       res.status(400).json({ error: error.message });
     }
   },
 };
+
+const updateSpecialty = async (req, res) => {
+  const transaction = await sequelize.transaction();
+  try {
+    const { ID_Teacher, specialtyIds } = req.body;
+    const { ID_Company } = req.user;
+
+    // Verificar se o professor existe
+    const teacher = await Teacher.findOne({
+      where: { ID_Teacher, ID_Company }
+    }, { transaction });
+
+    if (!teacher) {
+      await transaction.rollback();
+      return res.status(404).json({ error: 'Teacher not found.' });
+    }
+
+    // Obter especialidades atuais do professor
+    const currentSpecialties = await teacher.getSpecialties({ transaction });
+    const currentSpecialtyIds = currentSpecialties.map(s => s.ID_Specialties);
+
+    // Especialidades para adicionar são aquelas no array de entrada que não estão nas atuais
+    const toAdd = specialtyIds.filter(id => !currentSpecialtyIds.includes(id));
+
+    // Especialidades para remover são aquelas atuais que não estão no array de entrada
+    const toRemove = currentSpecialties.filter(s => !specialtyIds.includes(s.ID_Specialties));
+
+    // Verificar se alguma das especialidades a serem removidas está associada a TimeTables
+    for (const specialty of toRemove) {
+      const associatedTimeTables = await TimeTable.findOne({
+        where: {
+          ID_Teacher,
+          ID_Specialty: specialty.ID_Specialties
+        },
+        transaction
+      });
+      if (associatedTimeTables) {
+        throw new Error(`Cannot remove specialty ${specialty.Description} from teacher because it is associated with a time table.`);
+      }
+    }
+
+    // Adicionar novas especialidades ao professor
+    await teacher.addSpecialties(toAdd, { transaction });
+
+    // Remover especialidades não desejadas do professor
+    for (const specialty of toRemove) {
+      await teacher.removeSpecialty(specialty, { transaction });
+    }
+
+    await transaction.commit();
+    res.json({ message: 'Teacher specialties updated successfully.' });
+  } catch (error) {
+    await transaction.rollback();
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 module.exports = teacherController;

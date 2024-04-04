@@ -21,6 +21,14 @@ module.exports = (sequelize, DataTypes) => {
         key: 'ID_Teacher'
       }
     },
+    ID_Specialty: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Specialties', // Garanta que isso corresponde ao nome da tabela de Specialty
+        key: 'ID_Specialties'
+      }
+    },
     Day_of_Week: {
       type: DataTypes.STRING(20),
       allowNull: false

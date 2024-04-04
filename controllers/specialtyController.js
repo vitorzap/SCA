@@ -84,7 +84,29 @@ const specialtyController = {
   deleteSpecialty: async (req, res) => {
     try {
       const { id } = req.params;
-      const { ID_Company } = req.user; // Obtém ID_Company do req.user
+      const { ID_Company } = req.user; 
+
+      // Verificar associações existentes com Teachers
+      const associatedTeachers = await sequelize.models.TeacherSpecialties.findAndCountAll({
+        include: [{
+          model: Specialty,
+          where: { ID_Specialties: id, ID_Company },
+          required: true
+        }]
+      });
+
+      if (associatedTeachers.count > 0) {
+        return res.status(400).json({ error: 'Cannot delete specialty because it is associated with teachers.' });
+      }
+
+      // Verificar associações com TimeTable
+      const associatedTimeTables = await TimeTable.findAndCountAll({
+        where: { ID_Specialty: id, ID_Company }
+      });
+
+      if (associatedTimeTables.count > 0) {
+        return res.status(400).json({ error: 'Cannot delete specialty because it is associated with time tables.' });
+      }
 
       const deleted = await Specialty.destroy({ 
           where: { ID_Specialties: id, ID_Company } 
