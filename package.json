@@ -21,6 +21,12 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/city/**/*.test.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "sga"
