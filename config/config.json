@@ -3,7 +3,7 @@
     "username": "VIXUSER",
     "password": "VIXPASS",
     "database": "SGA",
-    "host": "192.168.0.187",
+    "host": "192.168.0.106",
     "dialect": "mysql",
     "logging": false,
     "operatorsAliases": 0
@@ -12,7 +12,7 @@
     "username": "VIXUSER",
     "password": "VIXPASS",
     "database": "SGA_test",
-    "host": "192.168.0.187",
+    "host": "192.168.0.106",
     "dialect": "mysql",
     "logging": true,
     "operatorsAliases": false
@@ -21,7 +21,7 @@
     "username": "VIXUSER",
     "password": "VIXPASS",
     "database": "SGA_Prod",
-    "host": "192.168.0.187",
+    "host": "192.168.0.106",
     "dialect": "mysql",
     "logging": false,
     "operatorsAliases": false

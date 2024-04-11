@@ -214,47 +214,21 @@ const updateSpecialty = async (req, res) => {
     const { ID_Teacher, specialtyIds } = req.body;
     const { ID_Company } = req.user;
 
-    // Verificar se o professor existe
-    const teacher = await Teacher.findOne({
-      where: { ID_Teacher, ID_Company }
-    }, { transaction });
-
+    // Ensure the teacher exists
+    const teacher = await Teacher.findOne({ where: { ID_Teacher, ID_Company } }, { transaction });
     if (!teacher) {
       await transaction.rollback();
       return res.status(404).json({ error: 'Teacher not found.' });
     }
 
-    // Obter especialidades atuais do professor
-    const currentSpecialties = await teacher.getSpecialties({ transaction });
-    const currentSpecialtyIds = currentSpecialties.map(s => s.ID_Specialties);
-
-    // Especialidades para adicionar são aquelas no array de entrada que não estão nas atuais
-    const toAdd = specialtyIds.filter(id => !currentSpecialtyIds.includes(id));
-
-    // Especialidades para remover são aquelas atuais que não estão no array de entrada
-    const toRemove = currentSpecialties.filter(s => !specialtyIds.includes(s.ID_Specialties));
-
-    // Verificar se alguma das especialidades a serem removidas está associada a TimeTables
-    for (const specialty of toRemove) {
-      const associatedTimeTables = await TimeTable.findOne({
-        where: {
-          ID_Teacher,
-          ID_Specialty: specialty.ID_Specialties
-        },
-        transaction
-      });
-      if (associatedTimeTables) {
-        throw new Error(`Cannot remove specialty ${specialty.Description} from teacher because it is associated with a time table.`);
-      }
+    // Validate specialtyIds
+    const validSpecialties = await Specialty.count({ where: { ID_Specialties: specialtyIds, ID_Company }, transaction });
+    if (validSpecialties !== specialtyIds.length) {
+      throw new Error('One or more specialties do not exist.');
     }
 
-    // Adicionar novas especialidades ao professor
-    await teacher.addSpecialties(toAdd, { transaction });
-
-    // Remover especialidades não desejadas do professor
-    for (const specialty of toRemove) {
-      await teacher.removeSpecialty(specialty, { transaction });
-    }
+    // Simplified association update
+    await teacher.setSpecialties(specialtyIds, { transaction });
 
     await transaction.commit();
     res.json({ message: 'Teacher specialties updated successfully.' });
@@ -263,6 +237,7 @@ const updateSpecialty = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 
 module.exports = teacherController;
