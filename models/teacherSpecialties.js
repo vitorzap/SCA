@@ -26,11 +26,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'TeacherSpecialties'
   });
 
-  // Association setups (if not set elsewhere)
-  TeacherSpecialties.associate = (models) => {
-    models.Teacher.belongsToMany(models.Specialty, { through: TeacherSpecialties, foreignKey: 'ID_Teacher' });
-    models.Specialty.belongsToMany(models.Teacher, { through: TeacherSpecialties, foreignKey: 'ID_Specialties' });
-  };
-
   return TeacherSpecialties;
 };

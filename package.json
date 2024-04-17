@@ -19,7 +19,8 @@
   "scripts": {
     "test": "jest",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "mtest": "mocha './tests/**/*.test.js' --timeout 10000"
   },
   "jest": {
     "testEnvironment": "node",
@@ -35,6 +36,7 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^5.1.0",
+    "chai-http": "^4.4.0",
     "jest": "^29.7.0",
     "mocha": "^10.3.0",
     "nodemon": "^3.1.0",

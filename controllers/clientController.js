@@ -47,12 +47,12 @@ const clientController = {
       }
 
         // Obtém o comprimento da senha do .env, ou usa 6 como padrão se não estiver definido
-        const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 6;
+        const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 10;
 
   
         // Gerar senha aleatória
         const password = generatePassword(passwordLength);
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password,  passwordLength);
         
         // Tentativa inicial para gerar nome de usuário
         let userName = await generateUserName(Name);

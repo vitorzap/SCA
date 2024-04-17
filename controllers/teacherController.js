@@ -1,5 +1,5 @@
 const { Teacher, Specialty, sequelize } = require('../models');
-const { generateUserName, generatePassword } = require('../utils/userHelpers');
+const { generateSalt, generateUserName, generatePassword } = require('../utils/userHelpers');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 const yup = require('yup');
@@ -35,9 +35,10 @@ const teacherController = {
       }     
 
       // Gera password inicial do usuario
-      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 8; 
+      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 10; 
       const password = generatePassword(passwordLength);
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const customSalt = await generateSalt();
+      const hashedPassword = await bcrypt.hash(password, customSalt);
 
       // Gera o nome do usuario baseado no nome to professor
       let userName = await generateUserName(Name); // Tentativa inicial
@@ -206,35 +207,35 @@ const teacherController = {
       res.status(400).json({ error: error.message });
     }
   },
-};
 
-const updateSpecialty = async (req, res) => {
-  const transaction = await sequelize.transaction();
-  try {
-    const { ID_Teacher, specialtyIds } = req.body;
-    const { ID_Company } = req.user;
+  updateSpecialty: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { ID_Teacher, specialtyIds } = req.body;
+      const { ID_Company } = req.user;
 
-    // Ensure the teacher exists
-    const teacher = await Teacher.findOne({ where: { ID_Teacher, ID_Company } }, { transaction });
-    if (!teacher) {
+      // Ensure the teacher exists
+      const teacher = await Teacher.findOne({ where: { ID_Teacher, ID_Company } }, { transaction });
+      if (!teacher) {
+        await transaction.rollback();
+        return res.status(404).json({ error: 'Teacher not found.' });
+      }
+
+      // Validate specialtyIds
+      const validSpecialties = await Specialty.count({ where: { ID_Specialties: specialtyIds, ID_Company }, transaction });
+      if (validSpecialties !== specialtyIds.length) {
+        throw new Error('One or more specialties do not exist.');
+      }
+
+      // Simplified association update
+      await teacher.setSpecialties(specialtyIds, { transaction });
+
+      await transaction.commit();
+      res.json({ message: 'Teacher specialties updated successfully.' });
+    } catch (error) {
       await transaction.rollback();
-      return res.status(404).json({ error: 'Teacher not found.' });
+      res.status(400).json({ error: error.message });
     }
-
-    // Validate specialtyIds
-    const validSpecialties = await Specialty.count({ where: { ID_Specialties: specialtyIds, ID_Company }, transaction });
-    if (validSpecialties !== specialtyIds.length) {
-      throw new Error('One or more specialties do not exist.');
-    }
-
-    // Simplified association update
-    await teacher.setSpecialties(specialtyIds, { transaction });
-
-    await transaction.commit();
-    res.json({ message: 'Teacher specialties updated successfully.' });
-  } catch (error) {
-    await transaction.rollback();
-    res.status(400).json({ error: error.message });
   }
 };
 

@@ -53,7 +53,7 @@ async function loadCities() {
 }
 
 async function loadStatesAndCities() {
-  await sequelize.sync({ force: true });
+ // await sequelize.sync({ force: true });
   const stateIdMap = []
 
   process.stdout.write('Loading States into Memory <<=================\n\r')
@@ -76,14 +76,14 @@ async function loadStatesAndCities() {
     if (ctrTrans >= 1000) {
       await transaction.commit(); 
       transaction = await sequelize.transaction(); 
-      console.log('Çomitou')
+      console.log('Comitou')
       ctrTrans = 0;
     }
   }
   if (ctrTrans > 0) {
-    console.log('Çomitou2')
+    console.log('Comitou2')
     await transaction.commit(); 
-    const transaction = await sequelize.transaction(); 
+    transaction = await sequelize.transaction(); 
     ctrTrans = 0;
   }
   process.stdout.write(`${ctr} States included in the DB\n\r`)
@@ -105,7 +105,7 @@ async function loadStatesAndCities() {
       ctrTrans++;
       if (ctrTrans >= 1000) {
         await transaction.commit(); 
-        const transaction = await sequelize.transaction(); 
+        transaction = await sequelize.transaction(); 
         ctrTrans = 0;
       }
     }
@@ -119,7 +119,6 @@ async function loadStatesAndCities() {
 
 
 
-  process.stdout.write('States and Cities have been loaded successfully.\n\r');
 
 loadStatesAndCities().catch(err => {
   console.error('Failed to load states and cities:', err);
