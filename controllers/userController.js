@@ -1,12 +1,19 @@
-const { User } = require('../models');
+const { User, Client, Teacher } = require('../models');
+const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const yup = require('yup');
 
-const userSchema = yup.object().shape({
+const createUserSchema = yup.object().shape({
   UserName: yup.string().required(),
   UserEmail: yup.string().email().required(),
   UserPassword: yup.string().required(),
   UserType: yup.string().oneOf(['Root','Admin']).required(),
+});
+
+const updateUserSchema = yup.object().shape({
+  UserName: yup.string().optional(),
+  UserEmail: yup.string().email().optional(),
+  UserType: yup.string().oneOf(['Root', 'Admin']).optional(),
 });
 
 const userController = {
@@ -15,22 +22,19 @@ const userController = {
       const { UserName, UserEmail, UserPassword, UserType } = req.body;
       const { ID_Company } = req.user; // Obtém ID_Company do req.user
 
-      await userSchema.validate({ UserName, UserEmail, UserPassword, UserType });
-
+      await createUserSchema.validate({ UserName, UserEmail, UserPassword, UserType });
       const userExists = await User.findOne({
         where: {
           [Op.or]: [
-            { UserName },
-            { UserEmail }
+            { UserName: UserName },
           ],
-          ID_Company
+          ID_Company: ID_Company
         }
       });
+
       if (userExists) {
         return res.status(400).json({ error: 'User name or email already exists.' });
       }
-      
-
       const hashedPassword = await bcrypt.hash(UserPassword, 10);
 
       const newUser = await User.create({
@@ -43,6 +47,7 @@ const userController = {
 
       res.status(201).json(newUser);
     } catch (error) {
+      console.log('ÚSER EXISTS - 4');
       res.status(400).json({ error: error.message });
     }
   },
@@ -82,17 +87,22 @@ const userController = {
 
   updateUser: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.params;     
+      // const { UserName, UserEmail, UserType } = req.body;
       const { UserName, UserEmail, UserType } = req.body;
       const { ID_Company } = req.user; // Obtém ID_Company do req.user
 
-      await userSchema.validate({ UserName, UserEmail, UserType });
+      await updateUserSchema.validate({ UserName, UserEmail, UserType });
+
+      const conditions = [];
+      if (UserName) conditions.push({ UserName });
+      if (UserEmail) conditions.push({ UserEmail });
 
       // Verificar se UserName ou UserEmail já existem para outro usuário na mesma companhia
       const existingUser = await User.findOne({
         where: {
           ID_Company,
-          [Op.or]: [{ UserName }, { UserEmail }],
+          [Op.or]: conditions,
           UserID: { [Op.ne]: id } // Exclui o próprio usuário da verificação
         }
       });
@@ -126,7 +136,7 @@ const userController = {
       const user = await User.findOne({
         where: { UserID: id, ID_Company }
       });
-
+ 
       // Se o usuário não for encontrado, retorna um erro
       if (!user) {
         return res.status(404).json({ error: 'User not found.' });
@@ -142,11 +152,9 @@ const userController = {
         Client.findOne({ where: { UserID: id } }),
         Teacher.findOne({ where: { UserID: id } })
       ]);
-
       if (clientOrTeacher[0] || clientOrTeacher[1]) {
         return res.status(400).json({ error: 'Cannot delete user associated with a client or teacher.' });
       }
-
       const deleted = await User.destroy({
         where: { UserID: id, ID_Company } // Assegura a exclusão apenas na companhia correta
       });

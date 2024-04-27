@@ -2,6 +2,7 @@ const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const { Op } = require('sequelize');
 
 dotenv.config();
 
@@ -10,9 +11,16 @@ const tokenBlacklist = new Set();
 const sessionController = {
   login: async (req, res) => {
     try {
-      const { UserEmail, UserPassword } = req.body;
-      const user = await User.findOne({ where: { UserEmail } });
-
+      const { login, UserPassword, ID_Company } = req.body;
+      const user = await User.findOne({ 
+        where: {
+          [Op.or]: [
+            { UserEmail: login },
+            { UserName: login }
+          ],
+          ID_Company: ID_Company
+        }
+      });
       if (!user) {
         return res.status(401).json({ error: 'User not found' });
       }

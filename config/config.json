@@ -11,11 +11,11 @@
   "test": {
     "username": "VIXUSER",
     "password": "VIXPASS",
-    "database": "SGA_test",
+    "database": "SGA_Test",
     "host": "192.168.0.106",
     "dialect": "mysql",
     "logging": true,
-    "operatorsAliases": false
+    "operatorsAliases": 0
   },
   "production": {
     "username": "VIXUSER",
@@ -24,6 +24,6 @@
     "host": "192.168.0.106",
     "dialect": "mysql",
     "logging": false,
-    "operatorsAliases": false
+    "operatorsAliases": 0
   }
 }

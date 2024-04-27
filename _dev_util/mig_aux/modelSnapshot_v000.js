@@ -239,7 +239,6 @@ fs.readdirSync(__dirname)
            (file.indexOf('associations.js') === -1);
   })
   .forEach(file => {
-    console.log(`INICIANDO MODEL(${path.join(__dirname, file)})`)
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });

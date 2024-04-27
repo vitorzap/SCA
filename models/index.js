@@ -1,10 +1,11 @@
 'use strict'; 
-console.log('MODEL INDEX.JS ==>> INICIANDO')
+console.log('/MODEL/INDEX.JS ==>> INICIANDO')
 
 const Sequelize = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
+const customLogger = require('../utils/logHelpers.js')
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -12,7 +13,14 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config.json')[env];
 
 // Creating a new Sequelize instance using our configuration
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+// const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+const sequelize = new Sequelize(config.database, config.username, config.password, {
+  ...config,
+  logging: customLogger
+});
+
+
 
 const db = {};
 
@@ -25,7 +33,6 @@ fs.readdirSync(__dirname)
            (file.indexOf('associations.js') === -1);
   })
   .forEach(file => {
-    console.log(`INICIANDO MODEL(${path.join(__dirname, file)})`)
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });

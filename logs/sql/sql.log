@@ -1,0 +1,921 @@
+2024-04-25T11:23:55.398Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 1;
+2024-04-25T11:23:55.603Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 1;
+2024-04-25T11:23:55.911Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 1;
+2024-04-25T11:23:56.119Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 1;
+2024-04-25T11:23:57.171Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 1;
+2024-04-25T11:23:57.511Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 1;
+2024-04-25T11:23:57.772Z - Executing (default): DELETE FROM Clients;
+2024-04-25T11:23:57.830Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T11:23:57.838Z - Executing (default): DELETE FROM Cities;
+2024-04-25T11:23:57.910Z - Executing (default): DELETE FROM States;
+2024-04-25T11:23:57.991Z - Executing (default): DELETE FROM Users;
+2024-04-25T11:23:58.095Z - Executing (default): DELETE FROM Companies;
+2024-04-25T11:24:09.043Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T11:24:09.147Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-04-25T11:24:09.235Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T11:24:09.716Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T11:24:10.771Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`DateOfBirth`,`Gender`,`CPF`,`Street`,`Complement`,`District`,`ID_City`,`CEP`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?);
+2024-04-25T11:24:10.940Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T11:24:11.137Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T11:24:11.214Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '3' AND `User`.`ID_Company` = 2;
+2024-04-25T11:27:45.555Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 1;
+2024-04-25T11:27:45.719Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 1;
+2024-04-25T11:27:45.809Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 1;
+2024-04-25T11:27:45.911Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 1;
+2024-04-25T11:27:46.042Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 1;
+2024-04-25T11:27:47.161Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 1;
+2024-04-25T11:27:47.357Z - Executing (default): DELETE FROM Clients;
+2024-04-25T11:27:47.567Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T11:27:47.572Z - Executing (default): DELETE FROM Cities;
+2024-04-25T11:27:47.677Z - Executing (default): DELETE FROM States;
+2024-04-25T11:27:47.818Z - Executing (default): DELETE FROM Users;
+2024-04-25T11:27:47.908Z - Executing (default): DELETE FROM Companies;
+2024-04-25T11:27:58.739Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T11:27:58.964Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-04-25T11:27:59.082Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T11:27:59.364Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T11:27:59.467Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`DateOfBirth`,`Gender`,`CPF`,`Street`,`Complement`,`District`,`ID_City`,`CEP`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?);
+2024-04-25T11:27:59.838Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T11:28:00.012Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T11:28:00.091Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '5' AND `User`.`ID_Company` = 3;
+2024-04-25T11:28:00.098Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '5';
+2024-04-25T11:28:00.104Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '5';
+2024-04-25T11:28:59.697Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 1;
+2024-04-25T11:29:00.070Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 1;
+2024-04-25T11:29:00.583Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 1;
+2024-04-25T11:29:00.763Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 1;
+2024-04-25T11:29:00.974Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 1;
+2024-04-25T11:29:01.221Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 1;
+2024-04-25T11:29:01.343Z - Executing (default): DELETE FROM Clients;
+2024-04-25T11:29:01.431Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T11:29:01.439Z - Executing (default): DELETE FROM Cities;
+2024-04-25T11:29:01.553Z - Executing (default): DELETE FROM States;
+2024-04-25T11:29:01.642Z - Executing (default): DELETE FROM Users;
+2024-04-25T11:29:01.733Z - Executing (default): DELETE FROM Companies;
+2024-04-25T11:29:12.822Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T11:29:13.054Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-04-25T11:29:13.132Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T11:29:13.317Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T11:29:13.475Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`DateOfBirth`,`Gender`,`CPF`,`Street`,`Complement`,`District`,`ID_City`,`CEP`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?);
+2024-04-25T11:29:13.683Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T11:29:13.845Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T11:29:13.922Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '7' AND `User`.`ID_Company` = 4;
+2024-04-25T11:29:13.929Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '7';
+2024-04-25T11:29:13.941Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '7';
+2024-04-25T11:36:38.592Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 1;
+2024-04-25T11:36:38.728Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 1;
+2024-04-25T11:36:38.841Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 1;
+2024-04-25T11:36:39.018Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 1;
+2024-04-25T11:36:39.123Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 1;
+2024-04-25T11:36:39.645Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 1;
+2024-04-25T11:36:40.364Z - Executing (default): DELETE FROM Clients;
+2024-04-25T11:36:40.372Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T11:36:40.673Z - Executing (default): DELETE FROM Cities;
+2024-04-25T11:36:40.679Z - Executing (default): DELETE FROM States;
+2024-04-25T11:36:40.686Z - Executing (default): DELETE FROM Users;
+2024-04-25T11:36:40.971Z - Executing (default): DELETE FROM Companies;
+2024-04-25T11:36:51.955Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T15:32:05.312Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 1;
+2024-04-25T15:32:05.470Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 1;
+2024-04-25T15:32:05.599Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 1;
+2024-04-25T15:32:05.727Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 1;
+2024-04-25T15:32:05.871Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 1;
+2024-04-25T15:32:06.192Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 1;
+2024-04-25T15:32:07.287Z - Executing (default): DELETE FROM Clients;
+2024-04-25T15:32:07.395Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T15:32:07.400Z - Executing (default): DELETE FROM Cities;
+2024-04-25T15:32:07.576Z - Executing (default): DELETE FROM States;
+2024-04-25T15:32:07.838Z - Executing (default): DELETE FROM Users;
+2024-04-25T15:32:07.989Z - Executing (default): DELETE FROM Companies;
+2024-04-25T15:32:19.837Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T15:32:20.107Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-04-25T15:32:20.296Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T15:32:20.460Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T15:32:20.539Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`DateOfBirth`,`Gender`,`CPF`,`Street`,`Complement`,`District`,`ID_City`,`CEP`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?);
+2024-04-25T15:32:20.694Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T15:32:20.826Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T15:32:20.900Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '9' AND `User`.`ID_Company` = 5;
+2024-04-25T15:32:20.906Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '9';
+2024-04-25T15:32:20.910Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '9';
+2024-04-25T15:35:15.908Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T15:35:16.002Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T15:35:16.139Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T15:45:16.418Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T15:45:16.520Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T15:45:16.523Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T15:49:03.861Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 1;
+2024-04-25T15:49:04.303Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 1;
+2024-04-25T15:49:04.813Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 1;
+2024-04-25T15:49:05.002Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 1;
+2024-04-25T15:49:05.428Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 1;
+2024-04-25T15:49:05.598Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 1;
+2024-04-25T15:49:05.729Z - Executing (default): DELETE FROM Clients;
+2024-04-25T15:49:05.826Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T15:49:05.834Z - Executing (default): DELETE FROM Cities;
+2024-04-25T15:49:05.908Z - Executing (default): DELETE FROM States;
+2024-04-25T15:49:05.984Z - Executing (default): DELETE FROM Users;
+2024-04-25T15:49:06.058Z - Executing (default): DELETE FROM Companies;
+2024-04-25T15:49:16.941Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-04-25T15:49:17.058Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-04-25T15:49:17.128Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T15:49:17.346Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T15:49:17.415Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`DateOfBirth`,`Gender`,`CPF`,`Street`,`Complement`,`District`,`ID_City`,`CEP`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?,?);
+2024-04-25T15:49:17.558Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T15:49:17.827Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T15:49:17.899Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '10' AND `User`.`ID_Company` = 6;
+2024-04-25T15:49:17.900Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T15:49:17.904Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '10';
+2024-04-25T15:49:17.909Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '10';
+2024-04-25T15:49:18.056Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T15:49:18.060Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 6
+2024-04-25T15:58:09.482Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 1;
+2024-04-25T15:58:10.303Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 1;
+2024-04-25T15:58:11.018Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 1;
+2024-04-25T15:58:11.159Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 1;
+2024-04-25T15:58:11.300Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 1;
+2024-04-25T15:58:11.452Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 1;
+2024-04-25T15:58:11.739Z - Executing (default): DELETE FROM Clients;
+2024-04-25T15:58:12.146Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T15:58:12.154Z - Executing (default): DELETE FROM Cities;
+2024-04-25T15:58:12.244Z - Executing (default): DELETE FROM States;
+2024-04-25T15:58:12.346Z - Executing (default): DELETE FROM Users;
+2024-04-25T15:58:12.444Z - Executing (default): DELETE FROM Companies;
+2024-04-25T15:58:23.059Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T15:58:23.333Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T15:58:23.467Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T15:58:23.537Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 7 LIMIT 1;
+2024-04-25T15:58:23.599Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T15:58:23.731Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 7 LIMIT 1;
+2024-04-25T15:58:23.738Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 7;
+2024-04-25T15:58:23.746Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '11' AND `User`.`ID_Company` = 7;
+2024-04-25T15:58:23.754Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 7 AND `User`.`UserID` != '11' LIMIT 1;
+2024-04-25T15:58:23.759Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T15:58:23.991Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 7 AND `User`.`UserID` != '11' LIMIT 1;
+2024-04-25T15:58:23.997Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T15:58:24.089Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '11' AND `User`.`ID_Company` = 7;
+2024-04-25T15:58:24.096Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '11';
+2024-04-25T15:58:24.101Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '11';
+2024-04-25T15:58:24.107Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '11' AND `ID_Company` = 7
+2024-04-25T15:58:24.217Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T15:58:24.224Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T15:58:24.302Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 7
+2024-04-25T16:07:21.396Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 288;
+2024-04-25T16:07:21.589Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 178;
+2024-04-25T16:07:22.347Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 776;
+2024-04-25T16:07:22.453Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 609;
+2024-04-25T16:07:22.665Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 83;
+2024-04-25T16:07:23.166Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 49;
+2024-04-25T16:07:23.357Z - Executing (default): DELETE FROM Clients;
+2024-04-25T16:07:23.372Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T16:07:23.381Z - Executing (default): DELETE FROM Cities;
+2024-04-25T16:07:23.390Z - Executing (default): DELETE FROM States;
+2024-04-25T16:07:23.397Z - Executing (default): DELETE FROM Users;
+2024-04-25T16:07:23.403Z - Executing (default): DELETE FROM Companies;
+2024-04-25T16:07:34.166Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T16:07:34.363Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T16:07:34.487Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T16:07:34.561Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 49 LIMIT 1;
+2024-04-25T16:07:34.622Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T16:07:34.912Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 49 LIMIT 1;
+2024-04-25T16:07:34.918Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 49;
+2024-04-25T16:07:34.924Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '83' AND `User`.`ID_Company` = 49;
+2024-04-25T16:07:34.933Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 49 AND `User`.`UserID` != '83' LIMIT 1;
+2024-04-25T16:07:34.937Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T16:07:35.018Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 49 AND `User`.`UserID` != '83' LIMIT 1;
+2024-04-25T16:07:35.022Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T16:07:35.119Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '83' AND `User`.`ID_Company` = 49;
+2024-04-25T16:07:35.124Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '83';
+2024-04-25T16:07:35.128Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '83';
+2024-04-25T16:07:35.133Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '83' AND `ID_Company` = 49
+2024-04-25T16:07:35.212Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T16:07:35.216Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T16:07:35.311Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 49
+2024-04-25T16:08:51.952Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 603;
+2024-04-25T16:08:52.256Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 269;
+2024-04-25T16:08:52.413Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 156;
+2024-04-25T16:08:52.768Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 654;
+2024-04-25T16:08:53.587Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 640;
+2024-04-25T16:08:54.405Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 165;
+2024-04-25T16:08:54.538Z - Executing (default): DELETE FROM Clients;
+2024-04-25T16:08:54.546Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T16:08:54.554Z - Executing (default): DELETE FROM Cities;
+2024-04-25T16:08:54.558Z - Executing (default): DELETE FROM States;
+2024-04-25T16:08:54.561Z - Executing (default): DELETE FROM Users;
+2024-04-25T16:08:54.566Z - Executing (default): DELETE FROM Companies;
+2024-04-25T16:09:05.101Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T16:09:05.369Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T16:09:05.733Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserEmail` = 'test@example.com';
+2024-04-25T16:09:05.806Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 165 LIMIT 1;
+2024-04-25T16:09:05.868Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T16:09:05.979Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 165 LIMIT 1;
+2024-04-25T16:09:05.986Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 165;
+2024-04-25T16:09:05.993Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '640' AND `User`.`ID_Company` = 165;
+2024-04-25T16:09:06.001Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 165 AND `User`.`UserID` != '640' LIMIT 1;
+2024-04-25T16:09:06.006Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T16:09:06.085Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 165 AND `User`.`UserID` != '640' LIMIT 1;
+2024-04-25T16:09:06.093Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T16:09:06.391Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '640' AND `User`.`ID_Company` = 165;
+2024-04-25T16:09:06.396Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '640';
+2024-04-25T16:09:06.402Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '640';
+2024-04-25T16:09:06.407Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '640' AND `ID_Company` = 165
+2024-04-25T16:09:06.540Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T16:09:06.545Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T16:09:06.637Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 165
+2024-04-25T19:43:55.136Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 958;
+2024-04-25T19:43:55.366Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 229;
+2024-04-25T19:43:55.487Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 45;
+2024-04-25T19:43:55.638Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 971;
+2024-04-25T19:43:55.920Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 151;
+2024-04-25T19:43:57.047Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 555;
+2024-04-25T19:43:57.661Z - Executing (default): DELETE FROM Clients;
+2024-04-25T19:43:57.669Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T19:43:57.675Z - Executing (default): DELETE FROM Cities;
+2024-04-25T19:43:57.681Z - Executing (default): DELETE FROM States;
+2024-04-25T19:43:57.686Z - Executing (default): DELETE FROM Users;
+2024-04-25T19:43:57.691Z - Executing (default): DELETE FROM Companies;
+2024-04-25T19:44:08.973Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T19:44:09.159Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T19:44:09.263Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T19:44:09.334Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 555
+2024-04-25T19:44:09.477Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T19:44:09.634Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T19:44:09.799Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T19:44:10.051Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T19:44:10.055Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 556
+2024-04-25T20:01:38.604Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 978;
+2024-04-25T20:01:38.832Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 941;
+2024-04-25T20:01:38.960Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 536;
+2024-04-25T20:01:39.354Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 552;
+2024-04-25T20:01:39.971Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 818;
+2024-04-25T20:01:40.786Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 761;
+2024-04-25T20:01:41.010Z - Executing (default): DELETE FROM Clients;
+2024-04-25T20:01:41.019Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T20:01:41.026Z - Executing (default): DELETE FROM Cities;
+2024-04-25T20:01:41.031Z - Executing (default): DELETE FROM States;
+2024-04-25T20:01:41.035Z - Executing (default): DELETE FROM Users;
+2024-04-25T20:01:41.041Z - Executing (default): DELETE FROM Companies;
+2024-04-25T20:01:52.605Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:01:52.793Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:01:52.914Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 761 LIMIT 1;
+2024-04-25T20:01:52.993Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 818;
+2024-04-25T20:01:53.111Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-25T20:01:53.210Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:01:53.303Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 761
+2024-04-25T20:01:53.429Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:01:53.637Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:01:53.812Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:01:53.929Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T20:01:53.936Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 762
+2024-04-25T20:04:03.433Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 676;
+2024-04-25T20:04:03.632Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 470;
+2024-04-25T20:04:03.774Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 890;
+2024-04-25T20:04:03.893Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 449;
+2024-04-25T20:04:04.013Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 263;
+2024-04-25T20:04:04.251Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 882;
+2024-04-25T20:04:04.527Z - Executing (default): DELETE FROM Clients;
+2024-04-25T20:04:04.535Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T20:04:04.541Z - Executing (default): DELETE FROM Cities;
+2024-04-25T20:04:04.546Z - Executing (default): DELETE FROM States;
+2024-04-25T20:04:04.549Z - Executing (default): DELETE FROM Users;
+2024-04-25T20:04:04.554Z - Executing (default): DELETE FROM Companies;
+2024-04-25T20:04:15.255Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:04:15.456Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:04:15.591Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 882 LIMIT 1;
+2024-04-25T20:04:15.664Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 882 LIMIT 1;
+2024-04-25T20:04:15.730Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 263;
+2024-04-25T20:04:15.850Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-25T20:04:15.983Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:04:16.055Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 882
+2024-04-25T20:04:16.189Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:04:16.369Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:04:16.510Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:04:16.598Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T20:04:16.602Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 883
+2024-04-25T20:11:50.516Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 126;
+2024-04-25T20:11:50.683Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 627;
+2024-04-25T20:11:50.834Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 700;
+2024-04-25T20:11:52.119Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 812;
+2024-04-25T20:11:52.229Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 754;
+2024-04-25T20:11:52.330Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 889;
+2024-04-25T20:11:52.453Z - Executing (default): DELETE FROM Clients;
+2024-04-25T20:11:52.459Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T20:11:52.466Z - Executing (default): DELETE FROM Cities;
+2024-04-25T20:11:52.471Z - Executing (default): DELETE FROM States;
+2024-04-25T20:11:52.475Z - Executing (default): DELETE FROM Users;
+2024-04-25T20:11:52.481Z - Executing (default): DELETE FROM Companies;
+2024-04-25T20:12:03.711Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:12:03.892Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:12:04.059Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 889 LIMIT 1;
+2024-04-25T20:12:04.135Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 889 LIMIT 1;
+2024-04-25T20:12:04.201Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 754;
+2024-04-25T20:12:04.318Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-25T20:12:04.736Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:12:04.826Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 889
+2024-04-25T20:12:04.956Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:12:05.272Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:12:05.421Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 890 LIMIT 1;
+2024-04-25T20:12:05.499Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 890 LIMIT 1;
+2024-04-25T20:12:05.559Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:12:05.714Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 890 LIMIT 1;
+2024-04-25T20:12:05.725Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 890;
+2024-04-25T20:12:05.732Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '755' AND `User`.`ID_Company` = 890;
+2024-04-25T20:12:05.739Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 890 AND `User`.`UserID` != '755' LIMIT 1;
+2024-04-25T20:12:05.743Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T20:12:05.854Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 890 AND `User`.`UserID` != '755' LIMIT 1;
+2024-04-25T20:12:05.859Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T20:12:05.938Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '755' AND `User`.`ID_Company` = 890;
+2024-04-25T20:12:05.946Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '755';
+2024-04-25T20:12:05.952Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '755';
+2024-04-25T20:12:05.956Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '755' AND `ID_Company` = 890
+2024-04-25T20:12:06.054Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:12:06.058Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T20:12:06.121Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 890
+2024-04-25T20:13:17.445Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 660;
+2024-04-25T20:13:17.615Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 672;
+2024-04-25T20:13:17.757Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 248;
+2024-04-25T20:13:17.908Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 217;
+2024-04-25T20:13:18.036Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 896;
+2024-04-25T20:13:18.189Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 274;
+2024-04-25T20:13:18.291Z - Executing (default): DELETE FROM Clients;
+2024-04-25T20:13:18.301Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T20:13:18.308Z - Executing (default): DELETE FROM Cities;
+2024-04-25T20:13:18.313Z - Executing (default): DELETE FROM States;
+2024-04-25T20:13:18.317Z - Executing (default): DELETE FROM Users;
+2024-04-25T20:13:18.327Z - Executing (default): DELETE FROM Companies;
+2024-04-25T20:13:29.227Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:13:29.450Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:13:29.664Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 274 LIMIT 1;
+2024-04-25T20:13:29.742Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 274 LIMIT 1;
+2024-04-25T20:13:29.808Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 896;
+2024-04-25T20:13:29.925Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-25T20:13:30.125Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 274 LIMIT 1;
+2024-04-25T20:13:30.193Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:13:30.322Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 274
+2024-04-25T20:13:30.446Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T20:13:30.676Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:13:30.836Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 275 LIMIT 1;
+2024-04-25T20:13:30.917Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 275 LIMIT 1;
+2024-04-25T20:13:30.978Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T20:13:31.096Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 275 LIMIT 1;
+2024-04-25T20:13:31.103Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 275;
+2024-04-25T20:13:31.110Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '897' AND `User`.`ID_Company` = 275;
+2024-04-25T20:13:31.118Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 275 AND `User`.`UserID` != '897' LIMIT 1;
+2024-04-25T20:13:31.123Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T20:13:31.217Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 275 AND `User`.`UserID` != '897' LIMIT 1;
+2024-04-25T20:13:31.221Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T20:13:31.308Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '897' AND `User`.`ID_Company` = 275;
+2024-04-25T20:13:31.314Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '897';
+2024-04-25T20:13:31.319Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '897';
+2024-04-25T20:13:31.325Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '897' AND `ID_Company` = 275
+2024-04-25T20:13:31.397Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T20:13:31.401Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T20:13:31.477Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 275
+2024-04-25T23:54:12.946Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 683;
+2024-04-25T23:54:13.256Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 497;
+2024-04-25T23:54:13.455Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 789;
+2024-04-25T23:54:13.647Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 532;
+2024-04-25T23:54:14.892Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 804;
+2024-04-25T23:54:15.199Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 51;
+2024-04-25T23:54:15.919Z - Executing (default): DELETE FROM Clients;
+2024-04-25T23:54:15.927Z - Executing (default): DELETE FROM Teachers;
+2024-04-25T23:54:15.934Z - Executing (default): DELETE FROM Cities;
+2024-04-25T23:54:15.939Z - Executing (default): DELETE FROM States;
+2024-04-25T23:54:15.943Z - Executing (default): DELETE FROM Users;
+2024-04-25T23:54:15.949Z - Executing (default): DELETE FROM Companies;
+2024-04-25T23:54:27.699Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T23:54:28.295Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T23:54:28.475Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 51 LIMIT 1;
+2024-04-25T23:54:28.551Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 51 LIMIT 1;
+2024-04-25T23:54:28.616Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 804;
+2024-04-25T23:54:28.733Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-25T23:54:28.908Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 51 LIMIT 1;
+2024-04-25T23:54:28.988Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T23:54:29.330Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 51
+2024-04-25T23:54:29.475Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-25T23:54:29.632Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T23:54:29.759Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 52 LIMIT 1;
+2024-04-25T23:54:29.837Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 52 LIMIT 1;
+2024-04-25T23:54:29.898Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-25T23:54:30.074Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 52 LIMIT 1;
+2024-04-25T23:54:30.086Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 52;
+2024-04-25T23:54:30.095Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '805' AND `User`.`ID_Company` = 52;
+2024-04-25T23:54:30.103Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 52 AND `User`.`UserID` != '805' LIMIT 1;
+2024-04-25T23:54:30.108Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T23:54:30.185Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 52 AND `User`.`UserID` != '805' LIMIT 1;
+2024-04-25T23:54:30.188Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-25T23:54:30.262Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '805' AND `User`.`ID_Company` = 52;
+2024-04-25T23:54:30.267Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '805';
+2024-04-25T23:54:30.271Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '805';
+2024-04-25T23:54:30.274Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '805' AND `ID_Company` = 52
+2024-04-25T23:54:30.341Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-25T23:54:30.346Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-25T23:54:30.421Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 52
+2024-04-27T15:26:32.537Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 840;
+2024-04-27T15:26:33.274Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 686;
+2024-04-27T15:26:35.299Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 895;
+2024-04-27T15:26:35.417Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 23;
+2024-04-27T15:26:35.558Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 218;
+2024-04-27T15:26:35.663Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 943;
+2024-04-27T15:26:35.770Z - Executing (default): DELETE FROM Clients;
+2024-04-27T15:26:35.777Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T15:26:35.785Z - Executing (default): DELETE FROM Cities;
+2024-04-27T15:26:35.791Z - Executing (default): DELETE FROM States;
+2024-04-27T15:26:35.796Z - Executing (default): DELETE FROM Users;
+2024-04-27T15:26:35.801Z - Executing (default): DELETE FROM Companies;
+2024-04-27T15:28:18.019Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 224;
+2024-04-27T15:28:18.558Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 939;
+2024-04-27T15:28:19.196Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 49;
+2024-04-27T15:28:19.414Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 866;
+2024-04-27T15:28:19.552Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 784;
+2024-04-27T15:28:19.685Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 766;
+2024-04-27T15:28:19.805Z - Executing (default): DELETE FROM Clients;
+2024-04-27T15:28:19.811Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T15:28:19.816Z - Executing (default): DELETE FROM Cities;
+2024-04-27T15:28:19.820Z - Executing (default): DELETE FROM States;
+2024-04-27T15:28:19.824Z - Executing (default): DELETE FROM Users;
+2024-04-27T15:28:19.830Z - Executing (default): DELETE FROM Companies;
+2024-04-27T15:29:31.263Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 661;
+2024-04-27T15:29:31.432Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 481;
+2024-04-27T15:29:31.642Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 563;
+2024-04-27T15:29:31.775Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 779;
+2024-04-27T15:29:31.983Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 264;
+2024-04-27T15:29:33.076Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 473;
+2024-04-27T15:29:33.434Z - Executing (default): DELETE FROM Clients;
+2024-04-27T15:29:33.439Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T15:29:33.445Z - Executing (default): DELETE FROM Cities;
+2024-04-27T15:29:33.450Z - Executing (default): DELETE FROM States;
+2024-04-27T15:29:33.454Z - Executing (default): DELETE FROM Users;
+2024-04-27T15:29:33.459Z - Executing (default): DELETE FROM Companies;
+2024-04-27T15:30:17.902Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 557;
+2024-04-27T15:30:18.098Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 858;
+2024-04-27T15:30:18.286Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 173;
+2024-04-27T15:30:19.440Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 338;
+2024-04-27T15:30:19.599Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 685;
+2024-04-27T15:30:20.104Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 582;
+2024-04-27T15:30:20.290Z - Executing (default): DELETE FROM Clients;
+2024-04-27T15:30:20.301Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T15:30:20.308Z - Executing (default): DELETE FROM Cities;
+2024-04-27T15:30:20.313Z - Executing (default): DELETE FROM States;
+2024-04-27T15:30:20.316Z - Executing (default): DELETE FROM Users;
+2024-04-27T15:30:20.322Z - Executing (default): DELETE FROM Companies;
+2024-04-27T15:30:31.611Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T15:30:32.069Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:30:32.252Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 582 LIMIT 1;
+2024-04-27T15:30:32.376Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T15:30:32.604Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:30:32.747Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 583 LIMIT 1;
+2024-04-27T15:30:32.822Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 583 LIMIT 1;
+2024-04-27T15:30:32.886Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 686;
+2024-04-27T15:30:33.002Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-27T15:30:33.192Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 583 LIMIT 1;
+2024-04-27T15:30:33.256Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T15:30:33.622Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 583
+2024-04-27T15:30:33.771Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T15:30:34.038Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:30:34.105Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 584 LIMIT 1;
+2024-04-27T15:30:34.178Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 584 LIMIT 1;
+2024-04-27T15:30:34.240Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:30:34.310Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 584;
+2024-04-27T15:30:34.317Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '687' AND `User`.`ID_Company` = 584;
+2024-04-27T15:30:34.323Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 584 AND `User`.`UserID` != '687' LIMIT 1;
+2024-04-27T15:30:34.327Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T15:30:34.387Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 584 AND `User`.`UserID` != '687' LIMIT 1;
+2024-04-27T15:30:34.393Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T15:30:34.460Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '687' AND `User`.`ID_Company` = 584;
+2024-04-27T15:30:34.465Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '687';
+2024-04-27T15:30:34.469Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '687';
+2024-04-27T15:30:34.474Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '687' AND `ID_Company` = 584
+2024-04-27T15:30:34.540Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T15:30:34.546Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-27T15:30:34.608Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 584
+2024-04-27T15:57:56.345Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 720;
+2024-04-27T15:57:56.538Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 874;
+2024-04-27T15:57:56.646Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 500;
+2024-04-27T15:57:56.865Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 117;
+2024-04-27T15:57:57.366Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 914;
+2024-04-27T15:57:57.978Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 551;
+2024-04-27T15:57:58.732Z - Executing (default): DELETE FROM Clients;
+2024-04-27T15:57:58.740Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T15:57:58.746Z - Executing (default): DELETE FROM Cities;
+2024-04-27T15:57:58.751Z - Executing (default): DELETE FROM States;
+2024-04-27T15:57:58.755Z - Executing (default): DELETE FROM Users;
+2024-04-27T15:57:58.760Z - Executing (default): DELETE FROM Companies;
+2024-04-27T15:58:09.725Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T15:58:09.952Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:58:10.247Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 583 LIMIT 1;
+2024-04-27T15:58:10.413Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T15:58:10.619Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:58:11.092Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 584 LIMIT 1;
+2024-04-27T15:58:11.175Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 584 LIMIT 1;
+2024-04-27T15:58:11.308Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 915;
+2024-04-27T15:58:11.427Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-27T15:58:11.618Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 584 LIMIT 1;
+2024-04-27T15:58:11.685Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T15:58:11.796Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 584
+2024-04-27T15:58:11.940Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T15:58:12.121Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:58:12.295Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 585 LIMIT 1;
+2024-04-27T15:58:12.374Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 585 LIMIT 1;
+2024-04-27T15:58:12.433Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T15:58:12.509Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 585 LIMIT 1;
+2024-04-27T15:58:12.516Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 585;
+2024-04-27T15:58:12.522Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '916' AND `User`.`ID_Company` = 585;
+2024-04-27T15:58:12.528Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 585 AND `User`.`UserID` != '916' LIMIT 1;
+2024-04-27T15:58:12.533Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T15:58:12.611Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 585 AND `User`.`UserID` != '916' LIMIT 1;
+2024-04-27T15:58:12.615Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T15:58:12.681Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '916' AND `User`.`ID_Company` = 585;
+2024-04-27T15:58:12.686Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '916';
+2024-04-27T15:58:12.690Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '916';
+2024-04-27T15:58:12.695Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '916' AND `ID_Company` = 585
+2024-04-27T15:58:12.799Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T15:58:12.803Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-27T15:58:12.970Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 585
+2024-04-27T16:01:57.742Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 150;
+2024-04-27T16:01:57.903Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 807;
+2024-04-27T16:01:58.028Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 412;
+2024-04-27T16:01:58.156Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 269;
+2024-04-27T16:01:58.275Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 291;
+2024-04-27T16:01:58.386Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 944;
+2024-04-27T16:01:58.724Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:01:58.733Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:01:58.743Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:01:58.747Z - Executing (default): DELETE FROM States;
+2024-04-27T16:01:58.752Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:01:58.757Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:02:09.442Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:02:09.778Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:02:10.057Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 944 LIMIT 1;
+2024-04-27T16:02:10.194Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:02:10.336Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:02:10.423Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 945 LIMIT 1;
+2024-04-27T16:02:10.494Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 945 LIMIT 1;
+2024-04-27T16:02:10.558Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 292;
+2024-04-27T16:02:10.674Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-27T16:02:10.812Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 945 LIMIT 1;
+2024-04-27T16:02:10.879Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:02:11.075Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 945
+2024-04-27T16:02:11.214Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:02:11.400Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:02:11.537Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 946 LIMIT 1;
+2024-04-27T16:02:11.601Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 946 LIMIT 1;
+2024-04-27T16:02:11.660Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:02:11.792Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 946 LIMIT 1;
+2024-04-27T16:02:11.801Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 946;
+2024-04-27T16:02:11.808Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '293' AND `User`.`ID_Company` = 946;
+2024-04-27T16:02:11.816Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 946 AND `User`.`UserID` != '293' LIMIT 1;
+2024-04-27T16:02:11.820Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:02:11.912Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 946 AND `User`.`UserID` != '293' LIMIT 1;
+2024-04-27T16:02:11.916Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:02:12.014Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '293' AND `User`.`ID_Company` = 946;
+2024-04-27T16:02:12.020Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '293';
+2024-04-27T16:02:12.025Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '293';
+2024-04-27T16:02:12.030Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '293' AND `ID_Company` = 946
+2024-04-27T16:02:12.118Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:02:12.122Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-27T16:02:12.216Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 946
+2024-04-27T16:04:30.096Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 149;
+2024-04-27T16:04:30.412Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 757;
+2024-04-27T16:04:30.684Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 539;
+2024-04-27T16:04:31.098Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 209;
+2024-04-27T16:04:32.016Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 65;
+2024-04-27T16:04:32.324Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 759;
+2024-04-27T16:04:32.504Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:04:32.512Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:04:32.519Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:04:32.523Z - Executing (default): DELETE FROM States;
+2024-04-27T16:04:32.528Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:04:32.532Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:04:43.547Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:04:43.766Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:04:43.915Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 945 LIMIT 1;
+2024-04-27T16:04:44.044Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:04:44.322Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:04:44.719Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 946 LIMIT 1;
+2024-04-27T16:04:44.801Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 946 LIMIT 1;
+2024-04-27T16:04:44.872Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 66;
+2024-04-27T16:04:44.988Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-27T16:04:45.101Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 946 LIMIT 1;
+2024-04-27T16:04:45.168Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:04:45.282Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 946
+2024-04-27T16:04:45.419Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:04:45.577Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:04:45.682Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 947 LIMIT 1;
+2024-04-27T16:04:45.756Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 947 LIMIT 1;
+2024-04-27T16:04:45.818Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:04:45.961Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 947 LIMIT 1;
+2024-04-27T16:04:45.968Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 947;
+2024-04-27T16:04:45.978Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '67' AND `User`.`ID_Company` = 947;
+2024-04-27T16:04:45.983Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 947 AND `User`.`UserID` != '67' LIMIT 1;
+2024-04-27T16:04:45.987Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:04:46.060Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 947 AND `User`.`UserID` != '67' LIMIT 1;
+2024-04-27T16:04:46.063Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:04:46.141Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '67' AND `User`.`ID_Company` = 947;
+2024-04-27T16:04:46.146Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '67';
+2024-04-27T16:04:46.150Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '67';
+2024-04-27T16:04:46.156Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '67' AND `ID_Company` = 947
+2024-04-27T16:04:46.241Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:04:46.278Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-27T16:04:46.368Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 947
+2024-04-27T16:18:38.366Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 782;
+2024-04-27T16:18:38.874Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 204;
+2024-04-27T16:18:39.084Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 178;
+2024-04-27T16:18:39.224Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 919;
+2024-04-27T16:18:40.075Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 244;
+2024-04-27T16:18:40.587Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 953;
+2024-04-27T16:18:40.739Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:18:40.747Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:18:40.753Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:18:40.760Z - Executing (default): DELETE FROM States;
+2024-04-27T16:18:40.764Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:18:40.770Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:18:51.700Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:18:51.902Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:18:52.019Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 953 LIMIT 1;
+2024-04-27T16:18:52.141Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:18:52.375Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:18:52.705Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 954 LIMIT 1;
+2024-04-27T16:18:52.789Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 954 LIMIT 1;
+2024-04-27T16:18:52.855Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 245;
+2024-04-27T16:18:52.971Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-27T16:18:53.127Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 954 LIMIT 1;
+2024-04-27T16:18:53.195Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:18:53.257Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 954
+2024-04-27T16:18:53.394Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:18:53.562Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:18:53.640Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 955 LIMIT 1;
+2024-04-27T16:18:53.710Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 955 LIMIT 1;
+2024-04-27T16:18:53.772Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:18:53.868Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 955 LIMIT 1;
+2024-04-27T16:18:53.875Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 955;
+2024-04-27T16:18:53.889Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '246' AND `User`.`ID_Company` = 955;
+2024-04-27T16:18:53.897Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 955 AND `User`.`UserID` != '246' LIMIT 1;
+2024-04-27T16:18:53.904Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:18:54.062Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 955 AND `User`.`UserID` != '246' LIMIT 1;
+2024-04-27T16:18:54.066Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:18:54.155Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '246' AND `User`.`ID_Company` = 955;
+2024-04-27T16:18:54.160Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '246';
+2024-04-27T16:18:54.164Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '246';
+2024-04-27T16:18:54.169Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '246' AND `ID_Company` = 955
+2024-04-27T16:18:54.239Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:18:54.244Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-27T16:18:54.310Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 955
+2024-04-27T16:23:54.803Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 128;
+2024-04-27T16:23:54.984Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 944;
+2024-04-27T16:23:55.191Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 37;
+2024-04-27T16:23:55.382Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 990;
+2024-04-27T16:23:55.539Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 836;
+2024-04-27T16:23:56.524Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 830;
+2024-04-27T16:23:57.242Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:23:57.265Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:23:57.276Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:23:57.288Z - Executing (default): DELETE FROM States;
+2024-04-27T16:23:57.292Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:23:57.296Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:24:08.169Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:24:08.382Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:24:08.524Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 954 LIMIT 1;
+2024-04-27T16:24:08.660Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:24:08.893Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:24:09.001Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 955 LIMIT 1;
+2024-04-27T16:24:09.075Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 955 LIMIT 1;
+2024-04-27T16:24:09.141Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 837;
+2024-04-27T16:24:09.259Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-04-27T16:24:09.739Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 955 LIMIT 1;
+2024-04-27T16:24:09.822Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:24:09.966Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 955
+2024-04-27T16:24:10.099Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:24:10.257Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:24:10.319Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 956 LIMIT 1;
+2024-04-27T16:24:10.389Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 956 LIMIT 1;
+2024-04-27T16:24:10.449Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:24:10.521Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 956 LIMIT 1;
+2024-04-27T16:24:10.528Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 956;
+2024-04-27T16:24:10.535Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '838' AND `User`.`ID_Company` = 956;
+2024-04-27T16:24:10.543Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 956 AND `User`.`UserID` != '838' LIMIT 1;
+2024-04-27T16:24:10.552Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:24:10.644Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 956 AND `User`.`UserID` != '838' LIMIT 1;
+2024-04-27T16:24:10.653Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-04-27T16:24:10.725Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '838' AND `User`.`ID_Company` = 956;
+2024-04-27T16:24:10.732Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '838';
+2024-04-27T16:24:10.738Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '838';
+2024-04-27T16:24:10.744Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '838' AND `ID_Company` = 956
+2024-04-27T16:24:10.867Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-04-27T16:24:10.871Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-04-27T16:24:10.942Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 956
+2024-04-27T16:25:28.321Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 659;
+2024-04-27T16:25:28.506Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 857;
+2024-04-27T16:25:28.624Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 554;
+2024-04-27T16:25:28.896Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 618;
+2024-04-27T16:25:29.315Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 230;
+2024-04-27T16:25:30.015Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 408;
+2024-04-27T16:25:30.631Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:25:30.638Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:25:30.645Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:25:30.649Z - Executing (default): DELETE FROM States;
+2024-04-27T16:25:30.654Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:25:30.658Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:25:41.627Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:25:41.863Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:25:42.063Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 955 LIMIT 1;
+2024-04-27T16:30:35.562Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 786;
+2024-04-27T16:30:35.799Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 607;
+2024-04-27T16:30:36.399Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 298;
+2024-04-27T16:30:36.573Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 494;
+2024-04-27T16:30:36.692Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 341;
+2024-04-27T16:30:36.813Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 583;
+2024-04-27T16:30:36.924Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:30:36.935Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:30:36.946Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:30:36.950Z - Executing (default): DELETE FROM States;
+2024-04-27T16:30:36.953Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:30:37.093Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:30:48.419Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:30:48.623Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:30:48.759Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 956 LIMIT 1;
+2024-04-27T16:33:25.304Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 504;
+2024-04-27T16:33:25.549Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 483;
+2024-04-27T16:33:25.871Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 864;
+2024-04-27T16:33:26.693Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 355;
+2024-04-27T16:33:27.307Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 491;
+2024-04-27T16:33:27.437Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 707;
+2024-04-27T16:33:27.567Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:33:27.576Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:33:27.582Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:33:27.587Z - Executing (default): DELETE FROM States;
+2024-04-27T16:33:27.590Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:33:27.655Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:33:38.288Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:33:38.532Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:33:38.645Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 957 LIMIT 1;
+2024-04-27T16:58:37.837Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 379;
+2024-04-27T16:58:37.990Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 920;
+2024-04-27T16:58:38.094Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 656;
+2024-04-27T16:58:38.285Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 329;
+2024-04-27T16:58:39.362Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 216;
+2024-04-27T16:58:39.873Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 391;
+2024-04-27T16:58:40.049Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:58:40.056Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:58:40.063Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:58:40.067Z - Executing (default): DELETE FROM States;
+2024-04-27T16:58:40.070Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:58:40.132Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:59:17.133Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 901;
+2024-04-27T16:59:17.308Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 113;
+2024-04-27T16:59:17.470Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 758;
+2024-04-27T16:59:17.608Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 219;
+2024-04-27T16:59:17.773Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 760;
+2024-04-27T16:59:17.899Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 493;
+2024-04-27T16:59:18.662Z - Executing (default): DELETE FROM Clients;
+2024-04-27T16:59:18.671Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T16:59:18.677Z - Executing (default): DELETE FROM Cities;
+2024-04-27T16:59:18.685Z - Executing (default): DELETE FROM States;
+2024-04-27T16:59:18.691Z - Executing (default): DELETE FROM Users;
+2024-04-27T16:59:18.697Z - Executing (default): DELETE FROM Companies;
+2024-04-27T16:59:30.429Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T16:59:30.995Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T16:59:31.333Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 493 LIMIT 1;
+2024-04-27T17:02:46.527Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 427;
+2024-04-27T17:02:46.749Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 530;
+2024-04-27T17:02:46.881Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 33;
+2024-04-27T17:02:47.037Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 317;
+2024-04-27T17:02:47.218Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 548;
+2024-04-27T17:02:47.360Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 945;
+2024-04-27T17:02:47.511Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:02:47.521Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:02:47.527Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:02:47.531Z - Executing (default): DELETE FROM States;
+2024-04-27T17:02:47.535Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:02:47.679Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:05:18.167Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 574;
+2024-04-27T17:05:18.625Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 689;
+2024-04-27T17:05:19.240Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 382;
+2024-04-27T17:05:19.545Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 323;
+2024-04-27T17:05:19.958Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 211;
+2024-04-27T17:05:20.086Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 700;
+2024-04-27T17:05:20.200Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:05:20.207Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:05:20.212Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:05:20.216Z - Executing (default): DELETE FROM States;
+2024-04-27T17:05:20.220Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:05:20.225Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:05:31.495Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:05:31.817Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T17:05:31.955Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 700 LIMIT 1;
+2024-04-27T17:05:32.022Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:05:32.104Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company`;
+2024-04-27T17:05:32.113Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`Name` LIKE 'Test%';
+2024-04-27T17:06:33.898Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 362;
+2024-04-27T17:06:34.044Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 967;
+2024-04-27T17:06:34.146Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 822;
+2024-04-27T17:06:34.248Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 907;
+2024-04-27T17:06:34.360Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 982;
+2024-04-27T17:06:34.707Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 895;
+2024-04-27T17:06:35.527Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:06:35.534Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:06:35.541Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:06:35.546Z - Executing (default): DELETE FROM States;
+2024-04-27T17:06:35.551Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:06:35.738Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:06:47.063Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:06:47.317Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T17:06:47.679Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 895 LIMIT 1;
+2024-04-27T17:06:47.792Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:06:47.975Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company`;
+2024-04-27T17:06:47.987Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`Name` LIKE 'Test%';
+2024-04-27T17:12:54.337Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 307;
+2024-04-27T17:12:54.562Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 719;
+2024-04-27T17:12:55.126Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 102;
+2024-04-27T17:12:55.302Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 950;
+2024-04-27T17:12:55.447Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 847;
+2024-04-27T17:12:55.777Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 298;
+2024-04-27T17:12:55.936Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:12:55.945Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:12:55.952Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:12:55.956Z - Executing (default): DELETE FROM States;
+2024-04-27T17:12:55.961Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:12:56.184Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:14:05.877Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 527;
+2024-04-27T17:14:06.104Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 842;
+2024-04-27T17:14:06.268Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 183;
+2024-04-27T17:14:06.437Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 933;
+2024-04-27T17:14:06.791Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 744;
+2024-04-27T17:14:06.950Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 606;
+2024-04-27T17:14:07.905Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:14:07.914Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:14:07.924Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:14:07.933Z - Executing (default): DELETE FROM States;
+2024-04-27T17:14:07.939Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:14:07.946Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:14:57.517Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 103;
+2024-04-27T17:14:57.889Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 727;
+2024-04-27T17:14:58.418Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 108;
+2024-04-27T17:14:58.832Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 573;
+2024-04-27T17:14:58.977Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 47;
+2024-04-27T17:14:59.107Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 457;
+2024-04-27T17:14:59.241Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:14:59.250Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:14:59.258Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:14:59.262Z - Executing (default): DELETE FROM States;
+2024-04-27T17:14:59.266Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:14:59.271Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:15:10.619Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:15:10.855Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T17:15:11.088Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 457 LIMIT 1;
+2024-04-27T17:15:11.175Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:15:11.366Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company`;
+2024-04-27T17:15:11.379Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`Name` LIKE 'Test%';
+2024-04-27T17:16:18.548Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 576;
+2024-04-27T17:16:18.931Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 148;
+2024-04-27T17:16:19.519Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 764;
+2024-04-27T17:16:20.030Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 230;
+2024-04-27T17:16:20.339Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 154;
+2024-04-27T17:16:20.473Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 714;
+2024-04-27T17:16:20.708Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:16:20.716Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:16:20.722Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:16:20.728Z - Executing (default): DELETE FROM States;
+2024-04-27T17:16:20.732Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:16:20.836Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:16:31.560Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:16:31.747Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T17:16:31.858Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 714 LIMIT 1;
+2024-04-27T17:16:31.929Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:16:32.207Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company`;
+2024-04-27T17:16:32.218Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`ID_Company` = '715';
+2024-04-27T17:16:32.228Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`Name` LIKE 'Test%';
+2024-04-27T17:16:32.237Z - Executing (default): UPDATE `Companies` SET `Name`=? WHERE `ID_Company` = ?
+2024-04-27T17:16:32.378Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`ID_Company` = '715';
+2024-04-27T17:16:32.387Z - Executing (default): SELECT count(*) AS `count` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = '715';
+2024-04-27T17:16:32.391Z - Executing (default): SELECT count(*) AS `count` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Company` = '715';
+2024-04-27T17:16:32.396Z - Executing (default): SELECT count(*) AS `count` FROM `Specialties` AS `Specialty` WHERE `Specialty`.`ID_Company` = '715';
+2024-04-27T17:16:32.401Z - Executing (default): SELECT count(*) AS `count` FROM `TimeTables` AS `TimeTable` WHERE `TimeTable`.`ID_Company` = '715';
+2024-04-27T17:16:32.405Z - Executing (default): SELECT count(*) AS `count` FROM `Users` AS `User` WHERE `User`.`ID_Company` = '715';
+2024-04-27T17:16:32.410Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = '715'
+2024-04-27T17:19:13.810Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 342;
+2024-04-27T17:19:14.001Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 515;
+2024-04-27T17:19:14.129Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 399;
+2024-04-27T17:19:14.280Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 819;
+2024-04-27T17:19:14.629Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 490;
+2024-04-27T17:19:15.365Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 308;
+2024-04-27T17:19:15.547Z - Executing (default): DELETE FROM Clients;
+2024-04-27T17:19:15.555Z - Executing (default): DELETE FROM Teachers;
+2024-04-27T17:19:15.562Z - Executing (default): DELETE FROM Cities;
+2024-04-27T17:19:15.568Z - Executing (default): DELETE FROM States;
+2024-04-27T17:19:15.571Z - Executing (default): DELETE FROM Users;
+2024-04-27T17:19:15.775Z - Executing (default): DELETE FROM Companies;
+2024-04-27T17:19:26.932Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:19:27.177Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-04-27T17:19:27.291Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 715 LIMIT 1;
+2024-04-27T17:19:27.362Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-04-27T17:19:27.501Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company`;
+2024-04-27T17:19:27.509Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`ID_Company` = '716';
+2024-04-27T17:19:27.517Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`Name` LIKE 'Test%';
+2024-04-27T17:19:27.525Z - Executing (default): UPDATE `Companies` SET `Name`=? WHERE `ID_Company` = ?
+2024-04-27T17:19:27.701Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`ID_Company` = '716';
+2024-04-27T17:19:27.711Z - Executing (default): SELECT count(*) AS `count` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = '716';
+2024-04-27T17:19:27.715Z - Executing (default): SELECT count(*) AS `count` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Company` = '716';
+2024-04-27T17:19:27.721Z - Executing (default): SELECT count(*) AS `count` FROM `Specialties` AS `Specialty` WHERE `Specialty`.`ID_Company` = '716';
+2024-04-27T17:19:27.726Z - Executing (default): SELECT count(*) AS `count` FROM `TimeTables` AS `TimeTable` WHERE `TimeTable`.`ID_Company` = '716';
+2024-04-27T17:19:27.732Z - Executing (default): SELECT count(*) AS `count` FROM `Users` AS `User` WHERE `User`.`ID_Company` = '716';
+2024-04-27T17:19:27.828Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = '716'

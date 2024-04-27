@@ -7,6 +7,7 @@ dotenv.config();
 const tokenBlacklist = global.tokenBlacklist || new Set();
 
 const verifyToken = (req, res, next) => {
+
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
 
@@ -29,9 +30,23 @@ const verifyToken = (req, res, next) => {
       ID_Company: decodedToken.ID_Company,
       UserType: decodedToken.UserType
     }; 
-
     next(); // Move to the next middleware or route handler
   });
 };
 
-module.exports = { verifyToken };
+const isAdminOrRoot = (req, res, next) => {
+  // Verifica se o UserType é 'Admin' ou 'Root'
+  if (req.user.UserType !== 'Admin' && req.user.UserType !== 'Root') {
+      return res.status(403).json({ error: 'Access denied: Admin or Root rights required' });
+  }
+  next();
+};
+
+const isRoot = (req, res, next) => {
+  if (req.user.UserType !== 'Root') {
+      return res.status(403).json({ error: 'Access denied: Root rights required' });
+  }
+  next();
+};
+
+module.exports = { verifyToken, isAdminOrRoot, isRoot };

@@ -2,6 +2,7 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const app = express();
 const sessionRoutes = require('./routes/sessionRoutes');
+const companyRoutes = require('./routes/companyRoutes');
 const userRoutes = require('./routes/userRoutes');
 const clientRoutes = require('./routes/clientRoutes');
 const teacherRoutes = require('./routes/teacherRoutes');
@@ -20,11 +21,18 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+app.use((req, res, next) => {
+  console.log(`URL: ${req.method} ${req.url} ${JSON.stringify(req.body)})`);
+  next();
+});
+
 // Import and set up model associations
 require('./models/associations');
 
+
 // Use the routes
 app.use('/api', sessionRoutes);
+app.use('/api', companyRoutes);
 app.use('/api', userRoutes);
 app.use('/api', clientRoutes);
 app.use('/api', teacherRoutes);
