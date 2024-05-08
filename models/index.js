@@ -37,12 +37,15 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
-// Checking model associations
-// Object.keys(db).forEach(modelName => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
+// Aplicar associações
+const applyAssociations = require('./associations');
+console.log('Aplicando associações #########################################')
+applyAssociations(db);
+// Depois que suas associações foram estabelecidas...
+
+Object.keys(db).map(item => { 
+  console.log('Associações de',item,db[item].associations); 
+})
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

@@ -47,7 +47,7 @@ const userController = {
 
       res.status(201).json(newUser);
     } catch (error) {
-      console.log('ÚSER EXISTS - 4');
+      console.log('USER EXISTS - 4');
       res.status(400).json({ error: error.message });
     }
   },
@@ -82,6 +82,51 @@ const userController = {
       }
     } catch (error) {
       res.status(400).json({ error: error.message });
+    }
+  },
+
+  getUsersByName: async (req, res) => {
+    try {
+      let { name } = req.params;
+      const { ID_Company, UserType } = req.user; // Obtém ID_Company e UserType do usuário logado
+  
+      let whereCondition;
+  
+      if (name.startsWith('*') && name.endsWith('*')) {
+        name = name.substring(1, name.length - 1);
+        whereCondition = {
+          UserName: { [Op.like]: `%${name}%` } // Contém
+        };
+      } else if (name.startsWith('*')) {
+        name = name.substring(1);
+        whereCondition = {
+          UserName: { [Op.like]: `%${name}` } // Termina com
+        };
+      } else if (name.endsWith('*')) {
+        name = name.substring(0, name.length - 1);
+        whereCondition = {
+          UserName: { [Op.like]: `${name}%` } // Começa com
+        };
+      } else {
+        whereCondition = {
+          UserName: name // Igualdade exata
+        };
+      }
+  
+      // Adicionando filtro de companhia se o usuário não for Root
+      if (UserType !== 'Root') {
+        whereCondition.ID_Company = ID_Company;
+      }
+  
+      const users = await User.findAll({ where: whereCondition });
+  
+      if (users.length > 0) {
+        res.json(users);
+      } else {
+        res.status(404).json({ error: 'No users found matching criteria.' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   },
 

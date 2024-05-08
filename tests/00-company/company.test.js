@@ -68,7 +68,7 @@ describe('Company Controller', () => {
       const res = await chai.request(app)
         .post('/api/companies')
         .set('Authorization', `Bearer ${token}`)
-        .send({ Name: 'New Test Company' });
+        .send({ Name: 'New Test Company', AdminEmail: 'zurtigao@mail.com'});
         testCompany=res.body;
       expect(res).to.have.status(201);
       expect(res.body).to.have.property('Name', 'New Test Company');
@@ -121,6 +121,9 @@ describe('Company Controller', () => {
   });
 
   describe('DELETE /api/companies/:id', () => {
+    beforeEach(async function() {
+      await User.destroy({ where: { UserName: 'admin', ID_Company: testCompany.ID_Company } });
+    });
     it('should delete a company', async () => {
       const res = await chai.request(app)
         .delete(`/api/companies/${testCompany.ID_Company}`)
@@ -132,7 +135,11 @@ describe('Company Controller', () => {
   });
 
   after(async () => {
-    // Limpar dados de teste
-    // Por exemplo, deletar usuário e empresa de teste criados
+    try {
+      await User.destroy({ where: { ID_Company: { [Sequelize.Op.gt]: 0 }}});
+      await Company.destroy({ where: { ID_Company: { [Sequelize.Op.gt]: 0 }}});
+    } catch (error) {
+      console.error('Failed to clear test data:', error);
+    }
   });
 });

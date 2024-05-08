@@ -15,7 +15,7 @@ async function main() {
   });
   
   await resetAutoIncrements(sequelize, ['States','Cities','Clients', 'Teachers','Users', 'Companies'],0)
-  await clearTables(sequelize, ['Clients', 'Teachers',  'Cities', 'States', 'Users', 'Companies'])
+  await clearTables(sequelize, ['Clients', 'Teachers',  'Cities', 'States', 'Users', 'Specialties', 'Companies'])
 
   console.log('COMPLETED - BEFORE TESTS\n\n');
 }

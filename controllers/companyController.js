@@ -1,17 +1,55 @@
 // controllers/companyController.js
 const { Company, Client, Teacher, Specialty, TimeTable, User } = require('../models');
+const {  generatePassword } = require('../utils/userHelpers')
 const { Op } = require('sequelize'); 
+const bcrypt = require('bcrypt');
+const configurarTransporter = require('../utils/emailHelpers');
+const emailTransporter=configurarTransporter();
 
 const companyController = {
   // Criar uma nova empresa
   createCompany: async (req, res) => {
     try {
-      console.log('COMPANY CRIADA ********************************** ');
-      const { Name } = req.body;
+      const { Name, AdminEmail } = req.body;
       const newCompany = await Company.create({ Name });
+      // Geração da senha randômica
+      const adminPassword = generatePassword(8);
+      const hashedPassword = await bcrypt.hash(adminPassword, 10);
+     
+      // Criar usuário administrador para a nova empresa
+      const newUser = await User.create({
+          UserName: 'admin',
+          UserEmail: AdminEmail,
+          UserPassword: hashedPassword,
+          UserType: 'Admin',
+          ID_Company: newCompany.ID_Company
+      });
+
+      // Preparar a mensagem de e-mail
+      const mailOptions = {
+          from: process.env.EMAIL_USER,  
+          to: AdminEmail,               
+          subject: 'Your Admin Account Details',
+          text: `Hello,\n\n` +
+          `Work environment for Company ${Name} created.\n` +
+          `Use the login below to start preparing this environment.\n` +
+          `\tLogin: Admin\n` +
+          `\tPassword: ${adminPassword}\n\n` +
+          `Yours sincerely\n` +
+          `General system administrator.`
+      };
+
+      // Enviar e-mail
+      emailTransporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+              console.log('Email not sent: ' + error);
+          } else {
+              console.log('Email sent: ' + info.response);
+          }
+      });
+
       return res.status(201).json(newCompany);
     } catch (error) {
-      console.log(`ERROR: ${error.message} <================================`)
       return res.status(400).json({ error: error.message });
     }
   },

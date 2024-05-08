@@ -26,9 +26,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Import and set up model associations
-require('./models/associations');
-
 
 // Use the routes
 app.use('/api', sessionRoutes);

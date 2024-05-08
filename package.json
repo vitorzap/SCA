@@ -3,6 +3,7 @@
     "bcrypt": "^5.1.1",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
@@ -11,6 +12,7 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.2",
+    "nodemailer": "^6.9.13",
     "sequelize": "^6.37.1",
     "yup": "^1.4.0"
   },
@@ -19,15 +21,14 @@
   "description": "Sistema de Controle de Academias",
   "main": "index.js",
   "scripts": {
-    "mtest": "node ./tests/beforeTest.js && mocha './tests/**/*.test.js' --timeout 10000 && node ./tests/afterTest.js" ,
+    "mtest": "node ./tests/beforeTest.js && mocha './tests/**/*.test.js' --timeout 10000 && node ./tests/afterTest.js",
     "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "jest": {
     "testEnvironment": "node",
-    "testMatch": [
-    ]
+    "testMatch": []
   },
   "repository": {
     "type": "git",

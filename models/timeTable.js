@@ -1,3 +1,4 @@
+
 module.exports = (sequelize, DataTypes) => {
   const TimeTable = sequelize.define('TimeTable', {
     ID_Company: {

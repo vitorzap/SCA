@@ -1,28 +1,92 @@
-considerando o model abaixo
+tendo os models abaixo:
 
-// models/company.js
 module.exports = (sequelize, DataTypes) => {
-  const Company = sequelize.define('Company', {
+  const Teacher = sequelize.define('Teacher', {
     ID_Company: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Companies',
+        key: 'ID_Company'
+      }
+    },    
+    ID_Teacher: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
+    UserID: { // Este campo é adicionado para associar diretamente o Cliente a um Professor
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true, // Garante que cada professor esteja associado a um único usuário
+      references: {
+        model: 'Users', // Indica que este campo é uma chave estrangeira que aponta para a tabela Users
+        key: 'UserID'
+      }
+    },
     Name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false
     }
-    // Outros campos relevantes para uma companhia, como endereço, CNPJ, etc.
   }, {
-    tableName: 'Companies',
-    timestamps: false
+    timestamps: false,
+    tableName: 'Teachers'
   });
 
-  return Company;
+  return Teacher;
 };
 
-crie um controller para as ações de criação alteração e exclusao. levar em conta as associações de Company abaixo
+e
 
+// models/user.js
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    ID_Company: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Companies',
+        key: 'ID_Company'
+      }
+    },
+    UserID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    UserName: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    UserEmail: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
+    },
+    UserPassword: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    UserType: {
+      type: DataTypes.ENUM('Root', 'Admin', 'Teacher', 'Client'),
+      allowNull: false
+    },
+  }, {
+    timestamps: false,
+    tableName: 'Users'
+  });
+
+  return User;
+};
+
+e sabendo da associação entre dois como abaixo que é
+ User.hasOne(Teacher,{  foreignKey: 'UserID',  as: 'teacherInfo', onDelete: 'RESTRICT'});
+ e está declarada no arquivo associations.js que está cmo abaixo:
+
+// models/associations.js
+const { Company, User, Client, Teacher, Specialty, TimeTable, City, State } = require('./'); 
 
 // Associações de company
 // Relações de 1:N 
@@ -42,11 +106,779 @@ Company.hasMany(User, { foreignKey: 'ID_Company' });
 User.belongsTo(Company, { foreignKey: 'ID_Company' });
 //
 
+// Associações de user
+// Relação 1 x 1 User x Client
+User.hasOne(Client,{  foreignKey: 'UserID',  as: 'clientInfo', onDelete: 'RESTRICT'});
+// Relação 1 x 1 User x Teacher
+User.hasOne(Teacher,{  foreignKey: 'UserID',  as: 'teacherInfo', onDelete: 'RESTRICT'});
+
+
+// Associações de teachers
+// Define associations N x N => Teacher x Specialty
+Teacher.belongsToMany(Specialty, { through: 'TeacherSpecialties', foreignKey: 'ID_Teacher' });
+Specialty.belongsToMany(Teacher, { through: 'TeacherSpecialties', foreignKey: 'ID_Specialties' });
+
+// Relações de 1:N  teacher 1 x timeTable N
+Teacher.hasMany(TimeTable, { foreignKey: 'ID_Teacher' });
+TimeTable.belongsTo(Teacher, { foreignKey: 'ID_Teacher' });
+
+// Relações de 1:N Specialty 1 x timeTable N
+Specialty.hasMany(TimeTable, { foreignKey: 'ID_Specialty' });
+TimeTable.belongsTo(Specialty, { foreignKey: 'ID_Specialty' });
+
+// Relações de N:N TimeTable x Client 
+TimeTable.belongsToMany(Client, { through: 'TimeTableClients', foreignKey: 'ID_TimeTable' });
+Client.belongsToMany(TimeTable, { through: 'TimeTableClients', foreignKey: 'ClientID' });
+
+
+// Associações de City(Cidade)
+// Relações de 1:N  City 1 x  N  Cliente
+Client.belongsTo(City, {foreignKey: 'ID_City'});
+City.hasMany(Client, {foreignKey: 'ID_City'});
+
+// Associações de State(Estado)
+// Relações de 1:N  State 1 x  N City
+City.belongsTo(State, {foreignKey: 'ID_State'});
+State.hasMany(City, {foreignKey: 'ID_State'});
+ 
+ no Controller teacherController  que é informada abaixo, 
+
+const { Teacher, User, Specialty, sequelize } = require('../models');
+const { Op } = require('sequelize');
+const { generateSalt, generateUserName, generatePassword } = require('../utils/userHelpers');
+const bcrypt = require('bcrypt');
+require('dotenv').config();
+const yup = require('yup');
+
+
+const teacherSchema = yup.object().shape({
+  Name: yup.string().required()
+                    .min(2, 'Name must be at least 2 characters long')
+                    .max(100, 'Name must not exceed 100 characters'),
+  Email: yup.string().email('Enter a valid email').required('Email is required')
+});
+
+const updateTeacherSchema = yup.object().shape({
+  Name: yup.string()
+           .min(2, 'Name must be at least 2 characters long')
+           .max(100, 'Name must not exceed 100 characters'),
+  Email: yup.string().email('Enter a valid email')
+});
+
+
+const teacherController = {
+  createTeacher: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { Name, Email, specialtyIds } = req.body;
+      const { ID_Company } = req.user; 
+
+      await teacherSchema.validate({ Name, Email });
+
+      if (!specialtyIds || specialtyIds.length === 0) {
+        throw new Error('A teacher must have at least one specialty.');
+      }     
+
+      // Verificando se as especialidades existem para empresa(Company)
+      const specialties = await Specialty.findAll({ 
+        where: { 
+          ID_Specialties: specialtyIds,
+          ID_Company 
+        } 
+      }, { transaction });
+
+      if (specialties.length !== specialtyIds.length) {
+        throw new Error('One or more specialties do not exist for the given company.');
+      }     
+      // Gera password inicial do usuario
+      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 10; 
+      const password = generatePassword(passwordLength);
+      const customSalt = await generateSalt();
+      const hashedPassword = await bcrypt.hash(password, customSalt);
+      // Gera o nome do usuario baseado no nome to professor
+      let userName = await generateUserName(Name); // Tentativa inicial
+      let userNameExists = await User.findOne({ where: { UserName: userName } }, { transaction });
+
+      let counter = 1;
+      while (userNameExists) {
+        userName = await generateUserName(Name, counter);
+        userNameExists = await User.findOne({ where: { UserName: userName } }, { transaction });
+        counter++;
+       }
+
+      // Insere usuario
+      const newUser = await User.create({
+        UserName: userName,
+        UserEmail: Email, // Assumindo que Email é fornecido
+        UserPassword: hashedPassword,
+        UserType: 'Teacher', // Defina conforme apropriado
+        ID_Company
+      }, { transaction });
+
+      // Insere professor
+      const newTeacher = await Teacher.create({
+        UserID: newUser.UserID,
+        Name,
+        ID_Company
+      }, { transaction });
+
+      await newTeacher.addSpecialties(specialties, { transaction });
+  
+      await transaction.commit();
+
+      res.status(201).json(newTeacher);
+    } catch (error) {
+      await transaction.rollback();
+      res.status(400).json({ error: error.message });
+    }
+  },
+  
+  getAllTeachers: async (req, res) => {
+    try {
+      const { ID_Company } = req.user;
+      const teachers = await Teacher.findAll({
+        where: { ID_Company }
+      });
+      res.json(teachers);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  getTeacherById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { ID_Company } = req.user;
+      const listSpecialties = req.query.listSpecialties === 'true'; 
+
+      const includeOptions = [];
+
+      // Se listSpecialties for verdadeiro, inclua o modelo Specialty na busca
+      if (listSpecialties) {
+        includeOptions.push({
+          model: Specialty,
+          as: 'Specialties',
+          through: { attributes: [] } 
+        });
+      }
+
+      const teacher = await Teacher.findOne({
+        where: { ID_Teacher: id, ID_Company },
+        include: includeOptions
+      });
+
+      if (!teacher) {
+        return res.status(404).json({ message: 'Teacher not found or does not belong to this company.' });
+      }
+
+      // Preparar resposta incluindo as especialidades, se aplicável
+      const response = teacher.toJSON(); // Converter o modelo Sequelize para um objeto simples
+
+      res.json(response);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  getTeachersByNamePattern: async (req, res) => {
+    try {
+        let { name } = req.params;
+        const { ID_Company, UserType } = req.user;
+        let whereCondition = { ID_Company };
+
+        if (UserType !== 'Root') {
+            whereCondition.ID_Company = ID_Company;
+        }
+
+        if (name.includes('*')) {
+            name = name.replace(/\*/g, '%'); // Substitui * por % para uso no LIKE do SQL
+            whereCondition.Name = { [Op.like]: name };
+        } else {
+            whereCondition.Name = name;
+        }
+
+        const teachers = await Teacher.findAll({ where: whereCondition });
+        if (teachers.length > 0) {
+            res.json(teachers);
+        } else {
+            res.status(404).json({ error: 'No teachers found matching criteria.' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+  },
+
+  getTeachersBySpecialty: async (req, res) => {
+    try {
+        const { specialtyId } = req.params;
+        const { ID_Company } = req.user; // Remove UserType, já que não é mais necessário
+
+        const teachers = await Teacher.findAll({
+            include: [{
+                model: Specialty,
+                where: { ID_Specialties: specialtyId },
+                through: {
+                    attributes: []
+                }
+            }],
+            where: { ID_Company } // Sempre restringir a busca pela empresa do usuário logado
+        });
+
+        if (teachers.length > 0) {
+            res.json(teachers);
+        } else {
+            res.status(404).json({ error: 'No teachers found for the given specialty.' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+  },
+
+
+  updateTeacher: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { id } = req.params;
+      const { Name, Email } = req.body;
+      const { ID_Company } = req.user;
+
+      await updateTeacherSchema.validate({ Name, Email }, {
+        abortEarly: false,  // Coletar todos os erros, não apenas o primeiro
+        stripUnknown: true  // Remover chaves não definidas no schema
+      });
+
+      console.log(`AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI `)
+
+      // Buscar o professor existente  
+      const teacher = await Teacher.findOne({
+        where: { ID_Teacher: id, ID_Company },
+        transaction
+      });
+
+      if (!teacher) {
+        await transaction.rollback();
+        console.log('NÃO ENCONTOU TEACHER');
+        return res.status(404).json({ message: 'Teacher not found.' });
+      }
+      console.log(`teacher=${JSON.stringify(teacher)} `);
+
+ 
+      // Se forneceu Name, aplicar as atualizações ao professor
+      if (Name) {
+        await Teacher.update({ Name }, {
+          where: { ID_Teacher: id, ID_Company },
+          transaction
+        });
+      }
+      console.log(`Alterou teacher=${Name} `);
+      // Se o email foi fornecido, atualize também o usuário associado
+      if (Email) {
+        console.log(`Vai alterar email=${Email} `);
+        await User.update({ UserEmail: Email }, {
+          where: { UserID: teacher.UserID },
+          transaction
+        });
+      }
+
+      console.log(`Vai dar commit`);
+      await transaction.commit();
+
+      console.log(`COMMITOU id=${id}`);
+
+    // Recuperar o professor atualizado para retorno
+      const updatedTeacher = await Teacher.findOne({
+        where: { ID_Teacher: id, ID_Company },
+        include: [{ model: User, as: 'teacherInfo' }]
+
+      });
+      console.log(`Este é o teacher alterado=${updatedTeacher} `);
+      console.log(`Este é o teacher alterado `);
+
+      // res.json(updatedTeacher);
+      //res.status(200);
+      res.json({ message: 'Teacher updated successfully' });
+
+    } catch (error) {
+      console.log(`É ROLLBACK  error: ${error.message}`);
+      await transaction.rollback();
+      if (error instanceof yup.ValidationError) {
+        return res.status(400).json({ errors: error.errors });
+      }
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  
+  deleteTeacher: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { id } = req.params;
+      const { ID_Company } = req.user;
+      const teacher = await Teacher.findOne({
+        where: { ID_Teacher: id, ID_Company },
+        include: [{
+            model: Specialty,
+            as: 'Specialties',  // This alias 'Specialties' should match how you defined the association
+            through: {
+                attributes: []
+            }
+        }],
+        transaction
+      });
+      if (!teacher) {
+        await transaction.rollback();
+        return res.status(404).json({ error: 'Teacher not found.' });
+      }
+
+      // Verificar se o professor está associado a algum TimeTable
+      const hasTimeTables = await TimeTable.findOne({
+        where: { ID_Teacher: teacher.ID_Teacher },
+        transaction
+      });
+
+      if (hasTimeTables) {
+        await transaction.rollback();
+        return res.status(400).json({ error: 'Cannot delete teacher because they are associated with time tables.' });
+      }  
+
+      // Excluir as associações do professor com especialidades
+      await teacher.removeSpecialties(teacher.Specialties, { transaction });
+
+      // Excluir o usuário associado ao professor
+      await User.destroy({ 
+        where: { UserID: teacher.UserID },  
+        transaction 
+      });
+
+      // Excluir o professor
+      await teacher.destroy(
+        {where: { ID_Teacher: teacher.ID_Teacher }, 
+        transaction 
+      });
+
+      await transaction.commit();
+      res.json({ message: 'Teacher and corresponding user deleted successfully.' });
+    } catch (error) {
+      await transaction.rollback();
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  updateSpecialty: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { ID_Teacher, specialtyIds } = req.body;
+      const { ID_Company } = req.user;
+
+      // Ensure the teacher exists
+      const teacher = await Teacher.findOne({ where: { ID_Teacher, ID_Company } }, { transaction });
+      if (!teacher) {
+        await transaction.rollback();
+        return res.status(404).json({ error: 'Teacher not found.' });
+      }
+
+      // Validate specialtyIds
+      const validSpecialties = await Specialty.count({ where: { ID_Specialties: specialtyIds, ID_Company }, transaction });
+      if (validSpecialties !== specialtyIds.length) {
+        throw new Error('One or more specialties do not exist.');
+      }
+
+      // Simplified association update
+      await teacher.setSpecialties(specialtyIds, { transaction });
+
+      await transaction.commit();
+      res.json({ message: 'Teacher specialties updated successfully.' });
+    } catch (error) {
+      await transaction.rollback();
+      res.status(400).json({ error: error.message });
+    }
+  }
+};
+
+
+module.exports = teacherController;
 
 
 
 
 
+cmo sera o comando sequelize para recuperar o teacher e o user associado sendo o teacher 
+tem o ID_Company = ID_Company e o ID_Teacher =id
 
 
 
+ID_Company,UserID,UserName,UserEmail,UserPassword,UserType
+943,999,TestT000,tteacher@test.com,$2b$10$4R6pxpj0T4qJ/sKqkXjrYO2SLsnYPEin22e.6u0uOt5YRpJIQalOm,Teacher
+
+E Teacher ser
+
+ID_Company,ID_Teacher,UserID,Name
+943,871,999,"Updated Name"
+
+A action updateTeacher está apresentando  o erro "User is not associated to Teacher!"
+
+justamente no commado 
+      const updatedTeacher = await Teacher.findOne({
+        where: { ID_Teacher: id, ID_Company },
+        include: [{ model: User, as: 'teacherInfo' }]
+
+      });
+
+
+o teste que é executado é 
+    describe('PUT /api/teachers/:id', () => {
+        it('should update a teacher', done => {
+            console.log(`2-testTeacher=${JSON.stringify(testTeacher)}  <============`) ;       
+            console.log(`2=ID_Teacher=${testTeacher.ID_Teacher} <<========`);
+            chai.request(app)
+                .put(`/api/teachers/${testTeacher.ID_Teacher}`)
+                .set('Authorization', `Bearer ${token}`)
+                .send({ Name: 'Updated Name' })
+                .end((err, res) => {
+                    console.log(`test=${JSON.stringify(res.body)}`)
+                    if (err) {
+                        console.log(`ERRO: ${err}`)
+                    }
+                    expect(res).to.have.status(200);
+                    // expect(res.body).to.have.property('Name', 'Updated Name');
+                    done();
+                });
+        });
+    })
+
+    aparentemente oestá tudo correto, o registro user É
+
+    {
+        "ID_Company":"509",
+        "UserID":"749",
+        "UserName":"TestT000",
+        "UserEmail":"tteacher@test.com",
+        "UserPassword":"$2b$10$8yVP0WQ78nji9Ox4RdJ.MeZRCZf9szs24Ni1koNOcCTlh4dPTytAu",
+        "UserType":"Teacher"
+    }
+ e o registro de Teacher É
+
+    {
+        "ID_Teacher":976,
+        "UserID":749,
+        "Name":"Test Teacher",
+        "ID_Company":509
+    }
+
+    Qual a trazão deste erro ?
+
+
+
+    o uso do reload não resolveu. 
+
+    a criação do teacher e user que serão alterados no action updateTeacher é 
+    feita pela chamada da action  create Teacher, listada abaixo:
+
+      createTeacher: async (req, res) => {
+    const transaction = await sequelize.transaction();
+    try {
+      const { Name, Email, specialtyIds } = req.body;
+      const { ID_Company } = req.user; 
+
+      await teacherSchema.validate({ Name, Email });
+
+      if (!specialtyIds || specialtyIds.length === 0) {
+        throw new Error('A teacher must have at least one specialty.');
+      }     
+
+      // Verificando se as especialidades existem para empresa(Company)
+      const specialties = await Specialty.findAll({ 
+        where: { 
+          ID_Specialties: specialtyIds,
+          ID_Company 
+        } 
+      }, { transaction });
+
+      if (specialties.length !== specialtyIds.length) {
+        throw new Error('One or more specialties do not exist for the given company.');
+      }     
+      // Gera password inicial do usuario
+      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 10; 
+      const password = generatePassword(passwordLength);
+      const customSalt = await generateSalt();
+      const hashedPassword = await bcrypt.hash(password, customSalt);
+      // Gera o nome do usuario baseado no nome to professor
+      let userName = await generateUserName(Name); // Tentativa inicial
+      let userNameExists = await User.findOne({ where: { UserName: userName } }, { transaction });
+
+      let counter = 1;
+      while (userNameExists) {
+        userName = await generateUserName(Name, counter);
+        userNameExists = await User.findOne({ where: { UserName: userName } }, { transaction });
+        counter++;
+       }
+
+      // Insere usuario
+      const newUser = await User.create({
+        UserName: userName,
+        UserEmail: Email, // Assumindo que Email é fornecido
+        UserPassword: hashedPassword,
+        UserType: 'Teacher', // Defina conforme apropriado
+        ID_Company
+      }, { transaction });
+
+      // Insere professor
+      const newTeacher = await Teacher.create({
+        UserID: newUser.UserID,
+        Name,
+        ID_Company
+      }, { transaction });
+
+      await newTeacher.addSpecialties(specialties, { transaction });
+  
+      await transaction.commit();
+
+      res.status(201).json(newTeacher);
+    } catch (error) {
+      await transaction.rollback();
+      res.status(400).json({ error: error.message });
+    }
+  },
+  
+  O teacher e User estão sendo criados errados, falta algum commando
+   para confirmar a associação ?
+
+
+
+tendo os models abaixo:
+
+module.exports = (sequelize, DataTypes) => {
+  const Teacher = sequelize.define('Teacher', {
+    ID_Company: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Companies',
+        key: 'ID_Company'
+      }
+    },    
+    ID_Teacher: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    UserID: { // Este campo é adicionado para associar diretamente o Cliente a um Professor
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true, // Garante que cada professor esteja associado a um único usuário
+      references: {
+        model: 'Users', // Indica que este campo é uma chave estrangeira que aponta para a tabela Users
+        key: 'UserID'
+      }
+    },
+    Name: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    }
+  }, {
+    timestamps: false,
+    tableName: 'Teachers'
+  });
+
+  return Teacher;
+};
+
+e
+
+// models/user.js
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    ID_Company: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Companies',
+        key: 'ID_Company'
+      }
+    },
+    UserID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    UserName: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    UserEmail: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
+    },
+    UserPassword: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    UserType: {
+      type: DataTypes.ENUM('Root', 'Admin', 'Teacher', 'Client'),
+      allowNull: false
+    },
+  }, {
+    timestamps: false,
+    tableName: 'Users'
+  });
+
+  return User;
+};
+
+
+veja que na declaração dos models não ha nehuma informação sobre as associações.
+
+Estas informações estão em outro arquivo ./models/associations.js que é Assim como abaixo
+
+// models/associations.js
+const { Company, User, Client, Teacher, Specialty, TimeTable, City, State } = require('./'); 
+
+// Associações de company
+// Relações de 1:N 
+Company.hasMany(Client, { foreignKey: 'ID_Company' });
+Client.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(Teacher, { foreignKey: 'ID_Company' });
+Teacher.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(Specialty, { foreignKey: 'ID_Company' });
+Specialty.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(TimeTable, { foreignKey: 'ID_Company' });
+TimeTable.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(User, { foreignKey: 'ID_Company' });
+User.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+
+// Associações de user
+// Relação 1 x 1 User x Client
+User.hasOne(Client,{  foreignKey: 'UserID',  as: 'clientInfo', onDelete: 'RESTRICT'});
+// Relação 1 x 1 User x Teacher
+User.hasOne(Teacher,{  foreignKey: 'UserID',  as: 'teacherInfo', onDelete: 'RESTRICT'});
+
+
+// Associações de teachers
+// Define associations N x N => Teacher x Specialty
+Teacher.belongsToMany(Specialty, { through: 'TeacherSpecialties', foreignKey: 'ID_Teacher' });
+Specialty.belongsToMany(Teacher, { through: 'TeacherSpecialties', foreignKey: 'ID_Specialties' });
+
+// Relações de 1:N  teacher 1 x timeTable N
+Teacher.hasMany(TimeTable, { foreignKey: 'ID_Teacher' });
+TimeTable.belongsTo(Teacher, { foreignKey: 'ID_Teacher' });
+
+// Relações de 1:N Specialty 1 x timeTable N
+Specialty.hasMany(TimeTable, { foreignKey: 'ID_Specialty' });
+TimeTable.belongsTo(Specialty, { foreignKey: 'ID_Specialty' });
+
+// Relações de N:N TimeTable x Client 
+TimeTable.belongsToMany(Client, { through: 'TimeTableClients', foreignKey: 'ID_TimeTable' });
+Client.belongsToMany(TimeTable, { through: 'TimeTableClients', foreignKey: 'ClientID' });
+
+
+// Associações de City(Cidade)
+// Relações de 1:N  City 1 x  N  Cliente
+Client.belongsTo(City, {foreignKey: 'ID_City'});
+City.hasMany(Client, {foreignKey: 'ID_City'});
+
+// Associações de State(Estado)
+// Relações de 1:N  State 1 x  N City
+City.belongsTo(State, {foreignKey: 'ID_State'});
+State.hasMany(City, {foreignKey: 'ID_State'});
+ 
+
+Nas controllers para usar teacher ou user uso o commando 
+const { Teacher, User } = require('../models');
+
+Meu arquivo contendo as associações como associations.js é assim
+
+// models/associations.js
+const { Company, User, Client, Teacher, Specialty, TimeTable, City, State } = require('./'); 
+
+// Associações de company
+// Relações de 1:N 
+Company.hasMany(Client, { foreignKey: 'ID_Company' });
+Client.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(Teacher, { foreignKey: 'ID_Company' });
+Teacher.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(Specialty, { foreignKey: 'ID_Company' });
+Specialty.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(TimeTable, { foreignKey: 'ID_Company' });
+TimeTable.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+Company.hasMany(User, { foreignKey: 'ID_Company' });
+User.belongsTo(Company, { foreignKey: 'ID_Company' });
+//
+
+// Associações de user
+// Relação 1 x 1 User x Client
+User.hasOne(Client,{  foreignKey: 'UserID',  as: 'clientInfo', onDelete: 'RESTRICT'});
+// Relação 1 x 1 User x Teacher
+User.hasOne(Teacher,{  foreignKey: 'UserID',  as: 'teacherInfo', onDelete: 'RESTRICT'});
+
+
+// Associações de teachers
+// Define associations N x N => Teacher x Specialty
+Teacher.belongsToMany(Specialty, { through: 'TeacherSpecialties', foreignKey: 'ID_Teacher' });
+Specialty.belongsToMany(Teacher, { through: 'TeacherSpecialties', foreignKey: 'ID_Specialties' });
+
+// Relações de 1:N  teacher 1 x timeTable N
+Teacher.hasMany(TimeTable, { foreignKey: 'ID_Teacher' });
+TimeTable.belongsTo(Teacher, { foreignKey: 'ID_Teacher' });
+
+// Relações de 1:N Specialty 1 x timeTable N
+Specialty.hasMany(TimeTable, { foreignKey: 'ID_Specialty' });
+TimeTable.belongsTo(Specialty, { foreignKey: 'ID_Specialty' });
+
+// Relações de N:N TimeTable x Client 
+TimeTable.belongsToMany(Client, { through: 'TimeTableClients', foreignKey: 'ID_TimeTable' });
+Client.belongsToMany(TimeTable, { through: 'TimeTableClients', foreignKey: 'ClientID' });
+
+
+// Associações de City(Cidade)
+// Relações de 1:N  City 1 x  N  Cliente
+Client.belongsTo(City, {foreignKey: 'ID_City'});
+City.hasMany(Client, {foreignKey: 'ID_City'});
+
+// Associações de State(Estado)
+// Relações de 1:N  State 1 x  N City
+City.belongsTo(State, {foreignKey: 'ID_State'});
+State.hasMany(City, {foreignKey: 'ID_State'});
+ 
+não defini esta função establishAssociations, voce pode modificar o arquivoassociations.js de modo a fazer esta função.
+
+
+
+User.hasOne(Teacher,{  foreignKey: 'UserID',  as: 'clientInfo', onDelete: 'RESTRICT'});
+
+Teacher.hasOne(User, )
+
+
+neste arquivo routes abaixo 
+
+const express = require('express');
+const router = express.Router();
+const teacherController = require('../controllers/teacherController');
+const { verifyToken } = require('../middleware/authMiddleware');
+
+router.post('/teachers', verifyToken, teacherController.createTeacher);
+router.get('/teachers', verifyToken, teacherController.getAllTeachers);
+router.get('/teachers/:id', verifyToken, teacherController.getTeacherById);
+router.put('/teachers/:id', verifyToken, teacherController.updateTeacher);
+router.delete('/teachers/:id', verifyToken, teacherController.deleteTeacher);
+router.put('/teachers/:id/specialties', verifyToken, teacherController.updateSpecialty);
+
+
+module.exports = router;
+
+
+
+ quero acrescentar a rota => /api/teachers/by-name?name=Upda*
+
+ para a action  getTeachersByNamePattern em teacherController , modifique o codigo de rotas adequadamente

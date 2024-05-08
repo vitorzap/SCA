@@ -122,6 +122,54 @@ describe('User Controller', () => {
               });
       });
     });
+
+    describe('GET /api/users/name/:name', () => {
+      it('should find users with exact name', (done) => {
+          chai.request(app)
+              .get(`/api/users/name/${newUser.UserName}`)
+              .set('Authorization', `Bearer ${token}`)
+              .end((err, res) => {
+                  chai.expect(res).to.have.status(200);
+                  chai.expect(res.body).to.be.an('array');
+                  chai.expect(res.body[0].UserName).to.equal(newUser.UserName);
+                  done();
+              });
+      });
+
+      it('should find users whose names start with a given pattern', (done) => {
+          chai.request(app)
+              .get(`/api/users/name/New*`)
+              .set('Authorization', `Bearer ${token}`)
+              .end((err, res) => {
+                  chai.expect(res).to.have.status(200);
+                  chai.expect(res.body).to.be.an('array');
+                  chai.expect(res.body.length).to.be.at.least(1);
+                  done();
+              });
+      });
+
+      it('should find users whose names end with a given pattern', (done) => {
+          chai.request(app)
+              .get(`/api/users/name/*min`)
+              .set('Authorization', `Bearer ${token}`)
+              .end((err, res) => {
+                  chai.expect(res).to.have.status(200);
+                  chai.expect(res.body).to.be.an('array');
+                  done();
+              });
+      });
+
+      it('should find users whose names contain a given pattern', (done) => {
+          chai.request(app)
+              .get(`/api/users/name/*Admin*`)
+              .set('Authorization', `Bearer ${token}`)
+              .end((err, res) => {
+                  chai.expect(res).to.have.status(200);
+                  chai.expect(res.body).to.be.an('array');
+                  done();
+              });
+      });
+    });
     
     describe('PUT /api/users/:id- Update user name', () => {
       it('should update a user', (done) => {
