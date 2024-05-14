@@ -1,0 +1,32 @@
+# Módulos do Node.js
+node_modules/
+
+# Arquivos de build ou cache
+dist/
+build/
+.cache/
+*.log
+
+# Arquivos de ambiente local
+.env
+.env.local
+.env.*.local
+
+# Arquivos de dependências do editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos gerados automaticamente
+.DS_Store
+Thumbs.db
+
+# Arquivos de registro
+logs/
+*.log*
+npm-debug.log*
+
+# Arquivos de backup
+*.bak
+*.backup

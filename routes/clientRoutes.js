@@ -8,6 +8,7 @@ const { verifyToken } = require('../middleware/authMiddleware');
 router.post('/clients', verifyToken, clientController.createClient);
 router.get('/clients', verifyToken, clientController.getAllClients);
 router.get('/clients/:id', verifyToken, clientController.getClientById);
+router.get('/clients/name/:name', verifyToken,clientController.getClientsByName);     
 router.put('/clients/:id', verifyToken, clientController.updateClient);
 router.delete('/clients/:id', verifyToken, clientController.deleteClient);
 

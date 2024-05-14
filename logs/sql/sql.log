@@ -2311,3 +2311,1091 @@
 2024-05-08T13:01:27.476Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 498
 2024-05-08T13:01:27.547Z - Executing (default): DELETE FROM `Specialties` WHERE `ID_Company` = 498
 2024-05-08T13:01:27.611Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 498
+2024-05-08T23:59:50.200Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 368;
+2024-05-08T23:59:50.414Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 592;
+2024-05-08T23:59:50.724Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 177;
+2024-05-08T23:59:50.903Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 897;
+2024-05-08T23:59:51.034Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 32;
+2024-05-08T23:59:51.196Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 216;
+2024-05-08T23:59:52.057Z - Executing (default): DELETE FROM Clients;
+2024-05-08T23:59:52.065Z - Executing (default): DELETE FROM Teachers;
+2024-05-08T23:59:52.072Z - Executing (default): DELETE FROM Cities;
+2024-05-08T23:59:52.077Z - Executing (default): DELETE FROM States;
+2024-05-08T23:59:52.082Z - Executing (default): DELETE FROM Users;
+2024-05-08T23:59:52.088Z - Executing (default): DELETE FROM Specialties;
+2024-05-08T23:59:52.093Z - Executing (default): DELETE FROM Companies;
+2024-05-09T00:03:28.519Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 592;
+2024-05-09T00:03:29.096Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 362;
+2024-05-09T00:03:29.656Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 695;
+2024-05-09T00:03:29.804Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 829;
+2024-05-09T00:03:29.942Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 818;
+2024-05-09T00:03:30.061Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 417;
+2024-05-09T00:03:30.280Z - Executing (default): DELETE FROM Clients;
+2024-05-09T00:03:30.287Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T00:03:30.296Z - Executing (default): DELETE FROM Cities;
+2024-05-09T00:03:30.303Z - Executing (default): DELETE FROM States;
+2024-05-09T00:03:30.307Z - Executing (default): DELETE FROM Users;
+2024-05-09T00:03:30.313Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T00:03:30.318Z - Executing (default): DELETE FROM Companies;
+2024-05-09T00:03:48.847Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 418;
+2024-05-09T00:03:49.032Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 325;
+2024-05-09T00:03:49.158Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 224;
+2024-05-09T00:03:49.278Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 661;
+2024-05-09T00:03:49.523Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 822;
+2024-05-09T00:03:49.655Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 523;
+2024-05-09T00:03:49.780Z - Executing (default): DELETE FROM Clients;
+2024-05-09T00:03:49.787Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T00:03:49.798Z - Executing (default): DELETE FROM Cities;
+2024-05-09T00:03:49.802Z - Executing (default): DELETE FROM States;
+2024-05-09T00:03:49.806Z - Executing (default): DELETE FROM Users;
+2024-05-09T00:03:49.810Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T00:03:49.814Z - Executing (default): DELETE FROM Companies;
+2024-05-09T00:05:00.774Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 367;
+2024-05-09T00:05:00.942Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 846;
+2024-05-09T00:05:01.113Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 633;
+2024-05-09T00:05:02.125Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 18;
+2024-05-09T00:05:02.512Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 117;
+2024-05-09T00:05:02.656Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 258;
+2024-05-09T00:05:02.806Z - Executing (default): DELETE FROM Clients;
+2024-05-09T00:05:02.813Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T00:05:02.820Z - Executing (default): DELETE FROM Cities;
+2024-05-09T00:05:02.824Z - Executing (default): DELETE FROM States;
+2024-05-09T00:05:02.827Z - Executing (default): DELETE FROM Users;
+2024-05-09T00:05:02.833Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T00:05:02.838Z - Executing (default): DELETE FROM Companies;
+2024-05-09T00:05:13.809Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:05:14.089Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:14.245Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 258 LIMIT 1;
+2024-05-09T00:05:14.319Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:05:14.804Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:14.915Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company`;
+2024-05-09T00:05:14.925Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`ID_Company` = '259';
+2024-05-09T00:05:14.935Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`Name` LIKE 'Test%';
+2024-05-09T00:05:14.943Z - Executing (default): UPDATE `Companies` SET `Name`=? WHERE `ID_Company` = ?
+2024-05-09T00:05:15.026Z - Executing (default): SELECT `ID_Company`, `Name` FROM `Companies` AS `Company` WHERE `Company`.`ID_Company` = '259';
+2024-05-09T00:05:15.032Z - Executing (default): DELETE FROM `Users` WHERE `UserName` = 'admin' AND `ID_Company` = 259
+2024-05-09T00:05:15.120Z - Executing (default): SELECT count(*) AS `count` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = '259';
+2024-05-09T00:05:15.124Z - Executing (default): SELECT count(*) AS `count` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Company` = '259';
+2024-05-09T00:05:15.128Z - Executing (default): SELECT count(*) AS `count` FROM `Specialties` AS `Specialty` WHERE `Specialty`.`ID_Company` = '259';
+2024-05-09T00:05:15.133Z - Executing (default): SELECT count(*) AS `count` FROM `TimeTables` AS `TimeTable` WHERE `TimeTable`.`ID_Company` = '259';
+2024-05-09T00:05:15.138Z - Executing (default): SELECT count(*) AS `count` FROM `Users` AS `User` WHERE `User`.`ID_Company` = '259';
+2024-05-09T00:05:15.142Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = '259'
+2024-05-09T00:05:15.237Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` > 0
+2024-05-09T00:05:15.336Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` > 0
+2024-05-09T00:05:15.502Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:05:15.672Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:15.811Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 260 LIMIT 1;
+2024-05-09T00:05:15.890Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 260 LIMIT 1;
+2024-05-09T00:05:15.957Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = 119;
+2024-05-09T00:05:16.073Z - Executing (default): UPDATE `Users` SET `UserPassword`=? WHERE `UserID` = ?
+2024-05-09T00:05:16.213Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 260 LIMIT 1;
+2024-05-09T00:05:16.287Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-05-09T00:05:16.471Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 260
+2024-05-09T00:05:16.599Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:05:16.768Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:16.846Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'test@example.com' OR `User`.`UserName` = 'test@example.com') AND `User`.`ID_Company` = 261 LIMIT 1;
+2024-05-09T00:05:16.919Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 261 LIMIT 1;
+2024-05-09T00:05:16.979Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:17.112Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'NewAdmin') AND `User`.`ID_Company` = 261 LIMIT 1;
+2024-05-09T00:05:17.119Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`ID_Company` = 261;
+2024-05-09T00:05:17.128Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '120' AND `User`.`ID_Company` = 261;
+2024-05-09T00:05:17.135Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'testuser' AND `User`.`ID_Company` = 261;
+2024-05-09T00:05:17.141Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` LIKE 'New%' AND `User`.`ID_Company` = 261;
+2024-05-09T00:05:17.149Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` LIKE '%min' AND `User`.`ID_Company` = 261;
+2024-05-09T00:05:17.155Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` LIKE '%Admin%' AND `User`.`ID_Company` = 261;
+2024-05-09T00:05:17.166Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserName` = 'UpdatedName') AND `User`.`ID_Company` = 261 AND `User`.`UserID` != '120' LIMIT 1;
+2024-05-09T00:05:17.170Z - Executing (default): UPDATE `Users` SET `UserName`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-05-09T00:05:17.332Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'newemail@example.com') AND `User`.`ID_Company` = 261 AND `User`.`UserID` != '120' LIMIT 1;
+2024-05-09T00:05:17.336Z - Executing (default): UPDATE `Users` SET `UserEmail`=? WHERE `UserID` = ? AND `ID_Company` = ?
+2024-05-09T00:05:17.472Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserID` = '120' AND `User`.`ID_Company` = 261;
+2024-05-09T00:05:17.476Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`UserID` = '120';
+2024-05-09T00:05:17.477Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`UserID` = '120';
+2024-05-09T00:05:17.485Z - Executing (default): DELETE FROM `Users` WHERE `UserID` = '120' AND `ID_Company` = 261
+2024-05-09T00:05:17.560Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'test@example.com'
+2024-05-09T00:05:17.564Z - Executing (default): DELETE FROM `Users` WHERE `UserEmail` = 'adteste@example.com'
+2024-05-09T00:05:17.650Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 261
+2024-05-09T00:05:17.768Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:05:17.923Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:18.064Z - Executing (default): INSERT INTO `Specialties` (`ID_Company`,`ID_Specialties`,`Description`) VALUES (?,DEFAULT,?);
+2024-05-09T00:05:18.091Z - Executing (default): INSERT INTO `Specialties` (`ID_Company`,`ID_Specialties`,`Description`) VALUES (?,DEFAULT,?);
+2024-05-09T00:05:18.092Z - Executing (default): INSERT INTO `Specialties` (`ID_Company`,`ID_Specialties`,`Description`) VALUES (?,DEFAULT,?);
+2024-05-09T00:05:18.093Z - Executing (default): INSERT INTO `Specialties` (`ID_Company`,`ID_Specialties`,`Description`) VALUES (?,DEFAULT,?);
+2024-05-09T00:05:18.093Z - Executing (default): INSERT INTO `Specialties` (`ID_Company`,`ID_Specialties`,`Description`) VALUES (?,DEFAULT,?);
+2024-05-09T00:05:18.203Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 262 LIMIT 1;
+2024-05-09T00:05:18.271Z - Executing (9b0e1583-9c3a-4e3c-9c85-16cfdb252617): START TRANSACTION;
+2024-05-09T00:05:18.277Z - Executing (default): SELECT `ID_Company`, `ID_Specialties`, `Description` FROM `Specialties` AS `Specialty` WHERE `Specialty`.`ID_Specialties` IN (780, 781, 779) AND `Specialty`.`ID_Company` = 262;
+2024-05-09T00:05:18.339Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'TestT000' LIMIT 1;
+2024-05-09T00:05:18.346Z - Executing (9b0e1583-9c3a-4e3c-9c85-16cfdb252617): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:18.353Z - Executing (9b0e1583-9c3a-4e3c-9c85-16cfdb252617): INSERT INTO `Teachers` (`ID_Company`,`ID_Teacher`,`UserID`,`Name`) VALUES (?,DEFAULT,?,?);
+2024-05-09T00:05:18.360Z - Executing (9b0e1583-9c3a-4e3c-9c85-16cfdb252617): SELECT `ID`, `ID_Teacher`, `ID_Specialties` FROM `TeacherSpecialties` AS `TeacherSpecialties` WHERE `TeacherSpecialties`.`ID_Teacher` = 18 AND `TeacherSpecialties`.`ID_Specialties` IN (779, 780, 781);
+2024-05-09T00:05:18.365Z - Executing (9b0e1583-9c3a-4e3c-9c85-16cfdb252617): INSERT INTO `TeacherSpecialties` (`ID`,`ID_Teacher`,`ID_Specialties`) VALUES (NULL,18,779),(NULL,18,780),(NULL,18,781);
+2024-05-09T00:05:18.371Z - Executing (9b0e1583-9c3a-4e3c-9c85-16cfdb252617): COMMIT;
+2024-05-09T00:05:18.435Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Company` = 262;
+2024-05-09T00:05:18.442Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Teacher` = '18' AND `Teacher`.`ID_Company` = 262;
+2024-05-09T00:05:18.448Z - Executing (45910cbb-9ca0-4590-8e86-a0562758a65a): START TRANSACTION;
+2024-05-09T00:05:18.455Z - Executing (45910cbb-9ca0-4590-8e86-a0562758a65a): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Teacher` = '18' AND `Teacher`.`ID_Company` = 262;
+2024-05-09T00:05:18.458Z - Executing (45910cbb-9ca0-4590-8e86-a0562758a65a): UPDATE `Teachers` SET `Name`=? WHERE `ID_Teacher` = ? AND `ID_Company` = ?
+2024-05-09T00:05:18.463Z - Executing (45910cbb-9ca0-4590-8e86-a0562758a65a): COMMIT;
+2024-05-09T00:05:18.578Z - Executing (default): SELECT `Teacher`.`ID_Company`, `Teacher`.`ID_Teacher`, `Teacher`.`UserID`, `Teacher`.`Name`, `userInfo`.`UserID` AS `userInfo.UserID`, `userInfo`.`UserName` AS `userInfo.UserName`, `userInfo`.`UserEmail` AS `userInfo.UserEmail`, `userInfo`.`UserType` AS `userInfo.UserType` FROM `Teachers` AS `Teacher` LEFT OUTER JOIN `Users` AS `userInfo` ON `Teacher`.`UserID` = `userInfo`.`UserID` WHERE `Teacher`.`ID_Teacher` = '18' AND `Teacher`.`ID_Company` = 262;
+2024-05-09T00:05:18.590Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Company` = 262 AND `Teacher`.`Name` LIKE 'Upda%';
+2024-05-09T00:05:18.602Z - Executing (default): SELECT `Teacher`.`ID_Company`, `Teacher`.`ID_Teacher`, `Teacher`.`UserID`, `Teacher`.`Name`, `Specialties`.`ID_Company` AS `Specialties.ID_Company`, `Specialties`.`ID_Specialties` AS `Specialties.ID_Specialties`, `Specialties`.`Description` AS `Specialties.Description` FROM `Teachers` AS `Teacher` INNER JOIN ( `TeacherSpecialties` AS `Specialties->TeacherSpecialties` INNER JOIN `Specialties` AS `Specialties` ON `Specialties`.`ID_Specialties` = `Specialties->TeacherSpecialties`.`ID_Specialties`) ON `Teacher`.`ID_Teacher` = `Specialties->TeacherSpecialties`.`ID_Teacher` AND `Specialties`.`ID_Specialties` = '780' WHERE `Teacher`.`ID_Company` = 262;
+2024-05-09T00:05:18.611Z - Executing (9092b628-0d81-4d19-afd6-86f0fc5fc33d): START TRANSACTION;
+2024-05-09T00:05:18.616Z - Executing (default): SELECT `ID_Company`, `ID_Teacher`, `UserID`, `Name` FROM `Teachers` AS `Teacher` WHERE `Teacher`.`ID_Teacher` = '18' AND `Teacher`.`ID_Company` = 262;
+2024-05-09T00:05:18.620Z - Executing (9092b628-0d81-4d19-afd6-86f0fc5fc33d): SELECT count(*) AS `count` FROM `Specialties` AS `Specialty` WHERE `Specialty`.`ID_Specialties` IN (NULL) AND `Specialty`.`ID_Company` = 262;
+2024-05-09T00:05:18.626Z - Executing (9092b628-0d81-4d19-afd6-86f0fc5fc33d): SELECT `ID`, `ID_Teacher`, `ID_Specialties` FROM `TeacherSpecialties` AS `TeacherSpecialties` WHERE `TeacherSpecialties`.`ID_Teacher` = 18;
+2024-05-09T00:05:18.631Z - Executing (9092b628-0d81-4d19-afd6-86f0fc5fc33d): DELETE FROM `TeacherSpecialties` WHERE `ID_Teacher` = 18 AND `ID_Specialties` IN (779, 780, 781)
+2024-05-09T00:05:18.635Z - Executing (9092b628-0d81-4d19-afd6-86f0fc5fc33d): COMMIT;
+2024-05-09T00:05:18.701Z - Executing (a7d14e9f-a139-4f4e-b467-44c90928dbb8): START TRANSACTION;
+2024-05-09T00:05:18.707Z - Executing (a7d14e9f-a139-4f4e-b467-44c90928dbb8): SELECT `Teacher`.`ID_Company`, `Teacher`.`ID_Teacher`, `Teacher`.`UserID`, `Teacher`.`Name`, `Specialties`.`ID_Company` AS `Specialties.ID_Company`, `Specialties`.`ID_Specialties` AS `Specialties.ID_Specialties`, `Specialties`.`Description` AS `Specialties.Description` FROM `Teachers` AS `Teacher` LEFT OUTER JOIN ( `TeacherSpecialties` AS `Specialties->TeacherSpecialties` INNER JOIN `Specialties` AS `Specialties` ON `Specialties`.`ID_Specialties` = `Specialties->TeacherSpecialties`.`ID_Specialties`) ON `Teacher`.`ID_Teacher` = `Specialties->TeacherSpecialties`.`ID_Teacher` WHERE `Teacher`.`ID_Teacher` = '18' AND `Teacher`.`ID_Company` = 262;
+2024-05-09T00:05:18.718Z - Executing (a7d14e9f-a139-4f4e-b467-44c90928dbb8): SELECT `ID_Company`, `ID_TimeTable`, `ID_Teacher`, `ID_Specialty`, `Day_of_Week`, `Start_Time`, `End_Time`, `Capacity`, `Available_Capacity` FROM `TimeTables` AS `TimeTable` WHERE `TimeTable`.`ID_Teacher` = 18 LIMIT 1;
+2024-05-09T00:05:18.722Z - Executing (a7d14e9f-a139-4f4e-b467-44c90928dbb8): DELETE FROM `TeacherSpecialties` WHERE `ID_Teacher` = 18 AND `ID_Specialties` IN (NULL)
+2024-05-09T00:05:18.727Z - Executing (a7d14e9f-a139-4f4e-b467-44c90928dbb8): DELETE FROM `Teachers` WHERE `ID_Teacher` = 18
+2024-05-09T00:05:18.731Z - Executing (a7d14e9f-a139-4f4e-b467-44c90928dbb8): DELETE FROM `Users` WHERE `UserID` = 123
+2024-05-09T00:05:18.736Z - Executing (a7d14e9f-a139-4f4e-b467-44c90928dbb8): COMMIT;
+2024-05-09T00:05:18.818Z - Executing (default): DELETE FROM `Teachers` WHERE `ID_Company` = 262
+2024-05-09T00:05:18.821Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 262
+2024-05-09T00:05:18.914Z - Executing (default): DELETE FROM `Specialties` WHERE `ID_Company` = 262
+2024-05-09T00:05:18.997Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 262
+2024-05-09T00:05:19.136Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T00:05:19.218Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T00:05:19.378Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:05:19.551Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:05:19.662Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 263
+2024-05-09T00:05:19.667Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 263
+2024-05-09T00:05:19.761Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 367
+2024-05-09T00:05:19.861Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 367
+2024-05-09T00:05:19.952Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 263
+2024-05-09T00:07:38.285Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 23;
+2024-05-09T00:07:38.482Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 658;
+2024-05-09T00:07:39.105Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 48;
+2024-05-09T00:07:39.516Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 765;
+2024-05-09T00:07:39.659Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 549;
+2024-05-09T00:07:39.799Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 161;
+2024-05-09T00:07:39.935Z - Executing (default): DELETE FROM Clients;
+2024-05-09T00:07:39.944Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T00:07:39.954Z - Executing (default): DELETE FROM Cities;
+2024-05-09T00:07:39.962Z - Executing (default): DELETE FROM States;
+2024-05-09T00:07:39.968Z - Executing (default): DELETE FROM Users;
+2024-05-09T00:07:39.973Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T00:07:39.979Z - Executing (default): DELETE FROM Companies;
+2024-05-09T00:07:51.292Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T00:07:51.534Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T00:07:51.652Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:07:51.897Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:07:52.037Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 161
+2024-05-09T00:07:52.067Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 161
+2024-05-09T00:07:52.142Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 23
+2024-05-09T00:07:52.316Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 23
+2024-05-09T00:07:52.404Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 161
+2024-05-09T00:11:50.097Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 77;
+2024-05-09T00:11:50.317Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 305;
+2024-05-09T00:11:50.611Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 217;
+2024-05-09T00:11:51.934Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 485;
+2024-05-09T00:11:52.445Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 806;
+2024-05-09T00:11:52.650Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 119;
+2024-05-09T00:11:52.782Z - Executing (default): DELETE FROM Clients;
+2024-05-09T00:11:52.790Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T00:11:52.799Z - Executing (default): DELETE FROM Cities;
+2024-05-09T00:11:52.804Z - Executing (default): DELETE FROM States;
+2024-05-09T00:11:52.808Z - Executing (default): DELETE FROM Users;
+2024-05-09T00:11:52.813Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T00:11:52.818Z - Executing (default): DELETE FROM Companies;
+2024-05-09T00:12:05.110Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T00:12:05.349Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T00:12:05.934Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T00:12:06.191Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T00:12:06.309Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T00:12:06.447Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 119 LIMIT 1;
+2024-05-09T00:12:06.520Z - Executing (0095c4fd-0030-4565-a728-04a577d8c8bd): START TRANSACTION;
+2024-05-09T00:12:06.528Z - Executing (0095c4fd-0030-4565-a728-04a577d8c8bd): ROLLBACK;
+2024-05-09T00:12:06.539Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 119;
+2024-05-09T00:12:06.549Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '217' AND `Client`.`ID_Company` = 119 LIMIT 1;
+2024-05-09T00:12:06.647Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 119 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T00:12:06.657Z - Executing (648d2a11-7058-424b-86ed-54b3645d570c): START TRANSACTION;
+2024-05-09T00:12:06.661Z - Executing (648d2a11-7058-424b-86ed-54b3645d570c): ROLLBACK;
+2024-05-09T00:12:06.669Z - Executing (6bc4d68b-7816-475b-8ab2-b0609fb19960): START TRANSACTION;
+2024-05-09T00:12:06.672Z - Executing (6bc4d68b-7816-475b-8ab2-b0609fb19960): ROLLBACK;
+2024-05-09T00:12:06.683Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 119
+2024-05-09T00:12:06.790Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 119
+2024-05-09T00:12:06.851Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 77
+2024-05-09T00:12:06.902Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 77
+2024-05-09T00:12:06.964Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 119
+2024-05-09T19:02:14.044Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 197;
+2024-05-09T19:02:14.688Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 947;
+2024-05-09T19:02:16.371Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 822;
+2024-05-09T19:02:16.612Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 438;
+2024-05-09T19:02:16.722Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 487;
+2024-05-09T19:02:16.834Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 880;
+2024-05-09T19:02:17.087Z - Executing (default): DELETE FROM Clients;
+2024-05-09T19:02:17.100Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T19:02:17.106Z - Executing (default): DELETE FROM Cities;
+2024-05-09T19:02:17.110Z - Executing (default): DELETE FROM States;
+2024-05-09T19:02:17.113Z - Executing (default): DELETE FROM Users;
+2024-05-09T19:02:17.118Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T19:02:17.122Z - Executing (default): DELETE FROM Companies;
+2024-05-09T19:02:29.227Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T19:02:29.490Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T19:02:29.626Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T19:02:29.829Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T19:02:29.897Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T19:02:30.206Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 880 LIMIT 1;
+2024-05-09T19:02:30.283Z - Executing (43e176b7-5c6b-4b6b-931a-d6d07a8e3dc1): START TRANSACTION;
+2024-05-09T19:02:30.289Z - Executing (43e176b7-5c6b-4b6b-931a-d6d07a8e3dc1): ROLLBACK;
+2024-05-09T19:02:30.298Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 880;
+2024-05-09T19:02:30.305Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '822' AND `Client`.`ID_Company` = 880 LIMIT 1;
+2024-05-09T19:02:30.725Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 880 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T19:02:30.735Z - Executing (ce7df2f9-76e6-4d89-9ba1-a9cb6a07e4a4): START TRANSACTION;
+2024-05-09T19:02:30.739Z - Executing (ce7df2f9-76e6-4d89-9ba1-a9cb6a07e4a4): ROLLBACK;
+2024-05-09T19:02:30.749Z - Executing (bed7951c-275b-4de9-a1be-bd778c2908e2): START TRANSACTION;
+2024-05-09T19:02:30.753Z - Executing (bed7951c-275b-4de9-a1be-bd778c2908e2): ROLLBACK;
+2024-05-09T19:02:30.763Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 880
+2024-05-09T19:02:31.117Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 880
+2024-05-09T19:02:31.191Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 197
+2024-05-09T19:02:31.277Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 197
+2024-05-09T19:02:31.363Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 880
+2024-05-09T20:08:35.872Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 377;
+2024-05-09T20:08:36.059Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 834;
+2024-05-09T20:08:36.191Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 354;
+2024-05-09T20:08:36.499Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 72;
+2024-05-09T20:08:37.321Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 194;
+2024-05-09T20:08:37.836Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 278;
+2024-05-09T20:08:38.138Z - Executing (default): DELETE FROM Clients;
+2024-05-09T20:08:38.144Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T20:08:38.149Z - Executing (default): DELETE FROM Cities;
+2024-05-09T20:08:38.154Z - Executing (default): DELETE FROM States;
+2024-05-09T20:08:38.157Z - Executing (default): DELETE FROM Users;
+2024-05-09T20:08:38.163Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T20:08:38.168Z - Executing (default): DELETE FROM Companies;
+2024-05-09T20:08:49.109Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T20:08:49.234Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T20:08:49.354Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T20:08:49.509Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T20:08:49.621Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T20:08:49.857Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 278 LIMIT 1;
+2024-05-09T20:08:49.939Z - Executing (e4e2ce57-9c49-447c-b429-9c4cd4a22181): START TRANSACTION;
+2024-05-09T20:08:49.945Z - Executing (e4e2ce57-9c49-447c-b429-9c4cd4a22181): ROLLBACK;
+2024-05-09T20:08:49.955Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 278;
+2024-05-09T20:08:49.991Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '354' AND `Client`.`ID_Company` = 278 LIMIT 1;
+2024-05-09T20:08:50.001Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 278 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T20:08:50.008Z - Executing (1543c6c7-abc5-425e-babc-99487fd279bb): START TRANSACTION;
+2024-05-09T20:08:50.012Z - Executing (1543c6c7-abc5-425e-babc-99487fd279bb): ROLLBACK;
+2024-05-09T20:08:50.020Z - Executing (13abf230-f1f4-4eaa-824c-7454bd169750): START TRANSACTION;
+2024-05-09T20:08:50.024Z - Executing (13abf230-f1f4-4eaa-824c-7454bd169750): ROLLBACK;
+2024-05-09T20:08:50.033Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 278
+2024-05-09T20:08:50.162Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 278
+2024-05-09T20:08:50.325Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 377
+2024-05-09T20:08:50.432Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 377
+2024-05-09T20:08:50.523Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 278
+2024-05-09T20:17:21.571Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 461;
+2024-05-09T20:17:21.722Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 434;
+2024-05-09T20:17:21.835Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 383;
+2024-05-09T20:17:21.934Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 337;
+2024-05-09T20:17:22.031Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 997;
+2024-05-09T20:17:22.189Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 364;
+2024-05-09T20:17:22.536Z - Executing (default): DELETE FROM Clients;
+2024-05-09T20:17:22.543Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T20:17:22.550Z - Executing (default): DELETE FROM Cities;
+2024-05-09T20:17:22.555Z - Executing (default): DELETE FROM States;
+2024-05-09T20:17:22.558Z - Executing (default): DELETE FROM Users;
+2024-05-09T20:17:22.562Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T20:17:22.567Z - Executing (default): DELETE FROM Companies;
+2024-05-09T20:17:33.373Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T20:17:33.496Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T20:17:33.597Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T20:17:33.783Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T20:17:33.879Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T20:17:34.049Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 364 LIMIT 1;
+2024-05-09T20:17:34.118Z - Executing (57fb7f72-f893-406f-9a39-c856377b3d01): START TRANSACTION;
+2024-05-09T20:17:34.123Z - Executing (57fb7f72-f893-406f-9a39-c856377b3d01): ROLLBACK;
+2024-05-09T20:17:34.133Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 364;
+2024-05-09T20:17:34.141Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '383' AND `Client`.`ID_Company` = 364 LIMIT 1;
+2024-05-09T20:17:34.149Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 364 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T20:17:34.155Z - Executing (ae438d0f-e054-46f6-a0b9-33100ff5ecff): START TRANSACTION;
+2024-05-09T20:17:34.161Z - Executing (ae438d0f-e054-46f6-a0b9-33100ff5ecff): ROLLBACK;
+2024-05-09T20:17:34.167Z - Executing (59de1306-8a15-4c3d-bd06-5e498b64c5a3): START TRANSACTION;
+2024-05-09T20:17:34.171Z - Executing (59de1306-8a15-4c3d-bd06-5e498b64c5a3): ROLLBACK;
+2024-05-09T20:17:34.178Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 364
+2024-05-09T20:17:34.490Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 364
+2024-05-09T20:17:34.587Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 461
+2024-05-09T20:17:34.679Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 461
+2024-05-09T20:17:34.832Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 364
+2024-05-09T21:21:30.515Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 829;
+2024-05-09T21:21:30.724Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 689;
+2024-05-09T21:21:30.862Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 239;
+2024-05-09T21:21:30.994Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 725;
+2024-05-09T21:21:31.162Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 767;
+2024-05-09T21:21:32.002Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 385;
+2024-05-09T21:21:32.925Z - Executing (default): DELETE FROM Clients;
+2024-05-09T21:21:32.933Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T21:21:32.939Z - Executing (default): DELETE FROM Cities;
+2024-05-09T21:21:32.944Z - Executing (default): DELETE FROM States;
+2024-05-09T21:21:32.948Z - Executing (default): DELETE FROM Users;
+2024-05-09T21:21:32.953Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T21:21:32.958Z - Executing (default): DELETE FROM Companies;
+2024-05-09T21:21:43.658Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T21:21:43.985Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T21:21:44.065Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T21:21:44.241Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T21:21:44.420Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T21:21:44.648Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 385 LIMIT 1;
+2024-05-09T21:21:44.723Z - Executing (d61fb28b-ebb7-4220-a77b-784fb77ad215): START TRANSACTION;
+2024-05-09T21:21:44.729Z - Executing (d61fb28b-ebb7-4220-a77b-784fb77ad215): ROLLBACK;
+2024-05-09T21:21:44.740Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 385;
+2024-05-09T21:21:44.750Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '239' AND `Client`.`ID_Company` = 385 LIMIT 1;
+2024-05-09T21:21:44.759Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 385 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T21:21:44.766Z - Executing (3de8dd61-67d4-4370-9bf3-49fa9b7ce9c6): START TRANSACTION;
+2024-05-09T21:21:44.770Z - Executing (3de8dd61-67d4-4370-9bf3-49fa9b7ce9c6): ROLLBACK;
+2024-05-09T21:21:44.778Z - Executing (9967216e-7703-485e-ac30-a5b2fc7a3c97): START TRANSACTION;
+2024-05-09T21:21:44.781Z - Executing (9967216e-7703-485e-ac30-a5b2fc7a3c97): ROLLBACK;
+2024-05-09T21:21:44.790Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 385
+2024-05-09T21:21:44.891Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 385
+2024-05-09T21:21:44.970Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 829
+2024-05-09T21:21:45.068Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 829
+2024-05-09T21:21:45.159Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 385
+2024-05-09T21:28:11.781Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 13;
+2024-05-09T21:28:11.957Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 442;
+2024-05-09T21:28:12.076Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 446;
+2024-05-09T21:28:12.228Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 705;
+2024-05-09T21:28:12.388Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 128;
+2024-05-09T21:28:12.697Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 158;
+2024-05-09T21:28:13.005Z - Executing (default): DELETE FROM Clients;
+2024-05-09T21:28:13.013Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T21:28:13.020Z - Executing (default): DELETE FROM Cities;
+2024-05-09T21:28:13.025Z - Executing (default): DELETE FROM States;
+2024-05-09T21:28:13.029Z - Executing (default): DELETE FROM Users;
+2024-05-09T21:28:13.034Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T21:28:13.038Z - Executing (default): DELETE FROM Companies;
+2024-05-09T21:28:24.606Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T21:28:24.885Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T21:28:24.997Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T21:28:25.275Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T21:28:25.430Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T21:28:25.616Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 158 LIMIT 1;
+2024-05-09T21:28:25.687Z - Executing (6920ff67-68be-4ce0-badb-b1810afb9ede): START TRANSACTION;
+2024-05-09T21:28:25.692Z - Executing (6920ff67-68be-4ce0-badb-b1810afb9ede): ROLLBACK;
+2024-05-09T21:28:25.701Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 158;
+2024-05-09T21:28:25.709Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '446' AND `Client`.`ID_Company` = 158 LIMIT 1;
+2024-05-09T21:28:25.717Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 158 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T21:28:25.723Z - Executing (439bd4bf-f390-48cb-bf98-fa3217b60b0e): START TRANSACTION;
+2024-05-09T21:28:25.728Z - Executing (439bd4bf-f390-48cb-bf98-fa3217b60b0e): ROLLBACK;
+2024-05-09T21:28:25.735Z - Executing (ddd54fa0-c6a3-4826-99a1-e392154263a2): START TRANSACTION;
+2024-05-09T21:28:25.738Z - Executing (ddd54fa0-c6a3-4826-99a1-e392154263a2): ROLLBACK;
+2024-05-09T21:28:25.748Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 158
+2024-05-09T21:28:25.887Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 158
+2024-05-09T21:28:25.969Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 13
+2024-05-09T21:28:26.130Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 13
+2024-05-09T21:28:26.231Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 158
+2024-05-09T21:39:48.586Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 238;
+2024-05-09T21:39:48.788Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 663;
+2024-05-09T21:39:48.904Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 478;
+2024-05-09T21:39:49.038Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 989;
+2024-05-09T21:39:49.218Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 993;
+2024-05-09T21:39:50.355Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 190;
+2024-05-09T21:39:50.867Z - Executing (default): DELETE FROM Clients;
+2024-05-09T21:39:50.873Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T21:39:50.879Z - Executing (default): DELETE FROM Cities;
+2024-05-09T21:39:50.883Z - Executing (default): DELETE FROM States;
+2024-05-09T21:39:50.887Z - Executing (default): DELETE FROM Users;
+2024-05-09T21:39:50.891Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T21:39:50.896Z - Executing (default): DELETE FROM Companies;
+2024-05-09T21:40:01.979Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T21:40:02.290Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T21:40:02.421Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T21:40:02.594Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T21:40:02.671Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T21:40:02.828Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 190 LIMIT 1;
+2024-05-09T21:40:02.902Z - Executing (7a56b101-a271-4638-a098-3a2efaea4f91): START TRANSACTION;
+2024-05-09T21:40:02.908Z - Executing (7a56b101-a271-4638-a098-3a2efaea4f91): ROLLBACK;
+2024-05-09T21:40:02.918Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 190;
+2024-05-09T21:40:02.925Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '478' AND `Client`.`ID_Company` = 190 LIMIT 1;
+2024-05-09T21:40:02.963Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 190 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T21:40:02.970Z - Executing (226e81fc-a7ec-4c8f-952b-a87476e6b564): START TRANSACTION;
+2024-05-09T21:40:02.973Z - Executing (226e81fc-a7ec-4c8f-952b-a87476e6b564): ROLLBACK;
+2024-05-09T21:40:02.984Z - Executing (e7acd6a6-5806-4cf2-b52b-c2d9543708a1): START TRANSACTION;
+2024-05-09T21:40:02.989Z - Executing (e7acd6a6-5806-4cf2-b52b-c2d9543708a1): ROLLBACK;
+2024-05-09T21:40:02.997Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 190
+2024-05-09T21:40:03.213Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 190
+2024-05-09T21:40:03.334Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 238
+2024-05-09T21:40:03.428Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 238
+2024-05-09T21:40:03.504Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 190
+2024-05-09T21:42:51.813Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 237;
+2024-05-09T21:42:52.028Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 233;
+2024-05-09T21:42:52.423Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 829;
+2024-05-09T21:42:53.588Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 26;
+2024-05-09T21:42:53.960Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 509;
+2024-05-09T21:42:54.678Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 700;
+2024-05-09T21:42:54.829Z - Executing (default): DELETE FROM Clients;
+2024-05-09T21:42:54.837Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T21:42:54.845Z - Executing (default): DELETE FROM Cities;
+2024-05-09T21:42:54.849Z - Executing (default): DELETE FROM States;
+2024-05-09T21:42:54.853Z - Executing (default): DELETE FROM Users;
+2024-05-09T21:42:54.858Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T21:42:54.863Z - Executing (default): DELETE FROM Companies;
+2024-05-09T21:43:06.220Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T21:43:06.414Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T21:43:06.503Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T21:43:06.676Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T21:43:07.073Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T21:43:07.302Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 700 LIMIT 1;
+2024-05-09T21:43:07.370Z - Executing (cf176058-26a8-4fb3-b2be-59879b1a9f73): START TRANSACTION;
+2024-05-09T21:43:07.376Z - Executing (cf176058-26a8-4fb3-b2be-59879b1a9f73): ROLLBACK;
+2024-05-09T21:43:07.387Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 700;
+2024-05-09T21:43:07.395Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '829' AND `Client`.`ID_Company` = 700 LIMIT 1;
+2024-05-09T21:43:07.405Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 700 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T21:43:07.414Z - Executing (5e6ec3b5-f0c2-40b2-b3cb-24e20b3f6997): START TRANSACTION;
+2024-05-09T21:43:07.419Z - Executing (5e6ec3b5-f0c2-40b2-b3cb-24e20b3f6997): ROLLBACK;
+2024-05-09T21:43:07.425Z - Executing (d77da2db-3c14-4a68-9fe0-3a62ac358977): START TRANSACTION;
+2024-05-09T21:43:07.429Z - Executing (d77da2db-3c14-4a68-9fe0-3a62ac358977): ROLLBACK;
+2024-05-09T21:43:07.440Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 700
+2024-05-09T21:43:07.591Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 700
+2024-05-09T21:43:07.687Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 237
+2024-05-09T21:43:07.838Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 237
+2024-05-09T21:43:07.925Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 700
+2024-05-09T21:44:59.230Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 561;
+2024-05-09T21:44:59.415Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 887;
+2024-05-09T21:44:59.600Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 714;
+2024-05-09T21:44:59.809Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 494;
+2024-05-09T21:45:00.941Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 363;
+2024-05-09T21:45:01.350Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 162;
+2024-05-09T21:45:01.860Z - Executing (default): DELETE FROM Clients;
+2024-05-09T21:45:01.866Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T21:45:01.876Z - Executing (default): DELETE FROM Cities;
+2024-05-09T21:45:01.881Z - Executing (default): DELETE FROM States;
+2024-05-09T21:45:01.885Z - Executing (default): DELETE FROM Users;
+2024-05-09T21:45:01.890Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T21:45:01.894Z - Executing (default): DELETE FROM Companies;
+2024-05-09T21:45:12.516Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T21:45:12.722Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T21:45:12.832Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T21:45:12.992Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T21:45:13.333Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T21:45:13.344Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 162
+2024-05-09T21:45:13.348Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 162
+2024-05-09T21:45:13.492Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 561
+2024-05-09T21:45:13.607Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 561
+2024-05-09T21:45:13.697Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 162
+2024-05-09T23:04:01.289Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 407;
+2024-05-09T23:04:01.812Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 678;
+2024-05-09T23:04:02.115Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 320;
+2024-05-09T23:04:02.227Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 93;
+2024-05-09T23:04:02.428Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 378;
+2024-05-09T23:04:02.593Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 481;
+2024-05-09T23:04:02.731Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:04:02.739Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:04:02.748Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:04:02.754Z - Executing (default): DELETE FROM States;
+2024-05-09T23:04:02.758Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:04:02.764Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:04:02.769Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:04:13.582Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:04:13.715Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:04:13.880Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:04:14.056Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:04:14.219Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:04:14.230Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 481
+2024-05-09T23:04:14.236Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 481
+2024-05-09T23:04:14.326Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 407
+2024-05-09T23:04:14.422Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 407
+2024-05-09T23:04:14.508Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 481
+2024-05-09T23:05:27.822Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 338;
+2024-05-09T23:05:27.987Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 270;
+2024-05-09T23:05:28.140Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 668;
+2024-05-09T23:05:28.241Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 562;
+2024-05-09T23:05:28.341Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 105;
+2024-05-09T23:05:28.442Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 250;
+2024-05-09T23:05:28.543Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:05:28.549Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:05:28.554Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:05:28.558Z - Executing (default): DELETE FROM States;
+2024-05-09T23:05:28.567Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:05:28.572Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:05:28.577Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:05:39.602Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:05:39.749Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:05:39.946Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:05:40.165Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:05:40.534Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:05:40.713Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 250 LIMIT 1;
+2024-05-09T23:05:40.784Z - Executing (afc2340f-6aef-4840-a88e-f3dbb565a145): START TRANSACTION;
+2024-05-09T23:05:40.795Z - Executing (afc2340f-6aef-4840-a88e-f3dbb565a145): ROLLBACK;
+2024-05-09T23:05:40.807Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 250;
+2024-05-09T23:05:40.815Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '668' AND `Client`.`ID_Company` = 250 LIMIT 1;
+2024-05-09T23:05:40.824Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 250 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T23:05:40.830Z - Executing (8a6b94f2-3b4a-42a6-b04f-c8bb2bfb3bf4): START TRANSACTION;
+2024-05-09T23:05:40.834Z - Executing (8a6b94f2-3b4a-42a6-b04f-c8bb2bfb3bf4): ROLLBACK;
+2024-05-09T23:05:40.841Z - Executing (bb7507b5-ec56-455d-9707-e75fec284c75): START TRANSACTION;
+2024-05-09T23:05:40.844Z - Executing (bb7507b5-ec56-455d-9707-e75fec284c75): ROLLBACK;
+2024-05-09T23:05:40.853Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 250
+2024-05-09T23:05:40.962Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 250
+2024-05-09T23:05:41.052Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 338
+2024-05-09T23:05:41.154Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 338
+2024-05-09T23:05:41.235Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 250
+2024-05-09T23:07:46.271Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 813;
+2024-05-09T23:07:46.462Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 460;
+2024-05-09T23:07:46.561Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 995;
+2024-05-09T23:07:46.683Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 865;
+2024-05-09T23:07:46.814Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 284;
+2024-05-09T23:07:47.829Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 670;
+2024-05-09T23:07:48.627Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:07:48.634Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:07:48.641Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:07:48.652Z - Executing (default): DELETE FROM States;
+2024-05-09T23:07:48.664Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:07:48.677Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:07:48.687Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:07:59.593Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:07:59.664Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:07:59.804Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:07:59.962Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:08:00.033Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:08:00.175Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 670 LIMIT 1;
+2024-05-09T23:08:00.241Z - Executing (5ac28f16-43ec-44d3-931b-1ac8d7018ac1): START TRANSACTION;
+2024-05-09T23:08:00.250Z - Executing (5ac28f16-43ec-44d3-931b-1ac8d7018ac1): ROLLBACK;
+2024-05-09T23:08:00.259Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 670;
+2024-05-09T23:08:00.267Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '995' AND `Client`.`ID_Company` = 670 LIMIT 1;
+2024-05-09T23:08:00.274Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 670 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T23:08:00.281Z - Executing (f049b2b8-9876-4930-a149-2e754d06eaba): START TRANSACTION;
+2024-05-09T23:08:00.285Z - Executing (f049b2b8-9876-4930-a149-2e754d06eaba): ROLLBACK;
+2024-05-09T23:08:00.292Z - Executing (caaa2c80-d4db-407c-992b-d1f1c29fb634): START TRANSACTION;
+2024-05-09T23:08:00.295Z - Executing (caaa2c80-d4db-407c-992b-d1f1c29fb634): ROLLBACK;
+2024-05-09T23:08:00.304Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 670
+2024-05-09T23:08:00.406Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 670
+2024-05-09T23:08:00.812Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 813
+2024-05-09T23:08:00.869Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 813
+2024-05-09T23:08:00.947Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 670
+2024-05-09T23:13:20.840Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 129;
+2024-05-09T23:13:21.122Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 132;
+2024-05-09T23:13:21.238Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 454;
+2024-05-09T23:13:21.419Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 432;
+2024-05-09T23:13:22.351Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 472;
+2024-05-09T23:13:22.863Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 154;
+2024-05-09T23:13:23.171Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:13:23.180Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:13:23.188Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:13:23.193Z - Executing (default): DELETE FROM States;
+2024-05-09T23:13:23.197Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:13:23.202Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:13:23.206Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:13:34.086Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:13:34.201Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:13:34.335Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:13:34.487Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:13:34.553Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:13:34.718Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 154 LIMIT 1;
+2024-05-09T23:13:34.790Z - Executing (f682fad3-5137-42cc-9d8f-e55e876fad56): START TRANSACTION;
+2024-05-09T23:13:34.795Z - Executing (f682fad3-5137-42cc-9d8f-e55e876fad56): ROLLBACK;
+2024-05-09T23:13:34.805Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 154;
+2024-05-09T23:13:34.812Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '454' AND `Client`.`ID_Company` = 154 LIMIT 1;
+2024-05-09T23:13:34.821Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 154 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T23:13:34.827Z - Executing (b2225234-e6ee-483e-8021-41843a9047b5): START TRANSACTION;
+2024-05-09T23:13:34.831Z - Executing (b2225234-e6ee-483e-8021-41843a9047b5): ROLLBACK;
+2024-05-09T23:13:34.839Z - Executing (cdd1c821-227b-4325-967d-9fd574e16494): START TRANSACTION;
+2024-05-09T23:13:34.842Z - Executing (cdd1c821-227b-4325-967d-9fd574e16494): ROLLBACK;
+2024-05-09T23:13:34.851Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 154
+2024-05-09T23:13:35.004Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 154
+2024-05-09T23:13:35.457Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 129
+2024-05-09T23:13:35.576Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 129
+2024-05-09T23:13:35.657Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 154
+2024-05-09T23:14:09.746Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 558;
+2024-05-09T23:14:09.918Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 439;
+2024-05-09T23:14:10.071Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 868;
+2024-05-09T23:14:10.248Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 231;
+2024-05-09T23:14:10.412Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 14;
+2024-05-09T23:14:10.533Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 962;
+2024-05-09T23:14:10.693Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:14:10.700Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:14:10.708Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:14:10.712Z - Executing (default): DELETE FROM States;
+2024-05-09T23:14:10.715Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:14:10.722Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:14:10.727Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:14:21.454Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:14:21.603Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:14:21.746Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:14:21.900Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:14:21.956Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:14:22.085Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 962 LIMIT 1;
+2024-05-09T23:14:22.155Z - Executing (4aef53c8-915f-4e3a-a050-04c44372db6c): START TRANSACTION;
+2024-05-09T23:14:22.160Z - Executing (4aef53c8-915f-4e3a-a050-04c44372db6c): ROLLBACK;
+2024-05-09T23:14:22.171Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 962;
+2024-05-09T23:14:22.179Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '868' AND `Client`.`ID_Company` = 962 LIMIT 1;
+2024-05-09T23:14:22.188Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 962 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T23:14:22.195Z - Executing (71b29b17-fbfb-43fb-9fca-9e8f521caa22): START TRANSACTION;
+2024-05-09T23:14:22.200Z - Executing (71b29b17-fbfb-43fb-9fca-9e8f521caa22): ROLLBACK;
+2024-05-09T23:14:22.208Z - Executing (e842ea24-4adf-46a9-a71b-9d722b70fb63): START TRANSACTION;
+2024-05-09T23:14:22.214Z - Executing (e842ea24-4adf-46a9-a71b-9d722b70fb63): ROLLBACK;
+2024-05-09T23:14:22.225Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 962
+2024-05-09T23:14:22.466Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 962
+2024-05-09T23:14:22.603Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 558
+2024-05-09T23:14:22.870Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 558
+2024-05-09T23:14:22.940Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 962
+2024-05-09T23:19:17.414Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 545;
+2024-05-09T23:19:17.668Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 395;
+2024-05-09T23:19:18.296Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 226;
+2024-05-09T23:19:18.453Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 291;
+2024-05-09T23:19:18.763Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 644;
+2024-05-09T23:19:18.904Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 566;
+2024-05-09T23:19:19.219Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:19:19.226Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:19:19.232Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:19:19.236Z - Executing (default): DELETE FROM States;
+2024-05-09T23:19:19.240Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:19:19.245Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:19:19.251Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:23:58.084Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 394;
+2024-05-09T23:23:58.465Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 481;
+2024-05-09T23:23:58.622Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 552;
+2024-05-09T23:23:59.488Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 523;
+2024-05-09T23:24:00.106Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 147;
+2024-05-09T23:24:00.237Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 18;
+2024-05-09T23:24:00.357Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:24:00.368Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:24:00.375Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:24:00.380Z - Executing (default): DELETE FROM States;
+2024-05-09T23:24:00.384Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:24:00.390Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:24:00.394Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:24:11.143Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:24:11.260Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:24:11.317Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:24:11.483Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:24:11.549Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:24:11.680Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 18 LIMIT 1;
+2024-05-09T23:24:11.760Z - Executing (6d16a516-8802-47a3-ada2-98c6bc950739): START TRANSACTION;
+2024-05-09T23:24:11.766Z - Executing (6d16a516-8802-47a3-ada2-98c6bc950739): ROLLBACK;
+2024-05-09T23:24:11.774Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 18;
+2024-05-09T23:24:11.782Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '552' AND `Client`.`ID_Company` = 18 LIMIT 1;
+2024-05-09T23:24:11.821Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 18 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T23:24:11.837Z - Executing (485db2b4-8ed5-4515-a0b3-da38787e24de): START TRANSACTION;
+2024-05-09T23:24:11.842Z - Executing (485db2b4-8ed5-4515-a0b3-da38787e24de): ROLLBACK;
+2024-05-09T23:24:11.850Z - Executing (b7dd97ca-58f3-4e08-b2af-ee70cd8007c4): START TRANSACTION;
+2024-05-09T23:24:11.854Z - Executing (b7dd97ca-58f3-4e08-b2af-ee70cd8007c4): ROLLBACK;
+2024-05-09T23:24:11.861Z - Executing (default): DELETE FROM `Clients` WHERE `ID_Company` = 18
+2024-05-09T23:24:11.983Z - Executing (default): DELETE FROM `Users` WHERE `ID_Company` = 18
+2024-05-09T23:24:12.293Z - Executing (default): DELETE FROM `Cities` WHERE `ID_State` = 394
+2024-05-09T23:24:12.475Z - Executing (default): DELETE FROM `States` WHERE `ID_State` = 394
+2024-05-09T23:24:12.564Z - Executing (default): DELETE FROM `Companies` WHERE `ID_Company` = 18
+2024-05-09T23:27:37.172Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 576;
+2024-05-09T23:27:37.362Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 817;
+2024-05-09T23:27:37.510Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 669;
+2024-05-09T23:27:37.652Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 944;
+2024-05-09T23:27:37.822Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 185;
+2024-05-09T23:27:38.681Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 796;
+2024-05-09T23:27:39.033Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:27:39.144Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:27:39.152Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:27:39.157Z - Executing (default): DELETE FROM States;
+2024-05-09T23:27:39.161Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:27:39.167Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:27:39.171Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:27:50.388Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:27:50.620Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:27:50.707Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:27:50.895Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:27:51.091Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:27:51.262Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 796 LIMIT 1;
+2024-05-09T23:27:51.350Z - Executing (2dbb8003-2e82-44ef-93da-33e753a58d15): START TRANSACTION;
+2024-05-09T23:27:51.357Z - Executing (2dbb8003-2e82-44ef-93da-33e753a58d15): ROLLBACK;
+2024-05-09T23:27:51.367Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 796;
+2024-05-09T23:27:51.376Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '669' AND `Client`.`ID_Company` = 796 LIMIT 1;
+2024-05-09T23:27:51.386Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 796 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T23:27:51.395Z - Executing (3938232a-d0b3-4c37-8a63-e8e536203577): START TRANSACTION;
+2024-05-09T23:27:51.407Z - Executing (3938232a-d0b3-4c37-8a63-e8e536203577): ROLLBACK;
+2024-05-09T23:27:51.416Z - Executing (84c7d361-b9db-4f86-8e0a-13a250975deb): START TRANSACTION;
+2024-05-09T23:27:51.420Z - Executing (84c7d361-b9db-4f86-8e0a-13a250975deb): ROLLBACK;
+2024-05-09T23:32:23.246Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 934;
+2024-05-09T23:32:23.495Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 776;
+2024-05-09T23:32:23.930Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 446;
+2024-05-09T23:32:24.061Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 695;
+2024-05-09T23:32:24.165Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 457;
+2024-05-09T23:32:24.438Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 827;
+2024-05-09T23:32:24.574Z - Executing (default): DELETE FROM Clients;
+2024-05-09T23:32:24.662Z - Executing (default): DELETE FROM Teachers;
+2024-05-09T23:32:24.670Z - Executing (default): DELETE FROM Cities;
+2024-05-09T23:32:24.842Z - Executing (default): DELETE FROM States;
+2024-05-09T23:32:24.901Z - Executing (default): DELETE FROM Users;
+2024-05-09T23:32:25.067Z - Executing (default): DELETE FROM Specialties;
+2024-05-09T23:32:25.076Z - Executing (default): DELETE FROM Companies;
+2024-05-09T23:32:36.222Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-09T23:32:36.387Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-09T23:32:36.561Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-09T23:32:36.772Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-09T23:32:37.132Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-09T23:32:37.314Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 827 LIMIT 1;
+2024-05-09T23:32:37.383Z - Executing (e0bac478-9246-47d5-b3a0-96ce2ac5b84e): START TRANSACTION;
+2024-05-09T23:32:37.390Z - Executing (e0bac478-9246-47d5-b3a0-96ce2ac5b84e): ROLLBACK;
+2024-05-09T23:32:37.400Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 827;
+2024-05-09T23:32:37.407Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '670' AND `Client`.`ID_Company` = 827 LIMIT 1;
+2024-05-09T23:32:37.415Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 827 AND `Client`.`Name` LIKE 'Test%';
+2024-05-09T23:32:37.422Z - Executing (fd7956af-d9a6-4328-877e-285b97019578): START TRANSACTION;
+2024-05-09T23:32:37.426Z - Executing (fd7956af-d9a6-4328-877e-285b97019578): ROLLBACK;
+2024-05-09T23:32:37.433Z - Executing (274e56e3-eb13-40d0-8d85-c3aa7cfaaa4d): START TRANSACTION;
+2024-05-09T23:32:37.438Z - Executing (274e56e3-eb13-40d0-8d85-c3aa7cfaaa4d): ROLLBACK;
+2024-05-11T20:40:18.536Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 797;
+2024-05-11T20:40:19.165Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 873;
+2024-05-11T20:40:20.802Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 687;
+2024-05-11T20:40:21.212Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 414;
+2024-05-11T20:40:21.334Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 362;
+2024-05-11T20:40:21.455Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 179;
+2024-05-11T20:40:21.725Z - Executing (default): DELETE FROM Clients;
+2024-05-11T20:40:21.906Z - Executing (default): DELETE FROM Teachers;
+2024-05-11T20:40:21.917Z - Executing (default): DELETE FROM Cities;
+2024-05-11T20:40:22.074Z - Executing (default): DELETE FROM States;
+2024-05-11T20:40:22.142Z - Executing (default): DELETE FROM Users;
+2024-05-11T20:40:22.235Z - Executing (default): DELETE FROM Specialties;
+2024-05-11T20:40:22.244Z - Executing (default): DELETE FROM Companies;
+2024-05-11T20:40:34.704Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-11T20:40:34.853Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-11T20:40:35.037Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-11T20:40:35.230Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T20:40:35.321Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-11T20:40:35.493Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 828 LIMIT 1;
+2024-05-11T20:40:35.567Z - Executing (94c20a76-67da-460d-ae08-e7e32d7ba228): START TRANSACTION;
+2024-05-11T20:40:35.572Z - Executing (94c20a76-67da-460d-ae08-e7e32d7ba228): ROLLBACK;
+2024-05-11T20:40:35.584Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 828;
+2024-05-11T20:40:35.592Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '687' AND `Client`.`ID_Company` = 828 LIMIT 1;
+2024-05-11T20:40:35.601Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 828 AND `Client`.`Name` LIKE 'Test%';
+2024-05-11T20:40:35.607Z - Executing (f515b085-8a84-4c2c-a927-0860a08ef00e): START TRANSACTION;
+2024-05-11T20:40:35.612Z - Executing (f515b085-8a84-4c2c-a927-0860a08ef00e): ROLLBACK;
+2024-05-11T20:40:35.619Z - Executing (bc76ab08-03be-497f-a951-d8cac5767fd0): START TRANSACTION;
+2024-05-11T20:40:35.624Z - Executing (bc76ab08-03be-497f-a951-d8cac5767fd0): ROLLBACK;
+2024-05-11T20:44:08.919Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 2;
+2024-05-11T20:44:09.255Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 226;
+2024-05-11T20:44:09.771Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 116;
+2024-05-11T20:44:09.931Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 998;
+2024-05-11T20:44:10.047Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 780;
+2024-05-11T20:44:10.290Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 688;
+2024-05-11T20:44:10.433Z - Executing (default): DELETE FROM Clients;
+2024-05-11T20:44:10.500Z - Executing (default): DELETE FROM Teachers;
+2024-05-11T20:44:10.508Z - Executing (default): DELETE FROM Cities;
+2024-05-11T20:44:10.579Z - Executing (default): DELETE FROM States;
+2024-05-11T20:44:10.754Z - Executing (default): DELETE FROM Users;
+2024-05-11T20:44:11.036Z - Executing (default): DELETE FROM Specialties;
+2024-05-11T20:44:11.042Z - Executing (default): DELETE FROM Companies;
+2024-05-11T20:44:21.812Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-11T20:44:22.043Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-11T20:44:22.217Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-11T20:44:22.388Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T20:44:22.503Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-11T20:44:22.634Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 829 LIMIT 1;
+2024-05-11T20:44:22.706Z - Executing (a6e836d5-8800-46da-9ac9-bb8cc7b96c15): START TRANSACTION;
+2024-05-11T20:44:22.728Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 874;
+2024-05-11T20:44:22.733Z - Executing (a6e836d5-8800-46da-9ac9-bb8cc7b96c15): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-11T20:44:22.740Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-11T20:44:22.744Z - Executing (a6e836d5-8800-46da-9ac9-bb8cc7b96c15): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T20:44:22.753Z - Executing (a6e836d5-8800-46da-9ac9-bb8cc7b96c15): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-11T20:44:22.761Z - Executing (a6e836d5-8800-46da-9ac9-bb8cc7b96c15): COMMIT;
+2024-05-11T20:44:22.830Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 829;
+2024-05-11T20:44:22.838Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '688' AND `Client`.`ID_Company` = 829 LIMIT 1;
+2024-05-11T20:44:22.850Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 829 AND `Client`.`Name` LIKE 'Test%';
+2024-05-11T20:44:22.858Z - Executing (62058ce4-a08e-4683-bede-c211b4a29bfa): START TRANSACTION;
+2024-05-11T20:44:22.862Z - Executing (62058ce4-a08e-4683-bede-c211b4a29bfa): ROLLBACK;
+2024-05-11T20:44:22.869Z - Executing (7a3ffd89-0d55-473a-8c08-2f3274891c5d): START TRANSACTION;
+2024-05-11T20:44:22.873Z - Executing (7a3ffd89-0d55-473a-8c08-2f3274891c5d): ROLLBACK;
+2024-05-11T20:52:09.968Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 422;
+2024-05-11T20:52:10.154Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 24;
+2024-05-11T20:52:10.365Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 489;
+2024-05-11T20:52:10.496Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 242;
+2024-05-11T20:52:10.627Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 518;
+2024-05-11T20:52:10.748Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 18;
+2024-05-11T20:52:10.900Z - Executing (default): DELETE FROM Clients;
+2024-05-11T20:52:11.031Z - Executing (default): DELETE FROM Teachers;
+2024-05-11T20:52:11.041Z - Executing (default): DELETE FROM Cities;
+2024-05-11T20:52:12.134Z - Executing (default): DELETE FROM States;
+2024-05-11T20:52:12.491Z - Executing (default): DELETE FROM Users;
+2024-05-11T20:52:12.798Z - Executing (default): DELETE FROM Specialties;
+2024-05-11T20:52:12.805Z - Executing (default): DELETE FROM Companies;
+2024-05-11T20:52:23.656Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-11T20:52:23.782Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-11T20:52:23.892Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-11T20:52:24.048Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T20:52:24.125Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-11T20:52:24.245Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 830 LIMIT 1;
+2024-05-11T20:52:24.315Z - Executing (8d31be73-77ae-499f-916c-f2f166bcf540): START TRANSACTION;
+2024-05-11T20:52:24.336Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 875;
+2024-05-11T20:52:24.341Z - Executing (8d31be73-77ae-499f-916c-f2f166bcf540): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-11T20:52:24.348Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-11T20:52:24.353Z - Executing (8d31be73-77ae-499f-916c-f2f166bcf540): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T20:52:24.362Z - Executing (8d31be73-77ae-499f-916c-f2f166bcf540): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-11T20:52:24.372Z - Executing (8d31be73-77ae-499f-916c-f2f166bcf540): COMMIT;
+2024-05-11T20:52:24.634Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 830;
+2024-05-11T20:52:24.645Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '690' AND `Client`.`ID_Company` = 830 LIMIT 1;
+2024-05-11T20:52:24.659Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 830 AND `Client`.`Name` LIKE 'Test%';
+2024-05-11T20:52:24.667Z - Executing (9a94f065-85f2-4a09-b64e-75a99c04ea0b): START TRANSACTION;
+2024-05-11T20:52:24.674Z - Executing (9a94f065-85f2-4a09-b64e-75a99c04ea0b): ROLLBACK;
+2024-05-11T20:52:24.683Z - Executing (3a7fe77f-4331-4cce-afb7-f269709f6c49): START TRANSACTION;
+2024-05-11T20:52:24.686Z - Executing (3a7fe77f-4331-4cce-afb7-f269709f6c49): ROLLBACK;
+2024-05-11T21:04:18.917Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 587;
+2024-05-11T21:04:19.172Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 680;
+2024-05-11T21:04:19.283Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 842;
+2024-05-11T21:04:19.558Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 305;
+2024-05-11T21:04:19.686Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 861;
+2024-05-11T21:04:19.942Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 397;
+2024-05-11T21:04:20.765Z - Executing (default): DELETE FROM Clients;
+2024-05-11T21:04:21.176Z - Executing (default): DELETE FROM Teachers;
+2024-05-11T21:04:21.185Z - Executing (default): DELETE FROM Cities;
+2024-05-11T21:04:21.290Z - Executing (default): DELETE FROM States;
+2024-05-11T21:04:21.438Z - Executing (default): DELETE FROM Users;
+2024-05-11T21:04:21.500Z - Executing (default): DELETE FROM Specialties;
+2024-05-11T21:04:21.510Z - Executing (default): DELETE FROM Companies;
+2024-05-11T21:04:32.578Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-11T21:04:32.719Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-11T21:04:32.784Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-11T21:04:32.943Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T21:04:33.011Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-11T21:04:33.130Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 831 LIMIT 1;
+2024-05-11T21:04:33.200Z - Executing (c1874ae0-96e4-4f0a-8ed6-0a2aa93633be): START TRANSACTION;
+2024-05-11T21:04:33.222Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 876;
+2024-05-11T21:04:33.227Z - Executing (c1874ae0-96e4-4f0a-8ed6-0a2aa93633be): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-11T21:04:33.235Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-11T21:04:33.239Z - Executing (c1874ae0-96e4-4f0a-8ed6-0a2aa93633be): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T21:04:33.250Z - Executing (c1874ae0-96e4-4f0a-8ed6-0a2aa93633be): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-11T21:04:33.260Z - Executing (c1874ae0-96e4-4f0a-8ed6-0a2aa93633be): COMMIT;
+2024-05-11T21:04:33.408Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 831;
+2024-05-11T21:04:33.417Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID` = '842' AND `Client`.`ID_Company` = 831 LIMIT 1;
+2024-05-11T21:04:33.430Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 831 AND `Client`.`Name` LIKE 'Test%';
+2024-05-11T21:04:33.438Z - Executing (d0aec367-d798-4ab0-b292-ed0fd8e93a5f): START TRANSACTION;
+2024-05-11T21:04:33.443Z - Executing (d0aec367-d798-4ab0-b292-ed0fd8e93a5f): ROLLBACK;
+2024-05-11T21:04:33.453Z - Executing (55f7e801-670a-4fcb-854e-08f6b86d13b5): START TRANSACTION;
+2024-05-11T21:04:33.456Z - Executing (55f7e801-670a-4fcb-854e-08f6b86d13b5): ROLLBACK;
+2024-05-11T21:08:18.170Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 139;
+2024-05-11T21:08:18.388Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 273;
+2024-05-11T21:08:18.508Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 656;
+2024-05-11T21:08:18.638Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 353;
+2024-05-11T21:08:18.840Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 593;
+2024-05-11T21:08:19.358Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 217;
+2024-05-11T21:08:20.384Z - Executing (default): DELETE FROM Clients;
+2024-05-11T21:08:20.582Z - Executing (default): DELETE FROM Teachers;
+2024-05-11T21:08:20.598Z - Executing (default): DELETE FROM Cities;
+2024-05-11T21:08:20.721Z - Executing (default): DELETE FROM States;
+2024-05-11T21:08:20.864Z - Executing (default): DELETE FROM Users;
+2024-05-11T21:08:20.922Z - Executing (default): DELETE FROM Specialties;
+2024-05-11T21:08:20.932Z - Executing (default): DELETE FROM Companies;
+2024-05-11T21:08:32.154Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-11T21:08:32.282Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-11T21:08:32.366Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-11T21:08:32.601Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T21:08:32.679Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-11T21:08:32.865Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 832 LIMIT 1;
+2024-05-11T21:08:32.939Z - Executing (742d0d3e-d983-400b-85b9-f414489bff00): START TRANSACTION;
+2024-05-11T21:08:32.961Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 877;
+2024-05-11T21:08:32.969Z - Executing (742d0d3e-d983-400b-85b9-f414489bff00): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-11T21:08:32.977Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-11T21:08:32.981Z - Executing (742d0d3e-d983-400b-85b9-f414489bff00): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T21:08:32.992Z - Executing (742d0d3e-d983-400b-85b9-f414489bff00): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-11T21:08:32.999Z - Executing (742d0d3e-d983-400b-85b9-f414489bff00): COMMIT;
+2024-05-11T21:08:33.178Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 832;
+2024-05-11T21:08:33.189Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '844' AND `Client`.`ID_Company` = 832;
+2024-05-11T21:08:33.199Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 832 AND `Client`.`Name` LIKE 'Test%';
+2024-05-11T21:08:33.207Z - Executing (2891294b-393b-49b7-b0ef-8bd3dac192bf): START TRANSACTION;
+2024-05-11T21:08:33.212Z - Executing (2891294b-393b-49b7-b0ef-8bd3dac192bf): ROLLBACK;
+2024-05-11T21:08:33.229Z - Executing (cddace67-af05-4249-ae97-608951ef68a5): START TRANSACTION;
+2024-05-11T21:08:33.231Z - Executing (cddace67-af05-4249-ae97-608951ef68a5): ROLLBACK;
+2024-05-11T21:10:21.779Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 171;
+2024-05-11T21:10:22.310Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 656;
+2024-05-11T21:10:22.451Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 760;
+2024-05-11T21:10:22.572Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 407;
+2024-05-11T21:10:22.728Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 125;
+2024-05-11T21:10:23.575Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 96;
+2024-05-11T21:10:24.085Z - Executing (default): DELETE FROM Clients;
+2024-05-11T21:10:24.260Z - Executing (default): DELETE FROM Teachers;
+2024-05-11T21:10:24.268Z - Executing (default): DELETE FROM Cities;
+2024-05-11T21:10:24.385Z - Executing (default): DELETE FROM States;
+2024-05-11T21:10:24.471Z - Executing (default): DELETE FROM Users;
+2024-05-11T21:10:24.537Z - Executing (default): DELETE FROM Specialties;
+2024-05-11T21:10:24.542Z - Executing (default): DELETE FROM Companies;
+2024-05-11T21:10:35.256Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-11T21:10:35.424Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-11T21:10:35.517Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-11T21:10:35.774Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T21:10:36.022Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-11T21:10:36.236Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 833 LIMIT 1;
+2024-05-11T21:10:36.306Z - Executing (f05b2fa2-bf47-403c-b9c4-ccfa9f798404): START TRANSACTION;
+2024-05-11T21:10:36.332Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 878;
+2024-05-11T21:10:36.339Z - Executing (f05b2fa2-bf47-403c-b9c4-ccfa9f798404): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-11T21:10:36.348Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-11T21:10:36.352Z - Executing (f05b2fa2-bf47-403c-b9c4-ccfa9f798404): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-11T21:10:36.559Z - Executing (f05b2fa2-bf47-403c-b9c4-ccfa9f798404): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-11T21:10:36.567Z - Executing (f05b2fa2-bf47-403c-b9c4-ccfa9f798404): COMMIT;
+2024-05-11T21:10:36.670Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 833;
+2024-05-11T21:10:36.681Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '846' AND `Client`.`ID_Company` = 833;
+2024-05-11T21:10:36.692Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 833 AND `Client`.`Name` LIKE 'Test%';
+2024-05-11T21:10:36.701Z - Executing (4d1d8049-d9d0-49f5-b048-4bf3ae5b0729): START TRANSACTION;
+2024-05-11T21:10:36.706Z - Executing (4d1d8049-d9d0-49f5-b048-4bf3ae5b0729): ROLLBACK;
+2024-05-11T21:10:36.718Z - Executing (9ec2593f-c7f6-44ee-b0c0-591999e12153): START TRANSACTION;
+2024-05-11T21:10:36.722Z - Executing (9ec2593f-c7f6-44ee-b0c0-591999e12153): ROLLBACK;
+2024-05-13T18:33:08.389Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 316;
+2024-05-13T18:33:08.895Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 579;
+2024-05-13T18:33:09.092Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 772;
+2024-05-13T18:33:09.222Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 825;
+2024-05-13T18:33:11.986Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 589;
+2024-05-13T18:33:12.384Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 456;
+2024-05-13T18:33:12.512Z - Executing (default): DELETE FROM Clients;
+2024-05-13T18:33:12.611Z - Executing (default): DELETE FROM Teachers;
+2024-05-13T18:33:12.619Z - Executing (default): DELETE FROM Cities;
+2024-05-13T18:33:12.829Z - Executing (default): DELETE FROM States;
+2024-05-13T18:33:12.932Z - Executing (default): DELETE FROM Users;
+2024-05-13T18:33:13.083Z - Executing (default): DELETE FROM Specialties;
+2024-05-13T18:33:13.094Z - Executing (default): DELETE FROM Companies;
+2024-05-13T18:33:27.321Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-13T18:33:27.533Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-13T18:33:27.793Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-13T18:33:28.013Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:33:28.113Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-13T18:33:28.292Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 834 LIMIT 1;
+2024-05-13T18:33:28.403Z - Executing (04f10d53-2023-4bdc-b79c-986b8dc342f6): START TRANSACTION;
+2024-05-13T18:33:28.427Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 879;
+2024-05-13T18:33:28.432Z - Executing (04f10d53-2023-4bdc-b79c-986b8dc342f6): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-13T18:33:28.440Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-13T18:33:28.445Z - Executing (04f10d53-2023-4bdc-b79c-986b8dc342f6): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:33:28.452Z - Executing (04f10d53-2023-4bdc-b79c-986b8dc342f6): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-13T18:33:28.458Z - Executing (04f10d53-2023-4bdc-b79c-986b8dc342f6): COMMIT;
+2024-05-13T18:33:28.600Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 834;
+2024-05-13T18:33:28.609Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '848' AND `Client`.`ID_Company` = 834;
+2024-05-13T18:33:28.618Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 834 AND `Client`.`Name` LIKE 'Test%';
+2024-05-13T18:33:28.624Z - Executing (d554bf39-5b19-4cf4-b902-9718e132bf97): START TRANSACTION;
+2024-05-13T18:33:28.629Z - Executing (d554bf39-5b19-4cf4-b902-9718e132bf97): ROLLBACK;
+2024-05-13T18:33:28.638Z - Executing (a45075a7-d290-45de-a1c0-4f248f07cb31): START TRANSACTION;
+2024-05-13T18:33:28.641Z - Executing (a45075a7-d290-45de-a1c0-4f248f07cb31): ROLLBACK;
+2024-05-13T18:47:06.252Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 252;
+2024-05-13T18:47:06.461Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 851;
+2024-05-13T18:47:06.817Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 860;
+2024-05-13T18:47:07.518Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 665;
+2024-05-13T18:47:07.834Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 552;
+2024-05-13T18:47:08.226Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 870;
+2024-05-13T18:47:08.369Z - Executing (default): DELETE FROM Clients;
+2024-05-13T18:47:08.466Z - Executing (default): DELETE FROM Teachers;
+2024-05-13T18:47:08.474Z - Executing (default): DELETE FROM Cities;
+2024-05-13T18:47:08.547Z - Executing (default): DELETE FROM States;
+2024-05-13T18:47:08.732Z - Executing (default): DELETE FROM Users;
+2024-05-13T18:47:08.838Z - Executing (default): DELETE FROM Specialties;
+2024-05-13T18:47:08.845Z - Executing (default): DELETE FROM Companies;
+2024-05-13T18:47:20.287Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-13T18:47:20.414Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-13T18:47:20.516Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-13T18:47:20.774Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:47:20.957Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-13T18:47:21.224Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 870 LIMIT 1;
+2024-05-13T18:47:21.301Z - Executing (7855c04b-2465-4fae-8b5f-060963ffa0bf): START TRANSACTION;
+2024-05-13T18:47:21.322Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 880;
+2024-05-13T18:47:21.327Z - Executing (7855c04b-2465-4fae-8b5f-060963ffa0bf): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-13T18:47:21.340Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-13T18:47:21.343Z - Executing (7855c04b-2465-4fae-8b5f-060963ffa0bf): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:47:21.518Z - Executing (7855c04b-2465-4fae-8b5f-060963ffa0bf): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-13T18:47:21.527Z - Executing (7855c04b-2465-4fae-8b5f-060963ffa0bf): COMMIT;
+2024-05-13T18:47:21.620Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 870;
+2024-05-13T18:47:21.629Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '860' AND `Client`.`ID_Company` = 870;
+2024-05-13T18:47:21.664Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 870 AND `Client`.`Name` LIKE 'Test%';
+2024-05-13T18:47:21.672Z - Executing (438e75ff-2f29-44e2-a8c6-594bb60b851e): START TRANSACTION;
+2024-05-13T18:47:21.677Z - Executing (438e75ff-2f29-44e2-a8c6-594bb60b851e): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '860' AND `Client`.`ID_Company` = 870;
+2024-05-13T18:47:21.683Z - Executing (default): UPDATE `Clients` SET `Name`=? WHERE `ClientID` = ? AND `ID_Company` = ?
+2024-05-13T18:47:21.838Z - Executing (438e75ff-2f29-44e2-a8c6-594bb60b851e): COMMIT;
+2024-05-13T18:47:21.846Z - Executing (9673cff3-4f19-46dc-9721-670d417aeaa5): START TRANSACTION;
+2024-05-13T18:47:21.850Z - Executing (9673cff3-4f19-46dc-9721-670d417aeaa5): ROLLBACK;
+2024-05-13T18:48:24.706Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 552;
+2024-05-13T18:48:24.953Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 783;
+2024-05-13T18:48:25.445Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 471;
+2024-05-13T18:48:25.616Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 609;
+2024-05-13T18:48:25.812Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 16;
+2024-05-13T18:48:25.952Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 763;
+2024-05-13T18:48:26.121Z - Executing (default): DELETE FROM Clients;
+2024-05-13T18:48:26.255Z - Executing (default): DELETE FROM Teachers;
+2024-05-13T18:48:26.264Z - Executing (default): DELETE FROM Cities;
+2024-05-13T18:48:26.572Z - Executing (default): DELETE FROM States;
+2024-05-13T18:48:26.664Z - Executing (default): DELETE FROM Users;
+2024-05-13T18:48:26.744Z - Executing (default): DELETE FROM Specialties;
+2024-05-13T18:48:26.752Z - Executing (default): DELETE FROM Companies;
+2024-05-13T18:48:37.645Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-13T18:48:37.788Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-13T18:48:37.894Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-13T18:48:38.127Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:48:38.255Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-13T18:48:38.450Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 871 LIMIT 1;
+2024-05-13T18:48:38.521Z - Executing (e4cb7472-a0c0-4bdf-9b8a-fa07c00b61af): START TRANSACTION;
+2024-05-13T18:48:38.542Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 881;
+2024-05-13T18:48:38.547Z - Executing (e4cb7472-a0c0-4bdf-9b8a-fa07c00b61af): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-13T18:48:38.556Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-13T18:48:38.559Z - Executing (e4cb7472-a0c0-4bdf-9b8a-fa07c00b61af): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:48:38.565Z - Executing (e4cb7472-a0c0-4bdf-9b8a-fa07c00b61af): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-13T18:48:38.571Z - Executing (e4cb7472-a0c0-4bdf-9b8a-fa07c00b61af): COMMIT;
+2024-05-13T18:48:38.676Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 871;
+2024-05-13T18:48:38.683Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '862' AND `Client`.`ID_Company` = 871;
+2024-05-13T18:48:38.691Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 871 AND `Client`.`Name` LIKE 'Test%';
+2024-05-13T18:48:38.697Z - Executing (88052d82-0e3e-4531-a9e6-c26e43b89d46): START TRANSACTION;
+2024-05-13T18:48:38.702Z - Executing (88052d82-0e3e-4531-a9e6-c26e43b89d46): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '862' AND `Client`.`ID_Company` = 871;
+2024-05-13T18:48:38.707Z - Executing (default): UPDATE `Clients` SET `Name`=? WHERE `ClientID` = ? AND `ID_Company` = ?
+2024-05-13T18:48:38.827Z - Executing (88052d82-0e3e-4531-a9e6-c26e43b89d46): COMMIT;
+2024-05-13T18:48:38.836Z - Executing (4169b831-221b-4ffb-a1db-2d552dc6df3b): START TRANSACTION;
+2024-05-13T18:48:38.840Z - Executing (4169b831-221b-4ffb-a1db-2d552dc6df3b): ROLLBACK;
+2024-05-13T18:49:18.726Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 336;
+2024-05-13T18:49:19.042Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 265;
+2024-05-13T18:49:19.160Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 949;
+2024-05-13T18:49:19.260Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 856;
+2024-05-13T18:49:19.388Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 957;
+2024-05-13T18:49:19.718Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 933;
+2024-05-13T18:49:20.532Z - Executing (default): DELETE FROM Clients;
+2024-05-13T18:49:20.701Z - Executing (default): DELETE FROM Teachers;
+2024-05-13T18:49:20.710Z - Executing (default): DELETE FROM Cities;
+2024-05-13T18:49:20.831Z - Executing (default): DELETE FROM States;
+2024-05-13T18:49:20.978Z - Executing (default): DELETE FROM Users;
+2024-05-13T18:49:21.143Z - Executing (default): DELETE FROM Specialties;
+2024-05-13T18:49:21.149Z - Executing (default): DELETE FROM Companies;
+2024-05-13T18:49:32.177Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-13T18:49:32.294Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-13T18:49:32.374Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-13T18:49:32.564Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:49:32.744Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-13T18:49:32.863Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 933 LIMIT 1;
+2024-05-13T18:49:32.935Z - Executing (316fb962-8960-467b-8b43-a487ac4635c3): START TRANSACTION;
+2024-05-13T18:49:32.956Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 882;
+2024-05-13T18:49:32.961Z - Executing (316fb962-8960-467b-8b43-a487ac4635c3): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-13T18:49:32.969Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-13T18:49:32.973Z - Executing (316fb962-8960-467b-8b43-a487ac4635c3): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T18:49:32.980Z - Executing (316fb962-8960-467b-8b43-a487ac4635c3): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-13T18:49:32.986Z - Executing (316fb962-8960-467b-8b43-a487ac4635c3): COMMIT;
+2024-05-13T18:49:33.155Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 933;
+2024-05-13T18:49:33.165Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '949' AND `Client`.`ID_Company` = 933;
+2024-05-13T18:49:33.173Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 933 AND `Client`.`Name` LIKE 'Test%';
+2024-05-13T18:49:33.180Z - Executing (9997e8ff-f4a6-4f22-903f-98a2e70444f1): START TRANSACTION;
+2024-05-13T18:49:33.185Z - Executing (9997e8ff-f4a6-4f22-903f-98a2e70444f1): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '949' AND `Client`.`ID_Company` = 933;
+2024-05-13T18:49:33.191Z - Executing (default): UPDATE `Clients` SET `Name`=? WHERE `ClientID` = ? AND `ID_Company` = ?
+2024-05-13T18:49:33.267Z - Executing (9997e8ff-f4a6-4f22-903f-98a2e70444f1): COMMIT;
+2024-05-13T18:49:33.275Z - Executing (07aabe54-d982-4c0b-9331-2b7a2c841711): START TRANSACTION;
+2024-05-13T18:49:33.281Z - Executing (07aabe54-d982-4c0b-9331-2b7a2c841711): ROLLBACK;
+2024-05-13T23:34:37.650Z - Executing (default): ALTER TABLE States AUTO_INCREMENT = 475;
+2024-05-13T23:34:37.835Z - Executing (default): ALTER TABLE Cities AUTO_INCREMENT = 402;
+2024-05-13T23:34:37.955Z - Executing (default): ALTER TABLE Clients AUTO_INCREMENT = 814;
+2024-05-13T23:34:38.065Z - Executing (default): ALTER TABLE Teachers AUTO_INCREMENT = 579;
+2024-05-13T23:34:38.326Z - Executing (default): ALTER TABLE Users AUTO_INCREMENT = 773;
+2024-05-13T23:34:38.489Z - Executing (default): ALTER TABLE Companies AUTO_INCREMENT = 68;
+2024-05-13T23:34:38.621Z - Executing (default): DELETE FROM Clients;
+2024-05-13T23:34:39.048Z - Executing (default): DELETE FROM Teachers;
+2024-05-13T23:34:39.056Z - Executing (default): DELETE FROM Cities;
+2024-05-13T23:34:39.190Z - Executing (default): DELETE FROM States;
+2024-05-13T23:34:39.378Z - Executing (default): DELETE FROM Users;
+2024-05-13T23:34:39.581Z - Executing (default): DELETE FROM Specialties;
+2024-05-13T23:34:39.587Z - Executing (default): DELETE FROM Companies;
+2024-05-13T23:34:50.978Z - Executing (default): INSERT INTO `States` (`ID_State`,`Name`,`Acronym`,`Cod_State`) VALUES (DEFAULT,?,?,?);
+2024-05-13T23:34:51.086Z - Executing (default): INSERT INTO `Cities` (`ID_City`,`ID_State`,`Name`,`Cod_State`,`Cod_City`) VALUES (DEFAULT,?,?,?,?);
+2024-05-13T23:34:51.168Z - Executing (default): INSERT INTO `Companies` (`ID_Company`,`Name`) VALUES (DEFAULT,?);
+2024-05-13T23:34:51.339Z - Executing (default): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T23:34:51.497Z - Executing (default): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`Phone`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?,?);
+2024-05-13T23:34:51.737Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE (`User`.`UserEmail` = 'testadmin@test.com' OR `User`.`UserName` = 'testadmin@test.com') AND `User`.`ID_Company` = 934 LIMIT 1;
+2024-05-13T23:34:51.804Z - Executing (aa3a0c69-3cae-4aed-82da-20b413283053): START TRANSACTION;
+2024-05-13T23:34:51.830Z - Executing (default): SELECT `ID_City`, `ID_State`, `Name`, `Cod_State`, `Cod_City` FROM `Cities` AS `City` WHERE `City`.`ID_City` = 883;
+2024-05-13T23:34:51.836Z - Executing (aa3a0c69-3cae-4aed-82da-20b413283053): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`CPF` = '98765432100';
+2024-05-13T23:34:51.845Z - Executing (default): SELECT `ID_Company`, `UserID`, `UserName`, `UserEmail`, `UserPassword`, `UserType` FROM `Users` AS `User` WHERE `User`.`UserName` = 'NewC000' LIMIT 1;
+2024-05-13T23:34:51.850Z - Executing (aa3a0c69-3cae-4aed-82da-20b413283053): INSERT INTO `Users` (`ID_Company`,`UserID`,`UserName`,`UserEmail`,`UserPassword`,`UserType`) VALUES (?,DEFAULT,?,?,?,?);
+2024-05-13T23:34:51.858Z - Executing (aa3a0c69-3cae-4aed-82da-20b413283053): INSERT INTO `Clients` (`ID_Company`,`ClientID`,`UserID`,`Name`,`Email`,`CPF`,`ID_City`,`RegistrationDate`) VALUES (?,DEFAULT,?,?,?,?,?,?);
+2024-05-13T23:34:51.865Z - Executing (aa3a0c69-3cae-4aed-82da-20b413283053): COMMIT;
+2024-05-13T23:34:51.967Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 934;
+2024-05-13T23:34:51.975Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '951' AND `Client`.`ID_Company` = 934;
+2024-05-13T23:34:51.982Z - Executing (default): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ID_Company` = 934 AND `Client`.`Name` LIKE 'Test%';
+2024-05-13T23:34:51.990Z - Executing (f1cc8be1-cb36-45ef-beb2-6b23b28034d3): START TRANSACTION;
+2024-05-13T23:34:51.994Z - Executing (f1cc8be1-cb36-45ef-beb2-6b23b28034d3): SELECT `ID_Company`, `ClientID`, `UserID`, `Name`, `Email`, `Phone`, `DateOfBirth`, `Gender`, `CPF`, `Street`, `Complement`, `District`, `ID_City`, `CEP`, `RegistrationDate` FROM `Clients` AS `Client` WHERE `Client`.`ClientID` = '951' AND `Client`.`ID_Company` = 934;
+2024-05-13T23:34:51.999Z - Executing (default): UPDATE `Clients` SET `Name`=? WHERE `ClientID` = ? AND `ID_Company` = ?
+2024-05-13T23:34:52.300Z - Executing (f1cc8be1-cb36-45ef-beb2-6b23b28034d3): COMMIT;
+2024-05-13T23:34:52.314Z - Executing (ff123d0a-fc53-489a-b9fc-2033747f8c14): START TRANSACTION;
+2024-05-13T23:34:52.322Z - Executing (ff123d0a-fc53-489a-b9fc-2033747f8c14): SELECT `Client`.`ID_Company`, `Client`.`ClientID`, `Client`.`UserID`, `Client`.`Name`, `Client`.`Email`, `Client`.`Phone`, `Client`.`DateOfBirth`, `Client`.`Gender`, `Client`.`CPF`, `Client`.`Street`, `Client`.`Complement`, `Client`.`District`, `Client`.`ID_City`, `Client`.`CEP`, `Client`.`RegistrationDate`, `userInfo`.`ID_Company` AS `userInfo.ID_Company`, `userInfo`.`UserID` AS `userInfo.UserID`, `userInfo`.`UserName` AS `userInfo.UserName`, `userInfo`.`UserEmail` AS `userInfo.UserEmail`, `userInfo`.`UserPassword` AS `userInfo.UserPassword`, `userInfo`.`UserType` AS `userInfo.UserType`, `TimeTables`.`ID_Company` AS `TimeTables.ID_Company`, `TimeTables`.`ID_TimeTable` AS `TimeTables.ID_TimeTable`, `TimeTables`.`ID_Teacher` AS `TimeTables.ID_Teacher`, `TimeTables`.`ID_Specialty` AS `TimeTables.ID_Specialty`, `TimeTables`.`Day_of_Week` AS `TimeTables.Day_of_Week`, `TimeTables`.`Start_Time` AS `TimeTables.Start_Time`, `TimeTables`.`End_Time` AS `TimeTables.End_Time`, `TimeTables`.`Capacity` AS `TimeTables.Capacity`, `TimeTables`.`Available_Capacity` AS `TimeTables.Available_Capacity` FROM `Clients` AS `Client` LEFT OUTER JOIN `Users` AS `userInfo` ON `Client`.`UserID` = `userInfo`.`UserID` LEFT OUTER JOIN ( `TimeTableClients` AS `TimeTables->TimeTableClients` INNER JOIN `TimeTables` AS `TimeTables` ON `TimeTables`.`ID_TimeTable` = `TimeTables->TimeTableClients`.`ID_TimeTable`) ON `Client`.`ClientID` = `TimeTables->TimeTableClients`.`ClientID` WHERE `Client`.`ClientID` = '951' AND `Client`.`ID_Company` = 934;
+2024-05-13T23:34:52.334Z - Executing (ff123d0a-fc53-489a-b9fc-2033747f8c14): DELETE FROM `Clients` WHERE `ClientID` = '951'
+2024-05-13T23:34:52.337Z - Executing (ff123d0a-fc53-489a-b9fc-2033747f8c14): COMMIT;

@@ -39,13 +39,12 @@ fs.readdirSync(__dirname)
 
 // Aplicar associações
 const applyAssociations = require('./associations');
-console.log('Aplicando associações #########################################')
 applyAssociations(db);
 // Depois que suas associações foram estabelecidas...
 
-Object.keys(db).map(item => { 
-  console.log('Associações de',item,db[item].associations); 
-})
+// Object.keys(db).map(item => { 
+//   console.log('Associações de',item,db[item].associations); 
+// })
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

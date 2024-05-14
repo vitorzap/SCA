@@ -31,8 +31,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     Day_of_Week: {
-      type: DataTypes.STRING(20),
-      allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0,
+        max: 6
+      }
     },
     Start_Time: {
       type: DataTypes.TIME,

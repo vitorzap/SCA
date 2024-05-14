@@ -24,7 +24,6 @@ module.exports = (db) => {
   User.hasOne(Client,{  foreignKey: 'UserID',  as: 'clientInfo', onDelete: 'RESTRICT'});
   Client.belongsTo(User, { foreignKey: 'UserID', as: 'userInfo' });
   // Relação 1 x 1 User x Teacher
-  console.log("ASSOCIANDO TEACHER - USER   ASSOCIANDO TEACHER - USER   ASSOCIANDO TEACHER - USER   ");
   User.hasOne(Teacher,{  foreignKey: 'UserID',  as: 'teacherInfo', onDelete: 'RESTRICT'});
   Teacher.belongsTo(User, { foreignKey: 'UserID', as: 'userInfo' });
 
