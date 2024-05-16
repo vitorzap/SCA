@@ -12,6 +12,11 @@ const timeTableController = {
         return res.status(400).json({ message: 'Capacity must be greater than zero.' });
       }
 
+
+      if (Day_of_Week < 0 || Day_of_Week > 6) {
+        return res.status(400).json({ message: 'Day_of_Week must be between 0 (Sunday) and 6 (Saturday).' });
+      }
+
       // Verifique se o professor pertence à mesma companhia
       const teacher = await Teacher.findOne({ where: { ID_Teacher, ID_Company } });
       if (!teacher) {
