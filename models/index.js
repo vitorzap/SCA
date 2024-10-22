@@ -1,50 +1,52 @@
-'use strict'; 
-console.log('/MODEL/INDEX.JS ==>> INICIANDO')
+'use strict';
+const getCallerInfo = require('../utils/debugHelpers');
+const { immediateCaller, previousCaller } = getCallerInfo();
 
-const Sequelize = require('sequelize');
+console.log('/MODEL/INDEX.JS ==>> SEQUELIZE - INICIANDO')
+
 const fs = require('fs');
 const path = require('path');
-const dotenv = require('dotenv');
-const customLogger = require('../utils/logHelpers.js')
+const Sequelize = require('sequelize');
 
-dotenv.config(); // Load environment variables from .env file
-
+const process = require('process');
+const customLogger = require('../utils/logHelpers')
+const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.json')[env];
-
-// Creating a new Sequelize instance using our configuration
-// const sequelize = new Sequelize(config.database, config.username, config.password, config);
-
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  ...config,
-  logging: customLogger
-});
-
-
-
+console.log(`AMBIENTE=${env}`)
+const config = require(__dirname + '/../config/config.json')[env];
+// Verificar se o logging é `true` e substituir pela função de log personalizada
+if (config.logging === true) {
+  config.logging = customLogger; // Substitui pelo logger personalizado
+} 
 const db = {};
 
-// Reading all the model files in the directory
-fs.readdirSync(__dirname)
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+
+fs
+  .readdirSync(__dirname)
   .filter(file => {
-    return (file.indexOf('.') !== 0) && 
-           (file !== path.basename(__filename)) && 
-           (file.slice(-3) === '.js') &&
-           (file.indexOf('associations.js') === -1);
+    return (
+      file.indexOf('.') !== 0 &&
+      file !== basename &&
+      file.slice(-3) === '.js' &&
+      file.indexOf('.test.js') === -1
+    );
   })
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
-// Aplicar associações
-const applyAssociations = require('./associations');
-applyAssociations(db);
-// Depois que suas associações foram estabelecidas...
-
-// Object.keys(db).map(item => { 
-//   console.log('Associações de',item,db[item].associations); 
-// })
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

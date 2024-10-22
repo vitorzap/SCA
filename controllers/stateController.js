@@ -1,16 +1,17 @@
 const { State, City } = require('../models');
+const { Op } = require('sequelize');
 const yup = require('yup');
 
 // YUP schema for State validation
 const stateSchema = yup.object().shape({
-  Name: yup.string().required().max(100),
-  Acronym: yup.string().required().length(2),
-  Cod_State: yup.string().required().length(2)
+  Name: yup.string().required('Name is required').max(100, 'Name must be at most 100 characters long'),
+  Acronym: yup.string().required('Acronym is required').length(2, 'Acronym must be exactly 2 characters long'),
+  Cod_State: yup.string().required('Cod_State is required').length(2, 'Cod_State must be exactly 2 characters long')
 });
 
 const stateController = {
   // Create a new state
-  createState: async (req, res) => {
+  create: async (req, res) => {
     try {
       const { Name, Acronym, Cod_State } = req.body;
 
@@ -50,7 +51,7 @@ const stateController = {
   },
 
   // Get a state by ID
-  getStateById: async (req, res) => {
+  getById: async (req, res) => {
     try {
       const { id } = req.params;
       const state = await State.findByPk(id);
@@ -65,7 +66,7 @@ const stateController = {
   },
 
   // Update a state
-  updateState: async (req, res) => {
+  update: async (req, res) => {
     try {
       const { id } = req.params;
       const { Name, Acronym, Cod_State } = req.body;
@@ -102,7 +103,7 @@ const stateController = {
   },
 
   // Delete a state
-  deleteState: async (req, res) => {
+  delete: async (req, res) => {
     try {
       const { id } = req.params;
 

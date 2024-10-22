@@ -36,13 +36,20 @@ async function loadUsersFromCSV() {
                 const userNameInitials = item.UserName.slice(0, 2).toLowerCase();
                 const password = userNameInitials + '@123456'; // Custom password as described
                 const hashedPassword = await bcrypt.hash(password, passwordLength );
+                console.log(
+                    `ID_Company: ${item.ID_Company},\n`+
+                    `UserName: ${item.UserName},\n`+
+                    `UserEmail: ${item.UserEmail},\n`+
+                    `UserPassword: ${hashedPassword},\n`+
+                    `ID_UserType: ${item.ID_UserType}`
+                )
                 try {
                     const newUser = await User.create({
                         ID_Company: item.ID_Company,
                         UserName: item.UserName,
                         UserEmail: item.UserEmail,
                         UserPassword: hashedPassword,
-                        UserType: item.UserType
+                        ID_UserType: item.ID_UserType
                     });
                     ctr++;
                     process.stdout.write(`\n${ctr} included in the DB - User created: ${newUser.UserName}\n\r`);

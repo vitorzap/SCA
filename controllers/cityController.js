@@ -1,5 +1,6 @@
 const { City, State, Client } = require('../models');
 const yup = require('yup');
+const { Op } = require('sequelize');  // Correção: Adicionando a importação de Op
 
 // YUP schema for City validation
 const citySchema = yup.object().shape({
@@ -11,7 +12,7 @@ const citySchema = yup.object().shape({
 
 const cityController = {
   // Create a new City
-  createCity: async (req, res) => {
+  create: async (req, res) => {
     try {
       const { ID_State, Name, Cod_State, Cod_City } = req.body;
 
@@ -45,41 +46,8 @@ const cityController = {
     }
   },
 
-  // List all cities or filter by ID_State
-  listAllCities: async (req, res) => {
-    try {
-      const { ID_State } = req.query;
-      const filter = ID_State ? { ID_State } : {};
-
-      const cities = await City.findAll({
-        where: filter,
-        include: [{ model: State }]
-      });
-
-      res.json(cities);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Get a City by ID
-  getCityById: async (req, res) => {
-    try {
-      const { id } = req.params;
-      const city = await City.findByPk(id, { include: [State] });
-
-      if (!city) {
-        return res.status(404).json({ error: 'City not found.' });
-      }
-
-      res.json(city);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
   // Update a City
-  updateCity: async (req, res) => {
+  update: async (req, res) => {
     try {
       const { id } = req.params;
       const { ID_State, Name, Cod_State, Cod_City } = req.body;
@@ -92,7 +60,6 @@ const cityController = {
       if (!stateExists) {
         return res.status(400).json({ error: 'State not found.' });
       }
-
 
       // Uniqueness check for Name and Cod_City within the same state excluding the current city
       const existingCity = await City.findOne({
@@ -122,13 +89,13 @@ const cityController = {
   },
 
   // Delete a City
-  deleteCity: async (req, res) => {
+  delete: async (req, res) => {
     try {
       const { id } = req.params;
 
       // Check for associated Clients before deletion
-      const clients = await Client.findAll({ where: { ID_City: id } });
-      if (clients.length > 0) {
+      const clientCount = await Client.count({ where: { ID_City: id } });
+      if (clientCount > 0) {
         return res.status(400).json({ error: 'City cannot be deleted as it has associated clients.' });
       }
 
@@ -139,7 +106,48 @@ const cityController = {
         return res.status(404).json({ error: 'City not found.' });
       }
 
-      res.json({ message: 'City deleted successfully.' });
+      res.json({ success: true, message: 'City deleted successfully.' });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  // Get a City by ID
+  getCityById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const city = await City.findByPk(id, { include: [State] });
+
+      if (!city) {
+        return res.status(404).json({ error: 'City not found.' });
+      }
+
+      res.json(city);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
+  // List all cities or filter by ID_State
+  listAll: async (req, res) => {
+    try {
+      const { ID_State } = req.query;
+      // Verificar se o ID_State foi fornecido
+      if (ID_State) {
+        // Verificar se o estado existe na base de dados
+        const stateExists = await State.findByPk(ID_State);
+        if (!stateExists) {
+          return res.status(400).json({ error: 'State not found.' });
+        }
+      }
+      const filter = ID_State ? { ID_State } : {};
+
+      const cities = await City.findAll({
+        where: filter,
+        include: [{ model: State }]
+      });
+
+      res.json(cities);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }

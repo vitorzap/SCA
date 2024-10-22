@@ -2,6 +2,7 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const { sequelize } = require ('../../models');
+const { getAll } = require('../../controllers/companyController');
 
 
 function getRandomNumber(min, max) {
@@ -81,6 +82,18 @@ async function resetAutoIncrements(sequelize, tableNames, newValue = 1) {
     }
   }
 
+  async function getAllRecs(sequelize, tableName) {
+    console.log(`Getting all data from: ${sequelize.config.database}.${tableName}`);
+    try {
+        console.log(`COMANDO = SELECT * FROM ${tableName};`);
+        const [data, metadata] = await sequelize.query(`SELECT * FROM ${sequelize.config.database}.${tableName};`);
+        return data
+      } catch (error) {
+      console.error(`ERROR: Getting all data from: ${sequelize.config.database}.${tableName} => ${error}`);
+      throw error;
+    }
+  }
 
 
-module.exports = { getRandomNumber ,changeDbEnv, resetAutoIncrements, clearTables};
+
+module.exports = { getRandomNumber ,changeDbEnv, resetAutoIncrements, clearTables, getAllRecs};

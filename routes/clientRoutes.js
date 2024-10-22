@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const clientController = require('../controllers/clientController');
 
-// Assuming the same middleware for authentication
+// Middleware de autenticação
 const { verifyToken } = require('../middleware/authMiddleware');
 
-router.post('/clients', verifyToken, clientController.createClient);
-router.get('/clients', verifyToken, clientController.getAllClients);
-router.get('/clients/:id', verifyToken, clientController.getClientById);
-router.get('/clients/name/:name', verifyToken,clientController.getClientsByName);     
-router.put('/clients/:id', verifyToken, clientController.updateClient);
-router.delete('/clients/:id', verifyToken, clientController.deleteClient);
+router.post('/clients', verifyToken, clientController.create);
+router.get('/clients', verifyToken, clientController.getAll);
+router.get('/clients/:id', verifyToken, clientController.getById);
+router.get('/clients/getbyname/:name', verifyToken, clientController.getByName); // Rota renomeada
+router.put('/clients/:id', verifyToken, clientController.update);
+router.delete('/clients/:id', verifyToken, clientController.delete);
 
 module.exports = router;

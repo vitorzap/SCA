@@ -1,6 +1,5 @@
 // Função para validar o CPF
 function validateCPF(cpf) {
-  console.log(`cpf=${cpf}`);
   cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
   if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
   

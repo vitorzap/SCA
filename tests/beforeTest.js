@@ -1,8 +1,11 @@
 async function main() {
+  // Global variable to store UserTypes
+  global.userTypes = [];
+
   console.log('GETTING STARTED - BEFORE TESTS');
   const fs = require('fs');
   const dotenv = require('dotenv');
-  const { resetAutoIncrements, clearTables } = require("../tests/utils/utilsFunctions");
+  const { resetAutoIncrements, clearTables, getAllRecs } = require("../tests/utils/utilsFunctions");
   const { Sequelize } = require('sequelize');
   const customLogger = require('../utils/logHelpers.js');
 
@@ -13,11 +16,34 @@ async function main() {
     ...config,
     logging: customLogger
   });
-  
-  await resetAutoIncrements(sequelize, ['States','Cities','Clients', 'Teachers','Users', 'Companies'],0)
-  await clearTables(sequelize, ['Clients', 'Teachers',  'Cities', 'States', 'Users', 'Specialties', 'Companies'])
+
+  await resetAutoIncrements(sequelize, [
+    'States',
+    'ProfessionalSpecialties',
+    'Cities', 'Clients',
+    'Professionals',
+    'Users', 
+    'Companies'
+  ], 0);
+
+  await clearTables(sequelize, [
+    'Clients', 
+    'ProfessionalSpecialties',
+    'Professionals',  
+    'Cities', 
+    'States', 
+    'Users', 
+    'Specialties', 
+    'Companies'
+  ]);
 
   console.log('COMPLETED - BEFORE TESTS\n\n');
+  
+  // Exit the process to ensure it finishes properly before running tests
+  process.exit(0);
 }
 
-main();
+main().catch(err => {
+  console.error('Error in beforeTest script:', err);
+  process.exit(1);
+});

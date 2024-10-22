@@ -1,42 +1,59 @@
-// models/user.js
+'use strict';
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    ID_User: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    UserName: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
+    UserEmail: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      unique: 'unique_company_user_email'
+    },
+    UserPassword: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    ID_UserType: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'UserTypes',
+        key: 'ID_UserType'
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    },
     ID_Company: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'Companies',
         key: 'ID_Company'
-      }
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
     },
-    UserID: {
+    token_version: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    UserName: {
-      type: DataTypes.STRING(30),
-      allowNull: false
-    },
-    UserEmail: {
-      type: DataTypes.STRING(255),
+      defaultValue: 0,
       allowNull: false,
-      validate: {
-        isEmail: true
-      }
-    },
-    UserPassword: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    UserType: {
-      type: DataTypes.ENUM('Root', 'Admin', 'Teacher', 'Client'),
-      allowNull: false
-    },
+    }
   }, {
     timestamps: false,
-    tableName: 'Users'
   });
 
+  User.associate = (db) => {
+    User.belongsTo(db.Company, { foreignKey: 'ID_Company' });
+    User.belongsTo(db.UserType, { foreignKey: 'ID_UserType' });
+    User.hasOne(db.Professional, { foreignKey: 'ID_User' });
+    User.hasOne(db.Client, { foreignKey: 'ID_User' });
+  };
+  
   return User;
 };

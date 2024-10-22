@@ -3,10 +3,10 @@ const router = express.Router();
 const cityController = require('../controllers/cityController');
 const { verifyToken } = require('../middleware/authMiddleware');
 
-router.post('/cities', verifyToken, cityController.createCity);
-router.get('/cities', verifyToken, cityController.listAllCities);
-router.get('/cities/:id', verifyToken, cityController.getCityById);
-router.put('/cities/:id', verifyToken, cityController.updateCity);
-router.delete('/cities/:id', verifyToken, cityController.deleteCity);
+router.post('/cities', verifyToken, cityController.create);
+router.get('/cities', verifyToken, cityController.listAll);
+router.get('/cities/:id', verifyToken, cityController.getById);
+router.put('/cities/:id', verifyToken, cityController.update);
+router.delete('/cities/:id', verifyToken, cityController.delete);
 
 module.exports = router;

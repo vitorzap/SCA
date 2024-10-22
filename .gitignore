@@ -30,3 +30,13 @@ npm-debug.log*
 # Arquivos de backup
 *.bak
 *.backup
+
+# Arquivos velhos
+__OLD/
+/_OLD/
+
+# Arquivos só para desenvolvimento
+/_devutil/
+
+# Ignorar o arquivo diretorios.txt
+diretorios.txt

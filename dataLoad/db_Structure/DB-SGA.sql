@@ -45,8 +45,8 @@ DROP TABLE IF EXISTS `Clients`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Clients` (
   `ID_Company` int NOT NULL,
-  `ClientID` int NOT NULL AUTO_INCREMENT,
-  `UserID` int NOT NULL,
+  `ID_Client` int NOT NULL AUTO_INCREMENT,
+  `ID_User` int NOT NULL,
   `Name` varchar(80) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Phone` varchar(20) DEFAULT NULL,
@@ -59,14 +59,14 @@ CREATE TABLE `Clients` (
   `ID_City` int NOT NULL,
   `CEP` varchar(20) DEFAULT NULL,
   `RegistrationDate` datetime NOT NULL,
-  PRIMARY KEY (`ClientID`),
-  UNIQUE KEY `UserID` (`UserID`),
+  PRIMARY KEY (`ID_Client`),
+  UNIQUE KEY `ID_User` (`ID_User`),
   UNIQUE KEY `Email` (`Email`),
   UNIQUE KEY `CPF` (`CPF`),
   KEY `ID_Company` (`ID_Company`),
   KEY `ID_City` (`ID_City`),
   CONSTRAINT `Clients_ibfk_1` FOREIGN KEY (`ID_Company`) REFERENCES `Companies` (`ID_Company`),
-  CONSTRAINT `Clients_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`),
+  CONSTRAINT `Clients_ibfk_2` FOREIGN KEY (`ID_User`) REFERENCES `Users` (`ID_User`),
   CONSTRAINT `Clients_ibfk_3` FOREIGN KEY (`ID_City`) REFERENCES `Cities` (`ID_City`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -164,13 +164,13 @@ DROP TABLE IF EXISTS `Teachers`;
 CREATE TABLE `Teachers` (
   `ID_Company` int NOT NULL,
   `ID_Teacher` int NOT NULL AUTO_INCREMENT,
-  `UserID` int NOT NULL,
+  `ID_User` int NOT NULL,
   `Name` varchar(100) NOT NULL,
   PRIMARY KEY (`ID_Teacher`),
-  UNIQUE KEY `UserID` (`UserID`),
+  UNIQUE KEY `ID_User` (`ID_User`),
   KEY `ID_Company` (`ID_Company`),
   CONSTRAINT `Teachers_ibfk_1` FOREIGN KEY (`ID_Company`) REFERENCES `Companies` (`ID_Company`),
-  CONSTRAINT `Teachers_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`)
+  CONSTRAINT `Teachers_ibfk_2` FOREIGN KEY (`ID_User`) REFERENCES `Users` (`ID_User`)
 ) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -183,11 +183,11 @@ DROP TABLE IF EXISTS `TimeTableClients`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `TimeTableClients` (
   `ID_TimeTable` int NOT NULL,
-  `ClientID` int NOT NULL,
+  `ID_Client` int NOT NULL,
   KEY `ID_TimeTable` (`ID_TimeTable`),
-  KEY `ClientID` (`ClientID`),
+  KEY `ID_Client` (`ID_Client`),
   CONSTRAINT `TimeTableClients_ibfk_1` FOREIGN KEY (`ID_TimeTable`) REFERENCES `TimeTables` (`ID_TimeTable`),
-  CONSTRAINT `TimeTableClients_ibfk_2` FOREIGN KEY (`ClientID`) REFERENCES `Clients` (`ClientID`)
+  CONSTRAINT `TimeTableClients_ibfk_2` FOREIGN KEY (`ID_Client`) REFERENCES `Clients` (`ID_Client`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -227,12 +227,12 @@ DROP TABLE IF EXISTS `Users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Users` (
   `ID_Company` int NOT NULL,
-  `UserID` int NOT NULL AUTO_INCREMENT,
+  `ID_User` int NOT NULL AUTO_INCREMENT,
   `UserName` varchar(30) NOT NULL,
   `UserEmail` varchar(255) NOT NULL,
   `UserPassword` varchar(255) NOT NULL,
   `UserType` enum('Root','Admin','Teacher','Client') NOT NULL,
-  PRIMARY KEY (`UserID`),
+  PRIMARY KEY (`ID_User`),
   UNIQUE KEY `UserEmail` (`UserEmail`),
   KEY `ID_Company` (`ID_Company`),
   CONSTRAINT `Users_ibfk_1` FOREIGN KEY (`ID_Company`) REFERENCES `Companies` (`ID_Company`)

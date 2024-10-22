@@ -1,29 +1,27 @@
-const { Specialty } = require('../models');
+const { Specialty, RegularSchedule, Appointment, sequelize } = require('../models');
 const yup = require('yup');
 
 const specialtySchema = yup.object().shape({
   Description: yup.string().required('Description must not be blank'),
 });
 
-
 const specialtyController = {
-  createSpecialty: async (req, res) => {
+  create: async (req, res) => {
     try {
       const { Description } = req.body;
       const { ID_Company } = req.user;
 
       await specialtySchema.validate({ Description });
 
-      const newSpecialty = await Specialty.create({ ID_Company,Description });
+      const newSpecialty = await Specialty.create({ ID_Company, Description });
       res.status(201).json(newSpecialty);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
 
-  getAllSpecialties: async (req, res) => {
+  getAll: async (req, res) => {
     try {
-
       const { ID_Company } = req.user;
 
       const specialties = await Specialty.findAll({
@@ -36,14 +34,13 @@ const specialtyController = {
     }
   },
 
-
-  getSpecialtyById: async (req, res) => {
+  getById: async (req, res) => {
     try {
       const { id } = req.params;
-      const { ID_Company } = req.user; // Obtém ID_Company do req.user
+      const { ID_Company } = req.user;
 
       const specialty = await Specialty.findOne({
-          where: { ID_Specialties: id, ID_Company }
+        where: { ID_Specialties: id, ID_Company }
       });
 
       if (!specialty) {
@@ -56,11 +53,11 @@ const specialtyController = {
     }
   },
 
-  updateSpecialty: async (req, res) => {
+  update: async (req, res) => {
     try {
       const { id } = req.params;
       const { Description } = req.body;
-      const { ID_Company } = req.user; // Obtém ID_Company do req.user
+      const { ID_Company } = req.user;
 
       await specialtySchema.validate({ Description });
 
@@ -69,47 +66,52 @@ const specialtyController = {
       });
 
       if (updated) {
-          const updatedSpecialty = await Specialty.findOne({
-            where: { ID_Specialties: id, ID_Company }
-          });
-          res.json(updatedSpecialty);
-        } else {
-          res.status(404).json({ error: 'Specialty not found' });
+        const updatedSpecialty = await Specialty.findOne({
+          where: { ID_Specialties: id, ID_Company }
+        });
+        res.json(updatedSpecialty);
+      } else {
+        res.status(404).json({ error: 'Specialty not found' });
       }
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
 
-  deleteSpecialty: async (req, res) => {
+  delete: async (req, res) => {
     try {
       const { id } = req.params;
-      const { ID_Company } = req.user; 
+      const { ID_Company } = req.user;
 
-      // Verificar associações existentes com Teachers
-      const associatedTeachers = await sequelize.models.TeacherSpecialties.findAndCountAll({
-        include: [{
-          model: Specialty,
-          where: { ID_Specialties: id, ID_Company },
-          required: true
-        }]
+      // Verificar associações existentes com ProfessionalSpecialty
+      const associatedProfessionals = await sequelize.models.ProfessionalSpecialty.count({
+        where: { ID_Specialties: id, ID_Company }
       });
 
-      if (associatedTeachers.count > 0) {
-        return res.status(400).json({ error: 'Cannot delete specialty because it is associated with teachers.' });
+      if (associatedProfessionals > 0) {
+        return res.status(400).json({ error: 'Cannot delete specialty because it is associated with professionals.' });
       }
 
-      // Verificar associações com TimeTable
-      const associatedTimeTables = await TimeTable.findAndCountAll({
+      // Verificar associações com RegularSchedule
+      const associatedRegularSchedules = await RegularSchedule.count({
         where: { ID_Specialty: id, ID_Company }
       });
 
-      if (associatedTimeTables.count > 0) {
-        return res.status(400).json({ error: 'Cannot delete specialty because it is associated with time tables.' });
+      if (associatedRegularSchedules > 0) {
+        return res.status(400).json({ error: 'Cannot delete specialty because it is associated with RegularSchedule.' });
+      }
+
+      // Verificar associações com Appointment
+      const associatedAppointments = await Appointment.count({
+        where: { ID_Specialty: id, ID_Company }
+      });
+
+      if (associatedAppointments > 0) {
+        return res.status(400).json({ error: 'Cannot delete specialty because it is associated with Appointments.' });
       }
 
       const deleted = await Specialty.destroy({ 
-          where: { ID_Specialties: id, ID_Company } 
+        where: { ID_Specialties: id, ID_Company } 
       });
 
       if (deleted) {

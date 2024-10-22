@@ -2,8 +2,8 @@
   "development": {
     "username": "VIXUSER",
     "password": "VIXPASS",
-    "database": "SGA",
-    "host": "192.168.0.106",
+    "database": "PSMS",
+    "host": "192.168.0.100",
     "dialect": "mysql",
     "logging": false,
     "operatorsAliases": 0
@@ -11,8 +11,8 @@
   "test": {
     "username": "VIXUSER",
     "password": "VIXPASS",
-    "database": "SGA_Test",
-    "host": "192.168.0.106",
+    "database": "PSMS_Test",
+    "host": "192.168.0.100",
     "dialect": "mysql",
     "logging": true,
     "operatorsAliases": 0
@@ -21,7 +21,7 @@
     "username": "VIXUSER",
     "password": "VIXPASS",
     "database": "SGA_Prod",
-    "host": "192.168.0.106",
+    "host": "192.168.0.100",
     "dialect": "mysql",
     "logging": false,
     "operatorsAliases": 0
