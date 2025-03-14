@@ -7,7 +7,7 @@ async function main() {
   const dotenv = require('dotenv');
   const { resetAutoIncrements, clearTables, getAllRecs } = require("../tests/utils/utilsFunctions");
   const { Sequelize } = require('sequelize');
-  const customLogger = require('../utils/logHelpers.js');
+  const { customLogger } = require('../utils/logHelpers.js');
 
   dotenv.config();
   const env = process.env.NODE_ENV || 'test';

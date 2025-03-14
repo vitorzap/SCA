@@ -1,27 +1,21 @@
-const { User } = require('../models');
-const { generateSalt } = require('../utils/userHelpers'); 
+const { hashPassword } = require('../utils/user/userHelpers'); 
+const userRepository = require('../repositories/userRepository');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const { Op } = require('sequelize');
-const redisClient = require('../utils/redisClient');
-const {  getTokenFromHeader ,invalidateToken } = require('../utils/authorizationHelper');
+const redisClient = require('../utils/database/redisClient');
+const {  getTokenFromHeader ,invalidateToken } = require('../utils/auth/authorizationHelper');
 
 dotenv.config();
 const sessionController = {
   login: async (req, res) => {
    try {
       const { login, UserPassword, ID_Company } = req.body;
-      const user = await User.findOne({ 
-        where: {
-          [Op.or]: [
-            { UserEmail: login },
-            { UserName: login }
-          ],
-          ID_Company: ID_Company
-        }
-      });
+      const user = await userRepository.findByEmailOrUsername(
+        login,login,ID_Company
+      );
       if (!user) {
         return res.status(401).json({ error: 'User not found' });
       }
@@ -58,6 +52,9 @@ const sessionController = {
 
       res.json({ message: 'Login successful', token });
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(500).json({ error: error.message });
     }
   },
@@ -76,19 +73,22 @@ const sessionController = {
 
       res.json({ message: 'Logout successful' });
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(500).json({ error: error.message });
     }
   },
 
   changePassword: async (req, res) => {
     try {
-      const { id } = req.user; // Assuming the user's ID is available from the JWT payload
+      const { id, ID_Company } = req.user; // Assuming the user's ID is available from the JWT payload
       const { oldPassword, newPassword } = req.body;
 
       if (oldPassword === newPassword) {
         return res.status(400).json({ error: 'New password must be different from the old password' });
       }
-      const user = await User.findByPk(id);
+      const user = await userRepository.findById(id, ID_Company);
 
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
@@ -99,17 +99,18 @@ const sessionController = {
         return res.status(401).json({ error: 'Incorrect old password' });
       }
 
-      // Gerar hash da senha 
-      const customSalt = await generateSalt();
-      const hashedNewPassword = await bcrypt.hash(newPassword, customSalt);
-      // Increment the token_version upon password change
-      await user.update({ 
-        UserPassword: hashedNewPassword,
+      const updateFields = {
+        newPassword: newPassword,
         token_version: user.token_version + 1
-      });
+      };      
+
+      await  userRepository.update(id, ID_Company, updateFields)
 
       res.json({ message: 'Password changed successfully' });
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(500).json({ error: error.message });
     }
   }

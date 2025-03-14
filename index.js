@@ -2,7 +2,7 @@ console.log('INDEX.JS =>> Iniciando')
 
 require('dotenv').config();
 const http = require('http');
-const { gracefulShutdown } = require('./utils/shutdownHelpers');
+const { gracefulShutdown } = require('./utils/helpers/shutdownHelpers');
 let server;
 
 // Global variable to store UserTypes

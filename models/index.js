@@ -1,5 +1,6 @@
 'use strict';
-const getCallerInfo = require('../utils/debugHelpers');
+require('dotenv').config(); 
+const getCallerInfo = require('../utils/helpers/debugHelpers');
 const { immediateCaller, previousCaller } = getCallerInfo();
 
 console.log('/MODEL/INDEX.JS ==>> SEQUELIZE - INICIANDO')
@@ -9,23 +10,29 @@ const path = require('path');
 const Sequelize = require('sequelize');
 
 const process = require('process');
-const customLogger = require('../utils/logHelpers')
+const { customLogger } = require('../utils/helpers/logHelpers')
 const basename = path.basename(__filename);
+console.log(`AMBIENTE=${process.env.NODE_ENV}`)
 const env = process.env.NODE_ENV || 'development';
-console.log(`AMBIENTE=${env}`)
 const config = require(__dirname + '/../config/config.json')[env];
 // Verificar se o logging é `true` e substituir pela função de log personalizada
 if (config.logging === true) {
   config.logging = customLogger; // Substitui pelo logger personalizado
 } 
 const db = {};
-
 let sequelize;
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+
+console.log(
+  'Connected to MySQL \n' +
+  `- Host: ${sequelize.config.host} \n` +
+  `- Database: ${sequelize.config.database}`
+);
 
 fs
   .readdirSync(__dirname)
@@ -42,13 +49,16 @@ fs
     db[model.name] = model;
   });
 
+
+// Call associate for each model to define relationships
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
-
+ 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+

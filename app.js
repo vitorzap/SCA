@@ -1,9 +1,11 @@
 const express = require('express');
+const { scopePerRequest } = require('awilix-express');
+const container = require('./container');
 const logger = require('./logger')
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { UserType } = require('./models'); // Importar o modelo UserType
-const redisClient = require('./utils/redisClient');
+const redisClient = require('./utils/database/redisClient');
 
 // Função para carregar os UserTypes e retornar os dados
 async function loadUserTypes() {
@@ -29,11 +31,15 @@ async function loadUserTypes() {
 }
 
 async function createApp() {
+  console.log('CRIANDO  A APP')
   // Carregar os UserTypes e atribuir a global.userTypes
   global.userTypes = await loadUserTypes(); 
-  
+
   // Criação do app Express após o carregamento de UserTypes
   const app = express();
+  
+  // Middleware do Awilix para escopo por requisição
+  app.use(scopePerRequest(container));
   
   // Middleware to log requests to a file
   app.use((req, res, next) => {
@@ -53,9 +59,10 @@ async function createApp() {
   });
   app.use(limiter);
 
-
   // Importando as rotas
   const sessionRoutes = require('./routes/sessionRoutes');
+  const stateRoutes = require('./routes/stateRoutes');
+  const cityRoutes = require('./routes/cityRoutes');
   const companyRoutes = require('./routes/companyRoutes');
   const userRoutes = require('./routes/userRoutes');
   const clientRoutes = require('./routes/clientRoutes');
@@ -65,6 +72,8 @@ async function createApp() {
 
   // Definindo as rotas
   app.use('/api', sessionRoutes);
+  app.use('/api', stateRoutes);
+  app.use('/api', cityRoutes);
   app.use('/api', companyRoutes);
   app.use('/api', userRoutes);
   app.use('/api', clientRoutes);

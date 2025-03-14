@@ -1,15 +1,20 @@
-// stateRoutes.js
 const express = require('express');
+const { makeInvoker } = require('awilix-express');
 const router = express.Router();
-const stateController = require('../controllers/stateController');
 
-// Middleware for authentication if needed
-// const { verifyToken } = require('../middleware/authMiddleware');
+// Middlewares
+const { verifyToken } = require('../middleware/authMiddleware');
+const { authorizeByUserLevel } = require('../utils/auth/authorizationHelper');
 
-router.post('/states', stateController.createState); // Create a new state
-router.get('/states', stateController.listAll); // List all states
-router.get('/states/:id', stateController.getStateById); // Get a state by ID
-router.put('/states/:id', stateController.updateState); // Update a state
-router.delete('/states/:id', stateController.deleteState); // Delete a state
+// Obtém o invocador do controlador (DI resolve as dependências)
+// const stateController = makeInvoker((container) => container.resolve('stateController'));
+const stateController = makeInvoker((cradle) => cradle.stateController);
+
+// Define the routes
+router.post('/state',verifyToken, authorizeByUserLevel([0]),stateController('create'));
+router.get('/state',verifyToken,stateController('getAll'));
+router.get('/state/:id', verifyToken, stateController('getById'));
+router.put('/state/:id',verifyToken,authorizeByUserLevel([0]),stateController('update'));
+router.delete('/state/:id',verifyToken,authorizeByUserLevel([0]),stateController('delete'));
 
 module.exports = router;

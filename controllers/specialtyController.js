@@ -16,6 +16,9 @@ const specialtyController = {
       const newSpecialty = await Specialty.create({ ID_Company, Description });
       res.status(201).json(newSpecialty);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -30,6 +33,9 @@ const specialtyController = {
 
       res.json(specialties);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -49,6 +55,9 @@ const specialtyController = {
 
       res.json(specialty);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -74,6 +83,9 @@ const specialtyController = {
         res.status(404).json({ error: 'Specialty not found' });
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -120,6 +132,9 @@ const specialtyController = {
         res.status(404).json({ error: 'Specialty not found' });
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   }

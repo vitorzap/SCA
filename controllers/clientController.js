@@ -1,17 +1,176 @@
-const { Client, User, City, ClientRegularSchedule, Appointment, sequelize } = require('../models');
-const bcrypt = require('bcrypt');
-const { generateSalt, generateUserName, generatePassword, getUserTypeName, initializeUserTypeIdAndLevel } = require('../utils/userHelpers'); 
-const { Op } = require('sequelize');
-const { validateCPF } = require('../utils/verifyingDigitHelper'); 
-const yup = require('yup');
+const clientRepository = require('../repositories/clientRepository');
+const cityRepository = require('../repositories/cityRepository');
+const yup = require('yup')
+const { 
+        getUserTypeName, 
+        initializeUserTypeIdAndLevel
+      } = require('../utils/user/userHelpers'); 
 const dotenv = require('dotenv');
 
 dotenv.config();
 
 // Get the user type name from the filename and initialize the user type ID
 const userTypeName = getUserTypeName(__filename);
-  
-const {userTypeID, userTypeLevel} = initializeUserTypeIdAndLevel(userTypeName);
+const { userTypeID, userTypeLevel } = initializeUserTypeIdAndLevel(userTypeName);
+
+
+const clientController = {
+  create: async (req, res) => {
+    try {
+      const { Name, Email, Phone, DateOfBirth, Gender, Street, 
+             Complement, District, ID_City, CEP, CPF } = req.body;
+      const { ID_Company } = req.user;
+      const RegistrationDate = new Date();
+
+      const reqData = {
+        Name, Email, CPF, ID_City, Phone, DateOfBirth, Gender, Street,
+        Complement, District, CEP, ID_Company, RegistrationDate,
+        ID_UserType: userTypeID, UserTypeLevel: userTypeLevel
+      };
+
+      const validationResult = await validateClientData(reqData)
+      if (!validationResult.success) {
+        return res.status(400).json({ message: validationResult.message });
+      }
+ 
+      const createClientResult = await clientRepository.create(clientData)
+      if (!createClientResult.successsuccess) {
+        res.status(400).json({ message: createClientResult.message });
+      }
+      res.status(201).json({ 
+        message: createClientResult.message, 
+        data: createClientResult.data
+      })
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error.message);
+      }      
+      res.status(400).json({ message: error.message });
+    }
+  },
+
+  getAll: async (req, res) => {
+    try {
+      const { ID_Company } = req.user;
+      const findResult = 
+        await clientRepository.findAllByCompany(ID_Company);
+      if (!findResult.success) {
+        res.status(400).json({ message: findResult.message });
+      }
+      res.status(201).json({ 
+        message: findResult.message, 
+        data: findResult.data 
+      })
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error);
+      }
+      res.status(400).json({ message: error.message });
+    }
+  },
+
+  getById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { ID_Company } = req.user;
+      const findResult = await clientRepository.findById(id, ID_Company);
+      if (!findResult.success) {
+        res.status(404).json({ message: findResult.message });
+      }
+      res.json({ 
+        message: findResult.message, 
+        data: findResult.data 
+      })
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error.message);
+      }
+      res.status(400).json({ message: error.message });
+    }
+  },
+
+  // Get clients by name *** Refazer
+  getByName: async (req, res) => {
+    try {
+      const { name } = req.params;
+      const { ID_Company } = req.user;
+
+      const clients = await clientRepository.findByName(name, ID_Company);
+
+      if (clients.length > 0) {
+        res.json(clients);
+      } else {
+        res.status(404).json({ message: 'No clients found matching criteria.' });
+      }
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error);
+      }
+      res.status(500).json({ message: error.message });
+    }
+  },
+
+  // *** refazer 
+  update: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { ID_Company } = req.user;
+      const findResult = await clientRepository.findById(id, ID_Company);
+      if (!findResult.success) {
+        res.status(404).json({ message: findResult.message });
+      }
+
+      const updatedClientData = Object.assign(
+          {}, 
+          { ...fetchedClient, OldName: fetchedClient.Name }, 
+          req.body
+        );
+
+      const validationResult = await validateClientData(updatedClientData)
+      if (!validationResult.success) {
+        return res.status(400).json({ message: validationResult.message });
+      }
+ 
+      const updateResult = await clientRepository.update(updatedClientData)
+      if (!updateResult.success) {
+        res.status(400).json({ message: updateResult.message });
+      }
+      res.status(201).json({ 
+        message: updateResult.message, 
+        data: updateResult.data
+       })
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error);
+      }      
+      res.status(400).json({ message: error.message });
+    }
+  },
+
+  // Delete a client
+  delete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { ID_Company } = req.user;
+
+      const deleteResult = await clientRepository.delete(id, ID_Company, transaction);
+      if (!deleteResult.success) {
+        res.status(404).json({ message: deleteResult.message });
+      }
+      res.json({ message: deleteResult.message, data: deleteResult.data });
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error);
+      }
+      res.status(400).json({ message: error.message });
+    }
+  }
+};
+
+
+// =========================
+// General module functions
+// =========================
 
 const clientSchema = yup.object().shape({
   Name: yup.string().required(),
@@ -20,7 +179,7 @@ const clientSchema = yup.object().shape({
   DateOfBirth: yup.date().nullable(),
   Gender: yup.string().oneOf(['Male', 'Female', 'Other']).nullable(),
   CPF: yup.string().required("CPF is mandatory")
-        .test('is-valid-cpf', 'Invalid CPF', value => validateCPF(value)),
+          .test('is-valid-cpf', 'Invalid CPF', value => validateCPF(value)),
   Street: yup.string().nullable(),
   Complement: yup.string().nullable(),
   District: yup.string().nullable(),
@@ -28,294 +187,41 @@ const clientSchema = yup.object().shape({
   CEP: yup.string().nullable(),
 });
 
-const updateClientSchema = yup.object().shape({
-  Name: yup.string().optional(),
-  Email: yup.string().email().optional(),
-  Phone: yup.string().optional(),
-  DateOfBirth: yup.date().nullable().optional(),
-  Gender: yup.string().oneOf(['Male', 'Female', 'Other']).nullable().optional(),
-  CPF: yup.string().optional()
-        .test('is-valid-cpf', 'Invalid CPF', value => value ? validateCPF(value) : true),
-  Street: yup.string().nullable().optional(),
-  Complement: yup.string().nullable().optional(),
-  District: yup.string().nullable().optional(),
-  ID_City: yup.number().optional(),
-  CEP: yup.string().nullable().optional(),
-});
+async function validateClientData(clientData) {
+  try {
+    // Validate schema using Yup
+    const { success, message: errorMessage } = await validateData(clientData, clientSchema);
+    if (!success) {
+      return { success: false, message: errorMessage };
+    } 
 
-const clientController = {
-  // Create a new client
-  create: async (req, res) => {
-    const transaction = await sequelize.transaction(); // Inicia uma transação
-    try {
-      await clientSchema.validate(req.body);
-
-      const { Name, Email, Phone, DateOfBirth, Gender, Street, Complement,
-              District, ID_City, CEP, CPF } = req.body;  
-      const { ID_Company } = req.user;
-
-     // Verifica se userTypeID e userTypeLevel são válidos
-     if (userTypeID === -1 || userTypeLevel === -1) {
-        return res.status(400).json({ error: `UserType not found for name: ${userTypeName}` });
-     }
-     if (userTypeLevel < 2) {
-      return res.status(400).json({ error: `UserTypeLevel =  ${userTypeLevel} not permitedfound for: ${userTypeName}`  });
-     }
-
-      // Verifica se o ID_City fornecido existe na tabela City
-      const cityExists = await City.findByPk(ID_City);
-      if (!cityExists) {
-        throw new Error('Invalid ID_City. City does not exist.');
-      }
-
-      // Verificar se o CPF já existe
-      const cpfExists = await Client.findOne({ where: { CPF }, transaction });
-      if (cpfExists) {
-        throw new Error('CPF already registered.');
-      }
-
-      // Obtém o comprimento da senha do .env, ou usa 10 como padrão se não estiver definido
-      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 10;
-
-      // Gerar senha aleatória
-      const password = generatePassword(passwordLength);
-      const customSalt = await generateSalt();
-      const hashedPassword = await bcrypt.hash(password, customSalt);
-      
-      // Tentativa inicial para gerar nome de usuário
-      let userName = await generateUserName(Name);
-      let userNameExists = await User.findOne({ where: { UserName: userName }, transaction });
-
-      // Verificar unicidade e ajustar nome de usuário se necessário
-      let counter = 1;
-      while (userNameExists) {
-        userName = await generateUserName(Name, counter);
-        userNameExists = await User.findOne({ where: { UserName: userName }, transaction });
-        counter++;
-      }
-
-      // Criação do usuário
-      const newUser = await User.create({
-        UserName: userName,
-        UserEmail: Email,
-        UserPassword: hashedPassword,
-        UserType: userTypeId,  // Use o ID do UserType inicializado
-        ID_Company
-      }, { transaction });
-
-      // Criação do cliente associado ao usuário
-      const newClient = await Client.create({
-        Name,
-        Email,
-        Phone,
-        DateOfBirth, 
-        Gender, 
-        Street, 
-        Complement,
-        District, 
-        ID_City, 
-        CEP,
-        CPF,
-        ID_Company,
-        ID_User: newUser.ID_User
-      }, { transaction });
-
-      await transaction.commit(); // Se tudo ocorrer bem, confirma a transação
-      res.status(201).json({ client: newClient, user: newUser });
-    } catch (error) {
-      await transaction.rollback(); // Em caso de erro, reverte todas as operações da transação
-      res.status(400).json({ error: error.message });
+    const { CPF, ID_City, ID_Company, UserTypeID, UserTypeLevel } = clientData; 
+    // User type and level validation
+    if (UserTypeID === -1 || UserTypeLevel === -1) {
+      return { success: false, message: `UserType not found for name: ${clientData.UserTypeName}` };
     }
-  },
-
-  // Get all clients
-  getAll: async (req, res) => {
-    try {
-      const { ID_Company } = req.user;
-
-      const clients = await Client.findAll({
-        where: { ID_Company }
-      });
-
-      res.json(clients);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+    if (UserTypeLevel < 2) {
+      return { success: false, message: `UserTypeLevel = ${UserTypeLevel} not permitted for: ${clientData.UserTypeName}` };
+    } 
+    
+    // Check if city exists
+    const cityExists = await cityRepository.findById(ID_City);
+    if (!cityExists) {
+      return { success: false, message: 'Invalid ID_City. City does not exist.' };
     }
-  },
-
-  // Get a client by ID
-  getById: async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { ID_Company } = req.user;
-
-      const client = await Client.findOne({
-        where: { ID_Client: id, ID_Company },
-        include: [{ model: User, as: 'userInfo' }]
-      });
-
-      if (!client) {
-        return res.status(404).json({ error: 'Client not found' });
-      }
-
-      res.json(client);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Get clients by name pattern
-  getByName: async (req, res) => {
-    try {
-      let { name } = req.params;
-      const { ID_Company, UserType } = req.user;
-      let whereCondition = { ID_Company };
-
-      if (UserType !== 'Root') {
-        whereCondition.ID_Company = ID_Company;
-      }
-
-      if (name.includes('*')) {
-        name = name.replace(/\*/g, '%');
-        whereCondition.Name = { [Op.like]: name };
-      } else {
-        whereCondition.Name = name;
-      }
-
-      const clients = await Client.findAll({ where: whereCondition });
-      if (clients.length > 0) {
-        res.json(clients);
-      } else {
-        res.status(404).json({ error: 'No clients found matching criteria.' });
-      }
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
-
-  // Update client data
-  update: async (req, res) => {
-    const transaction = await sequelize.transaction();
-    try {
-      await updateClientSchema.validate(req.body);
-
-      const { id } = req.params;
-      const { ID_Company } = req.user;
-
-      const updates = {};
-      Object.keys(req.body).forEach(key => {
-        if (req.body[key] !== undefined) {
-          updates[key] = req.body[key];
-        }
-      });
-
-      if (updates.ID_City) {
-        const cityExists = await City.findByPk(updates.ID_City);
-        if (!cityExists) {
-          throw new Error('Invalid ID_City. City does not exist.');
-        }
-      }
-
-      if (updates.CPF) {
-        const cpfExists = await Client.findOne({
-          where: {
-            CPF: updates.CPF,
-            ID_Client: { [Op.ne]: id }
-          },
-          transaction
-        });
-
-        if (cpfExists) {
-          throw new Error('CPF already registered for another client.');
-        }
-      }
-
-      const client = await Client.findOne({
-        where: { ID_Client: id, ID_Company },
-        transaction
-      });
-
-      if (!client) {
-        await transaction.rollback();
-        return res.status(404).json({ error: 'Client not found.' });
-      }
-
-      await Client.update(updates, {
-        where: { ID_Client: id, ID_Company },
-        transaction
-      });
-
-      if (updates.Email) {
-        await User.update(
-          { UserEmail: updates.Email },
-          { where: { ID_User: client.ID_User, ID_Company }, transaction }
-        );
-      }
-
-      await transaction.commit();
-      res.json({ message: 'Client and corresponding user updated successfully.' });
-    } catch (error) {
-      await transaction.rollback();
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Delete a client
-  delete: async (req, res) => {
-    const transaction = await sequelize.transaction();
-    try {
-      const { id } = req.params;
-      const { ID_Company } = req.user;
   
-      const client = await Client.findOne({
-        where: { ID_Client: id, ID_Company },
-        include: [
-          { model: User, as: 'userInfo', required: false },
-          { model: ClientRegularSchedule, as: 'RegularSchedules', through: { attributes: [] } },
-          { model: Appointment, as: 'Appointments' }
-        ],
-        transaction
-      });
-
-      if (!client) {
-        await transaction.rollback();
-        return res.status(404).json({ error: 'Client not found.' });
-      }
-
-      if (client.RegularSchedules && client.RegularSchedules.length > 0) {
-        await transaction.rollback();
-        return res.status(400).json({ error: 'Cannot delete client because it is associated with RegularSchedules.' });
-      }
-
-      if (client.Appointments && client.Appointments.length > 0) {
-        await transaction.rollback();
-        return res.status(400).json({ error: 'Cannot delete client because it is associated with Appointments.' });
-      }
-
-      if (client.userInfo) {
-        await User.destroy({
-          where: { ID_User: client.userInfo.ID_User },
-          transaction
-        });
-      }
-
-      const deleted = await Client.destroy({
-        where: { ID_Client: id },
-        transaction
-      });
-
-      if (deleted === 0) {
-        await transaction.rollback();
-        return res.status(404).json({ error: 'The customer cannot be deleted because the related user cannot be deleted' });
-      }
-      
-      await transaction.commit();
-      res.json({ message: 'Client and corresponding user deleted successfully.' });
-    } catch (error) {
-      await transaction.rollback();
-      res.status(400).json({ error: error.message });
+    // Check for duplicate CPF
+    const { success: cpfExists, message, data: clientWithThisCPF } = await clientRepository.findByCPF(CPF, ID_Company);
+    if (cpfExists) {
+      return { success: false, message: `${message} - ${JSON.stringify(clientWithThisCPF)}`};
     }
-  },
-};
+ 
+    return { success: true, message: '' };
+
+  } catch (error) {
+    return { success: false,message: 'An unexpected error occurred during validation' };
+  }
+}
+
 
 module.exports = clientController;

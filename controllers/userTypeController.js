@@ -1,117 +1,131 @@
-const { UserType, User } = require('../models');
+// controllers/companyController.js
+const { Company, Client, Professional, Specialty, RegularSchedule, Appointment } = require('../models');
+const { generateHashedPassword } = require('../utils/user/userHelpers');
 const { Op } = require('sequelize');
-const yup = require('yup');
+const bcrypt = require('bcrypt');
+const configurarTransporter = require('../utils/helpers/emailHelpers');
+const emailTransporter = configurarTransporter();
+const { getTokenFromHeader, invalidateToken } = require('../utils/auth/authorizationHelper');
+const userRepository = require('../repositories/userRepository'); // Using userRepository
 
-// YUP schema for UserType validation
-const userTypeSchema = yup.object().shape({
-  TypeName: yup.string().required().max(50),
-  UserTypeLevel: yup.number().required().integer().oneOf([0, 1, 2, 3]).label('UserTypeLevel'),
-});
-
-const userTypeController = {
-  // Create a new user type
+const companyController = {
   create: async (req, res) => {
     try {
-      const { TypeName, UserTypeLevel } = req.body;
+      const { Name, AdminEmail } = req.body;
+      const newCompany = await Company.create({ Name });
 
-      // Validate request body against schema
-      await userTypeSchema.validate({ TypeName, UserTypeLevel });
+      const { hashedPassword } = generateHashedPassword();
 
-      // Ensure only one UserType with UserTypeLevel = 0 or 1 exists
-      if (UserTypeLevel === 0 || UserTypeLevel === 1) {
-        const existingUserType = await UserType.findOne({ where: { UserTypeLevel } });
-        if (existingUserType) {
-          return res.status(400).json({ error: `Only one UserType with UserTypeLevel = ${UserTypeLevel} is allowed.` });
+      // Creating the admin user via userRepository
+      const newUser = await userRepository.create({
+        UserName: 'admin',
+        UserEmail: AdminEmail,
+        UserPassword: hashedPassword,
+        ID_UserType: 1,
+        ID_Company: newCompany.ID_Company
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: AdminEmail,
+        subject: 'Your Admin Account Details',
+        text: `Hello,\n\n` +
+              `Work environment for Company ${Name} created.\n` +
+              `Use the login below to start preparing this environment.\n` +
+              `\tLogin: Admin\n` +
+              `\tPassword: ${password}\n\n` +
+              `Yours sincerely,\n` +
+              `General system administrator.`
+      };
+
+      emailTransporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log('Email not sent: ' + error);
+        } else {
+          console.log('Email sent: ' + info.response);
         }
-      }
+      });
 
-      const newUserType = await UserType.create({ TypeName, UserTypeLevel });
-      res.status(201).json(newUserType);
+      return res.status(201).json(newCompany);
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
+      return res.status(400).json({ error: error.message });
     }
   },
 
-  // List all user types
-  listAll: async (req, res) => {
-    try {
-      const userTypes = await UserType.findAll();
-      res.json(userTypes);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Get a user type by ID
-  getById: async (req, res) => {
-    try {
-      const { id } = req.params;
-      const userType = await UserType.findByPk(id);
-      if (userType) {
-        res.json(userType);
-      } else {
-        res.status(404).json({ error: 'UserType not found' });
-      }
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Update a user type
-  update: async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { TypeName, UserTypeLevel } = req.body;
-
-      // Validate request body against schema
-      await userTypeSchema.validate({ TypeName, UserTypeLevel });
-
-      // Ensure only one UserType with UserTypeLevel = 0 or 1 exists
-      if (UserTypeLevel === 0 || UserTypeLevel === 1) {
-        const existingUserType = await UserType.findOne({
-          where: {
-            UserTypeLevel,
-            ID_UserType: { [Op.ne]: id } // Exclude the current UserType from the check
-          }
-        });
-        if (existingUserType) {
-          return res.status(400).json({ error: `Only one UserType with UserTypeLevel = ${UserTypeLevel} is allowed.` });
-        }
-      }
-
-      const [updated] = await UserType.update({ TypeName, UserTypeLevel }, { where: { ID_UserType: id } });
-      if (updated) {
-        const updatedUserType = await UserType.findByPk(id);
-        res.json(updatedUserType);
-      } else {
-        res.status(404).json({ error: 'UserType not found' });
-      }
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
-  // Delete a user type
+  // Other CRUD methods follow similar changes
   delete: async (req, res) => {
     try {
       const { id } = req.params;
+      const { confirmDeleteAdmin } = req.body;
+      const loggedUserId = req.user.id;
 
-      // Check if any user is linked to this UserType before deleting
-      const linkedUsers = await User.count({ where: { ID_UserType: id } });
-      if (linkedUsers > 0) {
-        return res.status(400).json({ error: 'Cannot delete UserType because it is referenced by one or more users.' });
-      }
+      const dependencies = [
+        Client.count({ where: { ID_Company: id } }),
+        Professional.count({ where: { ID_Company: id } }),
+        Specialty.count({ where: { ID_Company: id } }),
+        RegularSchedule.count({ where: { ID_Company: id } }),
+        Appointment.count({ where: { ID_Company: id } }),
+        userRepository.countByCompany(id)
+      ];
 
-      const deleted = await UserType.destroy({ where: { ID_UserType: id } });
-      if (deleted) {
-        res.json({ message: 'UserType deleted successfully' });
+      const results = await Promise.all(dependencies);
+      const [clientsCount, professionalsCount, specialtiesCount, schedulesCount, appointmentsCount, usersCount] = results;
+
+      if (usersCount === 1) {
+        const adminUser = await userRepository.findOne({
+          where: { ID_Company: id }
+        });
+
+        if (adminUser && adminUser.ID_User === loggedUserId) {
+          if (!confirmDeleteAdmin) {
+            return res.status(400).json({
+              error: 'Confirmation required to delete the admin user along with the company.'
+            });
+          }
+
+          const token = getTokenFromHeader(req);
+          if (!token) {
+            return res.status(401).json({ error: 'Authorization header is required or Token not found in the authorization header' });
+          }
+
+          await invalidateToken(token);
+          await userRepository.delete(adminUser.ID_User);  // Deleting user via repository
+          results[5] = 0;
+        }
       } else {
-        res.status(404).json({ error: 'UserType not found' });
+        return res.status(400).json({
+          error: 'Cannot delete company. The user is not the sole admin or does not match the logged-in user.'
+        });
       }
+
+      const totalDependencies = results.reduce((total, count) => total + count, 0);
+      if (totalDependencies > 0) {
+        return res.status(400).json({
+          error: 'Cannot delete company because it is referenced by other entities.',
+          details: {
+            clients: clientsCount,
+            professionals: professionalsCount,
+            specialties: specialtiesCount,
+            regularSchedules: schedulesCount,
+            appointments: appointmentsCount,
+            users: usersCount
+          }
+        });
+      }
+
+      const deleted = await Company.destroy({ where: { ID_Company: id } });
+      return deleted ? res.json({ message: 'Company deleted successfully.' }) : res.status(404).json({ error: 'Company not found.' });
+
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
+      return res.status(400).json({ error: error.message });
     }
   }
 };
 
-module.exports = userTypeController;
+module.exports = companyController;

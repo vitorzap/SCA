@@ -1,15 +1,21 @@
 const express = require('express');
+const { makeInvoker } = require('awilix-express');
 const router = express.Router();
-const companyController = require('../controllers/companyController');
 
+// Middlewares
 const { verifyToken } = require('../middleware/authMiddleware');
-const { authorizeByUserLevel } = require('../utils/authorizationHelper');
+const { authorizeByUserLevel } = require('../utils/auth/authorizationHelper');
 
-router.post('/companies', verifyToken, authorizeByUserLevel([0]), companyController.create);
-router.get('/companies', verifyToken, authorizeByUserLevel([0]), companyController.getAll);
-router.get('/companies/:id', verifyToken, authorizeByUserLevel([0]), companyController.getById);
-router.get('/companies/getbyname/:name', verifyToken, authorizeByUserLevel([0]), companyController.getByName);
-router.put('/companies/:id', verifyToken, authorizeByUserLevel([0]), companyController.update);
-router.delete('/companies/:id', verifyToken, authorizeByUserLevel([0]), companyController.delete);
+// const companyController = makeInvoker((container) => container.resolve('companyController'));
+const companyController = makeInvoker((cradle) => cradle.companyController);
+
+// Define the routes
+router.post('/company',verifyToken,authorizeByUserLevel([0]),companyController('create'));
+router.get('/company',verifyToken,authorizeByUserLevel([0]),companyController('getAll'));
+router.get('/company/byname',verifyToken,authorizeByUserLevel([0]),companyController('getByName'));
+router.get('/company/:id',verifyToken,companyController('getById'));
+router.put('/company/:id',verifyToken,authorizeByUserLevel([0]),companyController('update'));
+router.delete('/company/:id',verifyToken,authorizeByUserLevel([0]),companyController('delete'));
 
 module.exports = router;
+  

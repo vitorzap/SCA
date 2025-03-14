@@ -1,33 +1,20 @@
-// session.test.js
 console.log('SESSION TEST - BEGIN');
-
+const dotenv = require('dotenv');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Sequelize, DataTypes } = require('sequelize');
-const customLogger = require('../../utils/logHelpers.js');
-const dotenv = require('dotenv');
-
-dotenv.config();
-const env = process.env.NODE_ENV || 'test';
-const config = require('../../config/config.json')[env];
-console.log(`Database=${config.database}`)
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  ...config,
-  logging: customLogger
-});
 const { User, Company } = require('../../models'); // Your Sequelize models
 
+dotenv.config();
 chai.use(chaiHttp);
-const expect = chai.expect;
 
 let app
 let newCompany;
 let newUser;
 let token;
 
-describe('Session Controller', function () {
+describe(' TESTE -Session Controller', function () {
   before(async () => {
     const createApp = require('../../app.js'); 
     app = await createApp()
@@ -48,7 +35,13 @@ describe('Session Controller', function () {
 
   });
 
-  describe('POST /login', () => {
+  after(async () => {
+    // Cleanup the created user and company after the tests
+    await User.destroy({ where: { UserEmail: 'testuser@example.com' } });
+    await Company.destroy({ where: { ID_Company: newCompany.ID_Company } });
+  })
+
+  describe(' TESTE -POST /login', () => {
     it('should login the user and return JWT token', (done) => {
       chai.request(app)
         .post('/api/login')
@@ -58,8 +51,8 @@ describe('Session Controller', function () {
           ID_Company: newCompany.ID_Company
         })
         .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.property('token');
+          chai.expect(res).to.have.status(200);
+          chai.expect(res.body).to.have.property('token');
           token = res.body.token; // Save the token for further requests
           done();
         });
@@ -73,27 +66,27 @@ describe('Session Controller', function () {
           ID_Company: newCompany.ID_Company
         })
         .end((err, res) => {
-          expect(res).to.have.status(401);
-          expect(res.body).to.have.property('error').that.equals('Incorrect password');
+          chai.expect(res).to.have.status(401);
+          chai.expect(res.body).to.have.property('error').that.equals('Incorrect password');
           done();
         });
     });
   });
 
-  describe('POST /logout', () => {
+  describe(' TESTE -POST /logout', () => {
     it('should logout the user and blacklist the token', (done) => {
       chai.request(app)
         .post('/api/logout')
         .set('Authorization', `Bearer ${token}`)
         .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.property('message').that.equals('Logout successful');
+          chai.expect(res).to.have.status(200);
+          chai.expect(res.body).to.have.property('message').that.equals('Logout successful');
           done(); 
         });
     });
   });
 
-  describe('POST /changePassword with blacklisted token', () => {
+  describe(' TESTE -POST /changePassword with blacklisted token', () => {
     it('should not change the user password due to blacklisted token', (done) => {
       chai.request(app)
         .post('/api/changePassword')
@@ -103,14 +96,14 @@ describe('Session Controller', function () {
           newPassword: 'newpassword123',
         })
         .end((err, res) => {
-          expect(res).to.have.status(401); // Expect failure due to blacklisted token
-          expect(res.body).to.have.property('error').that.equals('Token is blacklisted');
+          chai.expect(res).to.have.status(401); // Expect failure due to blacklisted token
+          chai.expect(res.body).to.have.property('error').that.equals('Token is blacklisted');
           done();
         });
     });
   });
 
-  describe('POST /login to get new token after logout', () => {
+  describe(' TESTE -POST /login to get new token after logout', () => {
     it('should login the user and return JWT token after logout', (done) => {
       chai.request(app)
         .post('/api/login')
@@ -120,15 +113,15 @@ describe('Session Controller', function () {
           ID_Company: newCompany.ID_Company
         })
         .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.property('token');
+          chai.expect(res).to.have.status(200);
+          chai.expect(res.body).to.have.property('token');
           token = res.body.token; // Save the new token for further requests
           done();
         });
     });
   });
 
-  describe('POST /changePassword', () => {
+  describe(' TESTE -POST /changePassword', () => {
     it('should change the user password', (done) => {
       chai.request(app)
         .post('/api/changePassword')
@@ -138,14 +131,14 @@ describe('Session Controller', function () {
           newPassword: 'newpassword123',
         })
         .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.property('message').that.equals('Password changed successfully');
+          chai.expect(res).to.have.status(200);
+          chai.expect(res.body).to.have.property('message').that.equals('Password changed successfully');
           done();
         });
     });
   });
 
-  describe('POST /login with new password', () => {
+  describe(' TESTE -POST /login with new password', () => {
     it('should login the user with the new password and return JWT token', (done) => {
       chai.request(app)
         .post('/api/login')
@@ -155,16 +148,10 @@ describe('Session Controller', function () {
           ID_Company: newCompany.ID_Company
         })
         .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.have.property('token');
+          chai.expect(res).to.have.status(200);
+          chai.expect(res.body).to.have.property('token');
           done();
         });
     });
   });
-
-  after(async () => {
-    // Cleanup the created user and company after the tests
-    await User.destroy({ where: { UserEmail: 'testuser@example.com' } });
-    await Company.destroy({ where: { ID_Company: newCompany.ID_Company } });
-  })
 })

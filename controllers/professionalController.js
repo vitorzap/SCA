@@ -1,9 +1,13 @@
-const { Professional, User, Specialty, RegularSchedule, Appointment, sequelize } = require('../models');
+const { Professional, User, Specialty, RegularSchedule, 
+        Appointment, ProfessionalSpecialty, sequelize } = require('../models');
 const { Op } = require('sequelize');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const path = require('path');
 const yup = require('yup');
-const { generateSalt, generateUserName, generatePassword, getUserTypeName, initializeUserTypeIdAndLevel } = require('../utils/userHelpers');
+const { generateUserName, generateHashedPassword ,getUserTypeName,
+        initializeUserTypeIdAndLevel, getUserTypeInfo 
+      } = require('../utils/user/userHelpers');
 
 dotenv.config();
 
@@ -15,14 +19,19 @@ const professionalSchema = yup.object().shape({
   Name: yup.string().required()
            .min(2, 'Name must be at least 2 characters long')
            .max(100, 'Name must not exceed 100 characters'),
-  Email: yup.string().email('Enter a valid email').required('Email is required')
+  Email: yup.string()
+           .email('Enter a valid email')
+           .required('Email is required')
 });
 
 const updateProfessionalSchema = yup.object().shape({
   Name: yup.string()
            .min(2, 'Name must be at least 2 characters long')
-           .max(100, 'Name must not exceed 100 characters'),
-  Email: yup.string().email('Enter a valid email')
+           .max(100, 'Name must not exceed 100 characters')
+           .nullable(),
+  Email: yup.string()
+           .email('Enter a valid email')
+           .nullable(),
 });
 
 const professionalController = {
@@ -58,11 +67,7 @@ const professionalController = {
         throw new Error('One or more specialties do not exist for the given company.');
       }     
 
-      // Gera password inicial do usuário
-      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 10; 
-      const password = generatePassword(passwordLength);
-      const customSalt = await generateSalt();
-      const hashedPassword = await bcrypt.hash(password, customSalt);
+      const { hashedPassword } = generateHashedPassword();
 
       // Gera o nome do usuário baseado no nome do profissional
       let userName = await generateUserName(Name); // Tentativa inicial
@@ -80,7 +85,7 @@ const professionalController = {
         UserName: userName,
         UserEmail: Email, 
         UserPassword: hashedPassword,
-        UserType: userTypeId,  // Use the ID initialized for UserType
+        ID_UserType: userTypeID,  // Use the ID initialized for UserType
         ID_Company
       }, { transaction });
 
@@ -91,13 +96,16 @@ const professionalController = {
         ID_Company
       }, { transaction });
 
-      await newProfessional.addSpecialties(specialties, { transaction });
-
+      await newProfessional.addSpecialties(specialtyIds,transaction);
+ 
       await transaction.commit();
 
       res.status(201).json(newProfessional);
     } catch (error) {
       await transaction.rollback();
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -110,6 +118,9 @@ const professionalController = {
       });
       res.json(professionals);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -145,6 +156,9 @@ const professionalController = {
 
       res.json(response);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -155,7 +169,7 @@ const professionalController = {
       const { ID_Company, UserType } = req.user;
       let whereCondition = { ID_Company };
 
-      if (UserType !== 'Root') {
+      if (userTypeLevel != 0) {
         whereCondition.ID_Company = ID_Company;
       }
 
@@ -173,6 +187,9 @@ const professionalController = {
         res.status(404).json({ error: 'No professionals found matching criteria.' });
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(500).json({ error: error.message });
     }
   },
@@ -184,11 +201,8 @@ const professionalController = {
 
       const professionals = await Professional.findAll({
         include: [{
-          model: Specialty,
-          where: { ID_Specialties: specialtyId },
-          through: {
-            attributes: []
-          }
+          model: ProfessionalSpecialty,
+          where: { ID_Specialties: specialtyId }
         }],
         where: { ID_Company }
       });
@@ -199,6 +213,9 @@ const professionalController = {
         res.status(404).json({ error: 'No professionals found for the given specialty.' });
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(500).json({ error: error.message });
     }
   },
@@ -248,18 +265,29 @@ const professionalController = {
       const updatedProfessional = await Professional.findOne({
         where: { ID_Professional: id, ID_Company },
         include: [{ 
-          model: User, as: 'userInfo',
-          attributes: ['ID_User', 'UserName', 'UserEmail', 'UserType']
+          model: User,
+          attributes: ['ID_User', 'UserName', 'UserEmail','ID_UserType']
          }]
       });
+
+      if (updatedProfessional) {
+        updatedProfessional.User.dataValues.UserType =
+          getUserTypeInfo(updatedProfessional.User.ID_UserType);
+      }
 
       res.json(updatedProfessional);
 
     } catch (error) {
-      await transaction.rollback();
+      if (transaction && !transaction.finished) {
+        await transaction.rollback();
+      }
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       if (error instanceof yup.ValidationError) {
         return res.status(400).json({ errors: error.errors });
       }
+
       res.status(500).json({ error: error.message });
     }
   },
@@ -271,13 +299,6 @@ const professionalController = {
       const { ID_Company } = req.user;
       const professional = await Professional.findOne({
         where: { ID_Professional: id, ID_Company },
-        include: [{
-            model: Specialty,
-            as: 'Specialties',
-            through: {
-                attributes: []
-            }
-        }],
         transaction
       });
       if (!professional) {
@@ -295,19 +316,17 @@ const professionalController = {
         await transaction.rollback();
         return res.status(400).json({ error: 'Cannot delete professional because they are associated with RegularSchedules.' });
       }  
-
       // Verificar se o profissional está associado a algum Appointment
       const hasAppointments = await Appointment.findOne({
         where: { ID_Professional: professional.ID_Professional },
         transaction
       });
-
       if (hasAppointments) {
         await transaction.rollback();
         return res.status(400).json({ error: 'Cannot delete professional because they are associated with Appointment.' });
       }  
       // Excluir as associações do profissional com especialidades
-      await professional.removeSpecialties(professional.Specialties, { transaction });
+      await professional.deleteSpecialties(transaction);
 
       // Excluir o profissional
       await professional.destroy(
@@ -325,6 +344,9 @@ const professionalController = {
       res.json({ message: 'Professional and corresponding user deleted successfully.' });
     } catch (error) {
       await transaction.rollback();
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -335,6 +357,14 @@ const professionalController = {
       const { id } = req.params;
       const { specialtyIds } = req.body;
       const { ID_Company } = req.user;
+
+      // Ensure the specialtyIds foi informado
+      if (!specialtyIds || 
+          !Array.isArray(specialtyIds) || 
+          specialtyIds.length === 0) {
+        await transaction.rollback();
+        return res.status(404).json({ error: 'New specialty list is empty.' });
+      }
 
       // Ensure the professional exists
       const professional = await Professional.findOne({ where: { ID_Professional: id, ID_Company } }, { transaction });
@@ -350,12 +380,14 @@ const professionalController = {
       }
 
       // Simplified association update
-      await professional.setSpecialties(specialtyIds, { transaction });
-
+      await professional.updateSpecialties(specialtyIds, transaction);
       await transaction.commit();
       res.json({ message: 'Professional specialties updated successfully.' });
     } catch (error) {
       await transaction.rollback();
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   }

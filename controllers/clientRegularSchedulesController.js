@@ -63,6 +63,9 @@ const clientRegularSchedulesController = {
     } catch (error) {
       if (transaction) await transaction.rollback();
       logger.error('Error adding client to RegularSchedule:', error);
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -111,6 +114,9 @@ const clientRegularSchedulesController = {
     } catch (error) {
       if (transaction) await transaction.rollback();
       logger.error('Error deleting ClientRegularSchedule:', error);
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -136,6 +142,9 @@ const clientRegularSchedulesController = {
       }
     } catch (error) {
       logger.error('Error fetching ClientRegularSchedule by ID:', error);
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -193,6 +202,9 @@ const clientRegularSchedulesController = {
       }
     } catch (error) {
       logger.error('Error fetching RegularSchedules by Client:', error);
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -218,6 +230,9 @@ const clientRegularSchedulesController = {
       }
     } catch (error) {
       logger.error('Error fetching Clients by RegularSchedule:', error);
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   }

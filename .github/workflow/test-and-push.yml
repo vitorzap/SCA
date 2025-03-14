@@ -1,0 +1,38 @@
+name: Test and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Ou a versão do Node.js que seu projeto utiliza
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: $ npm run mtest  
+
+      - name: Push changes
+        if: success()
+        run: |
+          git config --global user.name "Vitor Zamprogno Amancio Pereira"
+          git config --global user.email "vitor.zapereira@gmail.com"
+          git push origin main
+
+
+# Para adicionar finalmente
+# git add .github/workflows/test-and-push.yml
+# git commit -m "Add GitHub Actions workflow for testing before push"
+# git push origin main

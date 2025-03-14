@@ -1,7 +1,7 @@
 const { RegularSchedule, Professional, ProfessionalSpecialties, Specialty, Client, ClientRegularSchedules, Appointment, sequelize } = require('../models');
 const { Op } = require('sequelize');
 const { eachDayOfInterval, parseISO, setHours, setMinutes, getDay, format } = require('date-fns');
-const { checkOverlappingSchedules, checkOverlappingAppointments } = require('../utils/scheduleHelpers');
+const { checkOverlappingSchedules, checkOverlappingAppointments } = require('../utils/schedulle/scheduleHelpers');
 const yup = require('yup');
 
 const scheduleSchema = yup.object().shape({
@@ -96,6 +96,9 @@ const regularScheduleController = {
         res.status(201).json(newSchedule);
       }  
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -169,6 +172,9 @@ const regularScheduleController = {
         }
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -203,6 +209,9 @@ const regularScheduleController = {
         res.status(404).json({ message: 'RegularSchedule record not found.' });
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -222,6 +231,9 @@ const regularScheduleController = {
         res.status(404).json({ message: 'RegularSchedule not found' });
       }
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },
@@ -319,6 +331,9 @@ const regularScheduleController = {
 
       res.json(regularSchedules);
     } catch (error) {
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
       res.status(400).json({ error: error.message });
     }
   },

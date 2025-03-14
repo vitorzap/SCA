@@ -1,0 +1,23 @@
+# Diretórios a serem evitados
+__OLD
+_dev_util
+_testDiverso
+.github
+.git
+dataLoad
+migrations
+sql
+server
+seeders
+tests
+node_modules
+.env
+
+# Arquivos específicos a serem evitados
+package.json
+package-lock.json
+logger.js
+directories.txt
+
+# Padrão de arquivos a serem evitados
+*.copy.jsn

@@ -1,13 +1,42 @@
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const { getTokenFromHeader ,isTokenBlacklisted } = require('../utils/authorizationHelper'); // Importa a função de verificação do token
+const { getTokenFromHeader ,isTokenBlacklisted } = require('../utils/auth/authorizationHelper'); // Importa a função de verificação do token
 
 dotenv.config();
 
 const verifyToken = async (req, res, next) => {
-
   try {
+    if (process.env.NOLOGIN === 'true') {
+      // Preenche o payload com valores das variáveis de ambiente ou null
+      const noLoginPayload = {
+        id: process.env.NOLOGIN_ID || null,
+        ID_Company: process.env.NOLOGIN_COMPANY || null,
+        userTypeID: process.env.NOLOGIN_UTYPE || null,
+        userTypeName: process.env.NOLOGIN_UTYPENAME || null,
+        userTypeLevel: process.env.NOLOGIN_UTYPELEVEL || null,
+      };
+      
+      if (noLoginPayload.userTypeLevel != null) {
+        if (typeof noLoginPayload.userTypeLevel !== 'number') {
+          const converted = Number(noLoginPayload.userTypeLevel);
+          noLoginPayload.userTypeLevel = isNaN(converted) ? null : converted;
+        }
+      }
+      
+      // Verifica se algum campo está ausente
+      const missingFields = Object.entries(noLoginPayload).filter(([key, value]) => value === null);
+      if (missingFields.length > 0) {
+        const missingKeys = missingFields.map(([key]) => key).join(', ');
+        return res.status(500).json({
+          error: `Missing environment variables for NOLOGIN mode: ${missingKeys}`,
+        });
+      }
+      req.user = noLoginPayload; // Preenche req.user com os dados do payload  
+      return next(); // Pula a autenticação e passa para o próximo middleware
+    }
+
+    // Lógica padrão de autenticação
     const token = getTokenFromHeader(req);
     if (!token) {
       return res.status(401).json({ 

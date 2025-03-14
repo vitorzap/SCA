@@ -1,89 +1,61 @@
-const { User, Client, Professional, UserType } = require('../models');
-// const { Op, JSON } = require('sequelize');
-const { Op } = require('sequelize');
-const bcrypt = require('bcrypt');
-const yup = require('yup');
-const { generatePassword, generateSalt } = require('../utils/userHelpers');
-
-// Schema for creating a user
-const createUserSchema = yup.object().shape({
-  UserName: yup.string().required(),
-  UserEmail: yup.string().email().required(),
-  UserPassword: yup.string().required(),
-  ID_UserType: yup.number().required(), // Ensuring UserType is provided
-});
-
-// Schema for updating a user
-const updateUserSchema = yup.object().shape({
-  UserName: yup.string().optional(),
-  UserEmail: yup.string().email().optional(),
-  ID_UserType: yup.number().optional(), // Optional UserType on update
-});
+// controllers/userController.js
+const { UserRepository, UserTypeRepository } = require('../repositories/');  
+const { validateData } = require ('../utils/validation/yupHelpers')
+const yup = require('yup')
 
 const userController = {
   create: async (req, res) => {
     try {
-      const { UserName, UserEmail, UserPassword, ID_UserType } = req.body;
+      const { UserName, newName, UserEmail, 
+              UserPassword, newPassword, ID_UserType } = req.body;
       const { ID_Company } = req.user;
 
-      await createUserSchema.validate({ UserName, UserEmail, UserPassword, ID_UserType });
+      const reqData = { UserName, newName, UserEmail, 
+                        UserPassword, newPassword,
+                        ID_UserType, ID_Company }
 
-      // Validate UserTypeLevel based on ID_UserType
-      const userType = await UserType.findByPk(ID_UserType);
-      if (!userType) {
-        return res.status(400).json({ error: 'Invalid UserType provided.' });
+      const { success, message: validationMessage } = await validateUser(reqData)
+      if (!success) {
+        console.log(`success=${success} \n validationMessage=${message}`)
+        return res.status(400).json({ message: validationMessage });
       }
 
-      if (userType.UserTypeLevel > 1) {
-        return res.status(400).json({ error: 'Dependent user must be created otherwise.' });
+      const createResult = await UserRepository.create(reqData);
+      console.log(`success=${success} \n`+
+        `message=${createResult.message} \n`+
+        `dados= ${JSON.stringify(createResult.dados)}`
+      )
+      if (!createResult.success) {
+         res.status(400).json({ message: createResult.message });
       }
-
-      const userExists = await User.findOne({
-        where: {
-          [Op.or]: [
-            { UserName },
-            { UserEmail }
-          ],
-          ID_Company,
-        },
-      });
-
-      if (userExists) {
-        return res.status(400).json({ error: userExists.UserName === UserName ? 'User name already exists.' : 'User email already exists.' });
-      }
-
-      // Custom password generation and hashing
-      const passwordLength = parseInt(process.env.AUTO_GENERATED_PASSWORD_LENGTH) || 10;
-      const password = generatePassword(passwordLength);
-      const customSalt = await generateSalt();
-      const hashedPassword = await bcrypt.hash(password, customSalt);
-
-      const newUser = await User.create({
-        UserName,
-        UserEmail,
-        UserPassword: hashedPassword,
-        ID_UserType,
-        ID_Company,
-      });
-
-      res.status(201).json(newUser);
+      res.status(201).json({ 
+        message: createResult.message, 
+        data: createResult.data 
+      })
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
+      res.status(400).json({ message: error.message });
     }
   },
 
   getAll: async (req, res) => {
     try {
       const { ID_Company } = req.user;
-
-      const users = await User.findAll({
-        where: { ID_Company },
-        include: [{ model: UserType, attributes: ['TypeName', 'UserTypeLevel'] }],
-      });
-
-      res.json(users);
+      const findResult = await UserRepository.findAllByCompany(ID_Company);
+      if (!findResult.success) {
+        res.status(400).json({ message: findResult.message });
+      }
+      res.status(201).json({  
+        message: findResult.message, 
+        data: findResult.data 
+      })
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error);
+      }
+      res.status(400).json({ message: error.message });
     }
   },
 
@@ -91,176 +63,179 @@ const userController = {
     try {
       const { id } = req.params;
       const { ID_Company } = req.user;
-
-      const user = await User.findOne({
-        where: { ID_User: id, ID_Company },
-        include: [{ model: UserType, attributes: ['TypeName', 'UserTypeLevel'] }],
-      });
-
-      if (!user) {
-        return res.status(404).json({ error: 'User not found.' });
+      const findResult = await UserRepository.findById(id, ID_Company);
+      if (!findResult.success) {
+        res.status(404).json({ message: findResult.message });
       }
-
-      res.json(user);
+      res.json({ 
+        message: findResult.message, 
+        data: findResult.data
+      })
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error.message);
+      }
+      res.status(400).json({ message: error.message });
     }
   },
 
   getByName: async (req, res) => {
     try {
-      let { name } = req.params;
-      const { ID_Company, ID_UserType } = req.user;
+      const { name } = req.params;
+      const { ID_Company } = req.user;
 
-      let whereCondition = { UserName: name };
-
-      if (name.includes('*')) {
-        whereCondition.UserName = { [Op.like]: name.replace(/\*/g, '%') };
+      const findResult = await UserRepository.findByUserName(name, ID_Company);
+      if (!findResult.success) {
+        res.status(404).json({ message: findResult.message });
       }
-
-      // Validate UserTypeLevel if ID_UserType is provided in update
-      if (ID_UserType) {
-        const userType = await UserType.findByPk(ID_UserType);
-        if (!userType) {
-          return res.status(400).json({ error: 'Invalid UserType provided.' });
-        }
-        if (userType.UserTypeLevel !== 0) {
-          whereCondition.ID_Company = ID_Company;
-        }
-      }
-
-      const users = await User.findAll({
-        where: whereCondition,
-        include: [{ 
-          model: UserType, 
-          attributes: ['TypeName', 'UserTypeLevel'] 
-        }],
-      });
-
-      if (users.length > 0) {
-        res.json(users);
-      } else {
-        res.status(404).json({ error: 'No users found matching criteria.' });
-      }
+      res.json({ 
+        message: findResult.message, 
+        data: findResult.data
+      })
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error.message);
+      }
+      res.status(400).json({ message: error.message });
     }
   },
 
   update: async (req, res) => {
     try {
       const { id } = req.params;
-      const { UserName, UserEmail } = req.body;
       const { ID_Company } = req.user;
+      const { UserName, newName, UserEmail, 
+            UserPassword, newPassword } = req.body;
+      const reqData =   { UserName, newName, UserEmail, 
+                          UserPassword, newPassword } 
+      for (const key in reqData) { reqData[key] ?? delete reqData[key];}
 
-      await updateUserSchema.validate({ UserName, UserEmail });
-    
-      // Ensure at least one field is provided for update
-      if (!UserName && !UserEmail) {
-        return res.status(400).json({ error: 'No fields provided for update.' });
-      }
-
-      const updateFields = {};
-      if (UserName) {
-          updateFields.UserName = UserName;
-      }
-      if (UserEmail) {
-        updateFields.UserEmail = UserEmail;
-      }  
-
-      // Check if either UserName or UserEmail already exists in the company (ignore current user)
-      if (Object.keys(updateFields).length > 0) {
-        let whereCondition = {
-          ID_Company,
-          ID_User: { [Op.ne]: id }, // Exclude current user from this check
-        };
-
-        if (Object.keys(updateFields).length === 2) {
-          whereCondition[Op.or] = [
-            { UserName: updateFields.UserName },
-            { UserEmail: updateFields.UserEmail }
-          ];
-        } else {
-          // If only one of UserName or UserEmail is present
-          whereCondition = {
-            ...whereCondition,
-            ...updateFields
-          };
+      const findUniqueResult = await UserRepositoryRepository.findById(id, ID_Company);
+        if (!findUniqueResult.success) {
+          res.status(404).json({ message: findMessage });
         }
 
-        const existingUser = await User.findOne({
-          where: whereCondition
-        });
+      const userData = Object.assign({}, fetchedUser, reqData )
 
-        if (existingUser) {
-          return res.status(400).json({ error: 'UserName or UserEmail already in use by another user in your company.' });
-        }
+      const validationResult = await validateUser(userData)
+      if (!validationResult.success) {
+        console.log(`success=${validationResult.success} \n validationMessage=${validationResult.message}`)
+        return res.status(400).json({ message: validationResult.message });
       }
-
-      const updated = await User.update(
-        updateFields,
-        { where: { ID_User: id, ID_Company } }
-      );
-
-      if (updated[0] > 0) {
-        const updatedUser = await User.findOne(
-          { where: { ID_User: id }, 
-            include: [{ model: UserType,
-                        attributes: ['TypeName', 'UserTypeLevel'] 
-                     }]
-          });
-        res.json(updatedUser);
-      } else {
-        res.status(404).json({ error: 'User not found.' });
+     
+      const updateResult = await clientRepository.update(updatedClientData)
+      if (!updateResult.success) {
+        res.status(400).json({ message: updateResult.message });
       }
+      res.status(201).json({ 
+        message: updateResult.message, 
+        data: updateResult.userData
+      })
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('message:', error);
+      }      
+      res.status(400).json({ message: error.message });
     }
   },
 
- 
   delete: async (req, res) => {
     try {
       const { id } = req.params;
       const { ID_Company } = req.user;
-  
-      const user = await User.findOne({
-        where: { ID_User: id, ID_Company },
-        include: [{ model: UserType, attributes: ['UserTypeLevel'] }]
-      });
-  
-      if (!user) {
-        return res.status(404).json({ error: 'User not found.' });
+
+      const deleteResult = await clientRepository.delete(id, ID_Company);
+      if (!deleteResult.success) {
+        res.status(404).json({ message: deleteResult.message });
       }
-  
-      // Check if the UserTypeLevel is NOT 0 or 1
-      if (![0, 1].includes(user.UserType.UserTypeLevel)) {
-        return res.status(403).json({ error: 'Deleting users of this type is not allowed.' });
-      }
-  
-      const clientOrProfessional = await Promise.all([
-        Client.findOne({ where: { ID_User: id } }),
-        Professional.findOne({ where: { ID_User: id } })
-      ]);
-  
-      if (clientOrProfessional[0] || clientOrProfessional[1]) {
-        return res.status(400).json({ error: 'Cannot delete user associated with a client or Professional.' });
-      }
-  
-      const deleted = await User.destroy({
-        where: { ID_User: id, ID_Company }
-      });
-  
-      if (deleted) {
-        res.json({ message: 'User deleted successfully' });
-      } else {
-        res.status(404).json({ error: 'User not found.' });
-      }
+      res.json({ message: deleteResult.message });
     } catch (error) {
-      console.log(`ERROR=(${error.message})`)
-      res.status(400).json({ error: error.message });
+      if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        console.error('Error:', error);
+      }
+      res.status(400).json({ message: error.message });
     }
   },
 };
+
+
+// =========================
+// General module functions
+// =========================
+
+const userSchema = yup.object().shape({
+  newName: yup.string().nullable(),
+  UserName: yup.string().nullable(),
+  UserEmail: yup.string().email().required(),
+  newPassword: yup.string().nullable(), // Allows newPassword to be null
+  UserPassword: yup.string().nullable(), // Allows UserPassword to be null
+  ID_UserType: yup.number().required(),
+}).test(
+  'validation-rules',
+  'Validation error: Check the rules for newName, UserName, UserPassword, and newPassword.',
+  (obj) => {
+    const { newName, UserName, newPassword, UserPassword } = obj;
+
+    // Validation 1: At least one of `newName` or `UserName` must be filled
+    const isNameValid = !!newName || !!UserName;
+    if (!isNameValid) {
+      return false;
+    }
+
+    // Validation 2: Rules for `newPassword` and `UserPassword`
+    // If `UserPassword` is filled, `newPassword` must not exist or must be null
+    if (UserPassword) {
+      if (newPassword !== null && newPassword !== undefined) {
+        return false;
+      }
+    }
+
+    // If `newPassword` exists, it can coexist with `UserPassword` and can be null
+    if (newPassword !== undefined) {
+      return true;
+    }
+
+    // Passes if all conditions are met
+    return true;
+  }
+);
+
+async function validateUser(userData) {
+  try {
+    // Validate schema using Yup
+    const { success, message: errorMessage } = await validateData(userData, userSchema);
+    console.log(`YUP user success=${success}`)
+    if (!success) {
+      return { success: false, message: errorMessage };
+    } 
+    // Validating the user type
+    const userType = await UserTypeRepository.findById(userData.ID_UserType);
+    if (!userType || userType.UserTypeLevel > 1) {
+      return { success: false, message: 'Invalid UserType provided.'};
+    }
+
+// Checking if another user with this email or UserName already exists in the database
+if (userData.UserName || userData.UserEmail) {
+  const findUniqueResult = 
+    await userRepository.findByEmailOrUsername(
+      userData.UserEmail, 
+      userData.UserName, 
+      userData.ID_Company
+    );
+
+  if (findUniqueResult.success) {
+    const existingUser = dados;
+
+    // If `ID_User` is present in `userData`, ensure it's not the same user
+    if (!userData.ID_User || existingUser.ID_User !== userData.ID_User) {
+      return { success: false, message: 'User name or email already exists.' };
+    }
+  }
+}
+    return { success: true, message: '' };
+  } catch (error) {
+    return { success: false,message: 'An unexpected error occurred during validation' };
+  }  
+}
 
 module.exports = userController;

@@ -2,7 +2,7 @@
 console.log(`TIME TABLE TEST - BEGIN`)
 const dotenv = require('dotenv');
 const { Sequelize, DataTypes } = require('sequelize');
-const customLogger = require('../../utils/logHelpers.js');
+const { customLogger } = require('../../utils/logHelpers.js');
 dotenv.config();
 const env = process.env.NODE_ENV || 'test';
 const config = require('../../config/config.json')[env];
@@ -24,7 +24,7 @@ const chaiHttp = require('chai-http');
 const { expect } = chai;
 chai.use(chaiHttp);
 
-describe('TimeTable Controller', () => {
+describe(' TESTE -TimeTable Controller', () => {
     let token = '';
     let testCompany, testUser, testTeacher, testSpecialty, testClient;
     let testTimeTable;
@@ -99,7 +99,7 @@ describe('TimeTable Controller', () => {
         }
     });
 
-    describe('POST /api/timetables', () => {
+    describe(' TESTE -POST /api/timetables', () => {
         it('should create a timetable', (done) => {
             chai.request(app)
                 .post('/api/timetables')
@@ -121,7 +121,7 @@ describe('TimeTable Controller', () => {
         });
     });
 
-    describe('GET /api/timetables', () => {
+    describe(' TESTE -GET /api/timetables', () => {
         it('should retrieve all timetables for a company', (done) => {
             chai.request(app)
                 .get('/api/timetables')
@@ -134,7 +134,7 @@ describe('TimeTable Controller', () => {
         });
     });
 
-    describe('GET /api/timetables/:id', () => {
+    describe(' TESTE -GET /api/timetables/:id', () => {
         it('should retrieve a specific timetable by ID', (done) => {
             chai.request(app)
                 .get(`/api/timetables/${testTimeTable.ID_TimeTable}`)
@@ -147,7 +147,7 @@ describe('TimeTable Controller', () => {
         });
     });
 
-    describe('PUT /api/timetables/:id', () => {
+    describe(' TESTE -PUT /api/timetables/:id', () => {
         it('should update a timetable', (done) => {
             chai.request(app)
                 .put(`/api/timetables/${testTimeTable.ID_TimeTable}`)
@@ -161,7 +161,7 @@ describe('TimeTable Controller', () => {
         });
     });
 
-    describe('DELETE /api/timetables/:id', () => {
+    describe(' TESTE -DELETE /api/timetables/:id', () => {
         it('should delete a timetable', (done) => {
             chai.request(app)
                 .delete(`/api/timetables/${testTimeTable.ID_TimeTable}`)
